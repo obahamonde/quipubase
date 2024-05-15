@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "quipubase"
+version = "0.0.1-alpha"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+cython = "^3.0.10"
+pydantic = "^2.7.1"
+fastapi = "^0.111.0"
+orjson = "^3.10.3"
+numpy = "^1.26.4"
+hnswlib = "^0.8.0"
+httpx = "^0.27.0"
+openai = "^1.28.2"
+pyppeteer = "^2.0.0"
+bs4 = "^0.0.2"
+lxml = "^5.2.2"
+python-dotenv = "^1.0.1"
+openai-whisper = "^20231117"
+pydub = "^0.25.1"
+pytube = "^15.0.0"
+
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.11.1"
+black = "^21.12b0"
+isort = "^5.10.2"
+pytest = "^8.2.0"
+pytest-asyncio = "^0.23.6"
+
+[tool.poetry.scripts]
+quipubase = "quipubase.cli:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+pytest-asyncio = "^0.23.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

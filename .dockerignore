@@ -1,0 +1,3 @@
+./quipubase/build
+.venv
+*db*

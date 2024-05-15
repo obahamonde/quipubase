@@ -1,0 +1,8 @@
+cython
+pydantic
+fastapi
+orjson
+numpy
+hnswlib
+httpx
+setuptools
