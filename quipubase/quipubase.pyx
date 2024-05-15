@@ -157,21 +157,15 @@ cdef class Quipu:
             del it
             return results
       
-    def find_docs(self,  int limit, int offset, dict[str,Any] kwargs):
+    def find_docs(self,  int limit, int offset, object kwargs):
         cdef list results = []
-        cdef Iterator* it = self.db.NewIterator(ReadOptions()) 
+        cdef Iterator* it = self.db.NewIterator(ReadOptions())
+        it.SeekToFirst()
         try:
-            it.SeekToFirst()
             while it.Valid() and len(results) < limit:
-                if offset > 0:
-                    offset -= 1
-                    it.Next()
-                    continue
-                key = (<bytes>it.key().data())[:it.key().size()]
-                value = (<bytes>it.value().data())[:it.value().size()]
-                doc = orjson.loads(value)
-                for k,v in kwargs.items():
-                    if doc.get(k) != v:
+                doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
+                for key, value in kwargs.items():
+                    if doc.get(key) != value:
                         break
                 else:
                     results.append(doc)

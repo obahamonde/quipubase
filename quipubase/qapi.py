@@ -4,7 +4,7 @@ from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from openai import AsyncOpenAI
 
-from .qconst import SUMMARY
+from .qconst import SERVERS, SUMMARY
 from .qdoc import app as documents_app
 from .qschemas import DataSamplingTool
 from .qtools import app as tools_app
@@ -15,7 +15,7 @@ api = FastAPI(
     description="AI-Driven, Schema-Flexible Document Store",
     summary=SUMMARY,
     version="0.0.1:alpha",
-    servers=[{"url": "https://6bxwkv84qjspb1-5000.proxy.runpod.net"}],
+    servers=[SERVERS],
 )
 api.add_middleware(
     CORSMiddleware,
@@ -24,10 +24,11 @@ api.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+ai = AsyncOpenAI()
 
 
 def create_app(
-    routers: list[APIRouter] = [documents_app, vector_app, tools_app, tts_app]
+    routers: list[APIRouter] = [documents_app, vector_app, tools_app]
 ) -> FastAPI:
     """
     Create and configure the QuipuBase API.
@@ -35,8 +36,8 @@ def create_app(
     Returns:
         FastAPI: The configured FastAPI application.
     """
-    # for router in routers:
-    #     api.include_router(router, prefix="/api")
+    for router in routers:
+        api.include_router(router, prefix="/api")
 
     @api.get("/api/health")
     def _():
@@ -44,9 +45,8 @@ def create_app(
 
     @api.get("/api/synth")
     async def _(prompt: str):
-        ai = AsyncOpenAI()
         response = await ai.chat.completions.create(
-            messages=[{"role": "system", "content": prompt}],
+            messages=[{"role": "user", "content": prompt}],
             model="llama3-8B-8192",
             max_tokens=8192,
             functions=[DataSamplingTool.definition()],

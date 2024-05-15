@@ -40,7 +40,7 @@ def test_dog(name: str, breed: str):
     assert res.key == dog.key
     dog_in_db = Dog.get_doc(key=dog.key)
     assert isinstance(dog_in_db, Dog)
-    dogs = Dog.find_docs(name=dog.name, limit=10, offset=0)
+    dogs = Dog.scan_docs(limit=10, offset=0)
     assert isinstance(dogs, list)
     assert isinstance(dogs[0], Dog)
     dogs_filtered = Dog.find_docs(limit=10, offset=0, name=name)

@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Literal, Optional, Type, Union
 from fastapi import HTTPException
 from openai import AsyncOpenAI
 from pydantic import BaseModel, Field, create_model  # type: ignore
-from typing_extensions import TypedDict, TypeVar
+from typing_extensions import TypeAlias, TypedDict, TypeVar
 
 from .qconst import MAPPING, Action
 from .qproxy import QProxy
@@ -16,15 +16,14 @@ from .qutils import handle
 T = TypeVar("T", bound=BaseModel)
 
 
-class Property(TypedDict, total=False):
-    type: str
+Property: TypeAlias = Dict[str, object]
 
 
 class JsonSchema(TypedDict, total=False):
     title: str
-    type: Literal["object"]
-    properties: Dict[str, Property]
-    required: Optional[List[str]]
+    description: str
+    type: str
+    properties: Property
 
 
 def sanitize(text: str):
@@ -42,7 +41,7 @@ def sanitize(text: str):
         else:
             raise ValueError("Invalid JSON format")
     except Exception as e:
-        raise Exception(f"{e.__class__.__name__}: {e}")
+        raise Exception(f"{e.__class__.__name__}: {e}") from e
     return jsonified["data"]
 
 
@@ -98,7 +97,7 @@ def create_class(
         "synthDocs",
     ):
         for key, value in properties.items():
-            attributes[key] = (Optional[cast_to_type(value)], None)  # type: ignore
+            attributes[key] = (Optional[cast_to_type(value)], Field(default=None))  # type: ignore
     elif action:
         raise ValueError(f"Invalid action `{action}`")
     return create_model(name, __base__=base, **attributes)  # type: ignore
@@ -134,7 +133,7 @@ class DataSamplingTool(Tool, QProxy[AsyncOpenAI]):
         PROMPT = f"""
 	You are a JSON Schema Syntax Expert and Data Synthetizer.
 	This is the jsonschema of the data to synthetize  {json.dumps(self.json_schema)}.
-	Generate exactly {min(self.n,50)} synthetic data samples that adhere strictly to the input schema provided.
+	Generate exactly {self.n} synthetic data samples that adhere strictly to the input schema provided.
 	Output the data on the format: {{ "data": [*samples] }}, where *samples is a list of the generated samples.
 	Ensure you send a valid JSON object, free of syntax errors, including only the specified format with no prior or additional content, advice, or instructions. Just JSON data.
 	"""
