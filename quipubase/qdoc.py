@@ -30,8 +30,8 @@ class _Base(BaseModel):
 class Status(_Base):
     code: int
     message: str
-    key: Optional[str] = Field(default=None)
-
+    key: str = Field(default=None)
+    definition: JsonSchema = Field(default=None)
 
 class TypeDef(BaseModel):
     data: Optional[Dict[str, Any]] = Field(
@@ -60,12 +60,25 @@ class QDocument(_Base):
             cls._db_instances[cls.__name__] = Quipu(f"db/{cls.__name__}")
         cls._db = cls._db_instances[cls.__name__]
 
+    @classmethod
+    def definition(cls) -> JsonSchema:
+        return JsonSchema(
+            title=cls.__name__,
+            type="object",
+            properties=cls.model_json_schema().get("properties", {}),
+        )
+
     @handle
     def put_doc(self) -> Status:
         if self._db.exists(key=self.key):
             self._db.merge_doc(self.key, self.model_dump())
         self._db.put_doc(self.key, self.model_dump())
-        return Status(code=201, message="Document created", key=self.key)
+        return Status(
+            code=201,
+            message="Document created",
+            key=self.key,
+            definition=self.definition(),
+        )
 
     @classmethod
     @handle
@@ -78,13 +91,23 @@ class QDocument(_Base):
     @handle
     def merge_doc(self) -> Status:
         self._db.merge_doc(key=self.key, value=self.model_dump())
-        return Status(code=200, message="Document updated", key=self.key)
+        return Status(
+            code=200,
+            message="Document updated",
+            key=self.key,
+            definition=self.definition(),
+        )
 
     @classmethod
     @handle
     def delete_doc(cls, *, key: str) -> Status:
         cls._db.delete_doc(key=key)
-        return Status(code=204, message="Document deleted", key=key)
+        return Status(
+            code=204,
+            message="Document deleted",
+            key=key,
+            definition=cls.definition(),
+        )
 
     @classmethod
     @handle
@@ -172,11 +195,6 @@ async def _(
 
     if action in ("getDoc", "deleteDoc", "scanDocs", "countDocs", "existsDoc"):
         assert key is not None, f"Key must be provided for action `{action}`"
-        if definition.data is not None:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Data must not be provided for this action",
-            )
         if action == "getDoc":
             return klass.get_doc(key=key)
         if action == "deleteDoc":
