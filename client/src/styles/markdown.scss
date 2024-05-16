@@ -1,0 +1,53 @@
+@import url("https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/github.min.css");
+
+.markdown-body {
+  img {
+    max-width: 8rem !important;
+  }
+  padding: 2em;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom, #8f8f8f, #e6e6e6);
+  border: 3px solid #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(to bottom, #737373, #bfc1c2);
+}
+
+.prose pre:not(.shiki) {
+  padding: 0;
+}
+
+.prose .shiki {
+  font-family: "DM Mono", monospace;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+.prose img {
+  width: 100%;
+}
+
+.shiki-light {
+  background: #f8f8f8 !important;
+}
+.shiki-dark {
+  background: #0e0e0e !important;
+}
+
+html.dark .shiki-light {
+  display: none;
+}
+
+html:not(.dark) .shiki-dark {
+  display: none;
+}
