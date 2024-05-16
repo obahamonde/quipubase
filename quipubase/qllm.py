@@ -43,16 +43,6 @@ class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):
         )
 
     async def stream(self, *, request: Chat):
-        """
-        Streams chat completions based on the given conversation request.
-
-        Args:
-                                        request (Conversation): The conversation request containing instructions and messages.
-
-        Yields:
-                                        str: The generated content from the chat completions.
-
-        """
         response = await self.__load__().chat.completions.create(
             messages=cast(
                 list[ChatCompletionMessageParam],
@@ -76,15 +66,6 @@ class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):
         request.merge_doc()
 
     async def chat(self, *, request: Chat):
-        """
-        This method performs a chat with the language model.
-
-        Args:
-                                                                        request (Conversation): The conversation request.
-
-        Returns:
-                                                                        str: The response content from the language model.
-        """
         response = await self.__load__().chat.completions.create(
             messages=cast(
                 list[ChatCompletionMessageParam],
@@ -108,16 +89,6 @@ app = APIRouter(prefix="/chat", tags=["Chat"])
 
 @app.post("/{namespace}", response_class=EventSourceResponse)
 async def stream_chat(namespace: str, request: Chat = Body(...)):
-    """
-    Streams chat completions based on the given conversation request.
-
-    Args:
-                                    request (Conversation): The conversation request containing instructions and messages.
-
-    Returns:
-                                    EventSourceResponse: The event source response containing the generated content from the chat completions.
-
-    """
     try:
         llm = LanguageModel(namespace=namespace)
         return StreamingResponse(llm.stream(request=request))

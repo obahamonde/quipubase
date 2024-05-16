@@ -56,12 +56,5 @@ SUMMARY = "The `json_schema` standard is well-recognized for defining flexible A
 SERVERS = {"url": "https://6bxwkv84qjspb1-8000.proxy.runpod.net"}
 
 Action: TypeAlias = Literal[
-    "putDoc",
-    "getDoc",
-    "mergeDoc",
-    "deleteDoc",
-    "findDocs",
-    "scanDocs",
-    "countDocs",
-    "existsDoc",
+    "putDoc", "getDoc", "mergeDoc", "deleteDoc", "findDocs", "scanDocs"
 ]

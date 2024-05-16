@@ -181,10 +181,12 @@ async def _(
         ), f"Data must be provided for action `{action}`"
         if action == "putDoc":
             doc = klass(namespace=namespace, **definition.data)  # type: ignore
-            return doc.put_doc()
+            doc.put_doc()
+            return doc
         if action == "mergeDoc":
             doc = klass(namespace=namespace, **definition.data)  # type: ignore
-            return doc.merge_doc()
+            doc.merge_doc()
+            return doc
         if action == "findDocs":
             return klass.find_docs(
                 limit=limit or 1000,
@@ -192,24 +194,13 @@ async def _(
                 namespace=namespace,
                 **definition.data,
             )
-
-    if action in ("getDoc", "deleteDoc", "scanDocs", "countDocs", "existsDoc"):
+    if action in ("getDoc", "deleteDoc", "scanDocs"):
         assert key is not None, f"Key must be provided for action `{action}`"
         if action == "getDoc":
             return klass.get_doc(key=key)
         if action == "deleteDoc":
             return klass.delete_doc(key=key)
-        if action == "scanDocs":
-            return klass.scan_docs(limit=limit or 1000, offset=offset or 0)
-        if action == "countDocs":
-            return klass.count()
-        if action == "existsDoc":
-            return klass.exists(key=key)
-        else:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Invalid action `{action}`",
-            )
+        return klass.scan_docs(limit=limit or 1000, offset=offset or 0)
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

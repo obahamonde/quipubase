@@ -73,5 +73,4 @@ def create_app(
                 headers={"Authorization": bearer},
             )
             return response.json()
-
     return api
