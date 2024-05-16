@@ -6,3 +6,8 @@ numpy
 hnswlib
 httpx
 setuptools
+openai
+pyppeteer
+bs4
+lxml
+python-dotenv

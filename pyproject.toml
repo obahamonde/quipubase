@@ -19,10 +19,7 @@ pyppeteer = "^2.0.0"
 bs4 = "^0.0.2"
 lxml = "^5.2.2"
 python-dotenv = "^1.0.1"
-openai-whisper = "^20231117"
-pydub = "^0.25.1"
-pytube = "^15.0.0"
-sse-starlette = "^2.1.0"
+
 
 
 [tool.poetry.dev-dependencies]
