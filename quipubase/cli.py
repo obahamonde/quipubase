@@ -1,8 +1,8 @@
 import os
 import subprocess
 import sys
-
 import click
+import pathlib
 
 os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
 os.environ["EMBEDDINGS_URL"] = "https://qembeddings-ih27b7zwaa-tl.a.run.app/embeddings"
@@ -24,7 +24,7 @@ def clean():
     """Clear the __pycache__ directory."""
     file_count = 0
     dir_count = 0
-    for root, dirs, files in os.walk(".", topdown=False):
+    for root, dirs, files in os.walk(pathlib.Path(__file__).parent):
         for name in files:
             if name.endswith(".pyc"):
                 os.remove(os.path.join(root, name))
@@ -41,7 +41,7 @@ def clean():
 @click.option(
     "--name", default="quipubase", help="The name to use for the Docker image."
 )
-def build(tag: str, name: str):
+def deploy(tag: str, name: str):
     """Build the Quipubase Docker image."""
     print("Building Quipubase...")
     subprocess.run(
@@ -56,7 +56,7 @@ def build(tag: str, name: str):
     print(f"Quipubase Docker image built with tag {tag}.")
     print(f"Pushing to Dockerhub... {name}:{tag}")
     subprocess.run(["docker", "push", f"{name}:{tag}"], check=True)
-    print(f"Quipubase Docker image pushed to Dockerhub.")
+    print("Quipubase Docker image pushed to Dockerhub.")
     print(f"https://hub.docker.com/repository/docker/{name}")
 
 

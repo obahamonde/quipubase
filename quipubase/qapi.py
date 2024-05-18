@@ -1,8 +1,5 @@
 import json
-import os
-
-import httpx
-from fastapi import APIRouter, FastAPI, HTTPException, Request
+from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from openai import AsyncOpenAI
 
@@ -10,10 +7,7 @@ from .qconst import SERVERS, SUMMARY
 from .qdoc import app as documents_app
 from .qllm import app as llm_app
 from .qschemas import DataSamplingTool
-from .qtools import app as tools_app
 from .qvector import app as vector_app
-
-AUTH0_URL = os.environ["AUTH0_URL"]
 
 api = FastAPI(
     title="QuipuBase",
@@ -33,7 +27,7 @@ ai = AsyncOpenAI()
 
 
 def create_app(
-    routers: list[APIRouter] = [documents_app, vector_app, tools_app, llm_app]
+    routers: list[APIRouter] = [documents_app, vector_app, llm_app]
 ) -> FastAPI:
     """
     Create and configure the QuipuBase API.
@@ -44,6 +38,8 @@ def create_app(
     for router in routers:
         api.include_router(router, prefix="/api")
 
+    @api.get("/")
+    @api.get("/api")
     @api.get("/api/health")
     def _():
         return {"code": 200, "message": "QuipuBase is running!"}
@@ -61,16 +57,4 @@ def create_app(
             data = json.loads(args)
             return await DataSamplingTool(**data).run()
         return response.choices[0].message.content
-
-    @api.post("/api/auth")
-    async def _(request: Request):
-        bearer = request.headers.get("Authorization")
-        if not bearer:
-            raise HTTPException(status_code=401, detail="Unauthorized")
-        async with httpx.AsyncClient() as client:
-            response = await client.post(
-                AUTH0_URL,
-                headers={"Authorization": bearer},
-            )
-            return response.json()
     return api

@@ -10,7 +10,6 @@ from fastapi.responses import StreamingResponse
 from openai import AsyncOpenAI
 from openai.types.chat.chat_completion_message_param import ChatCompletionMessageParam
 from pydantic import BaseModel, Field
-from sse_starlette import EventSourceResponse
 from typing_extensions import TypedDict
 
 from quipubase.qdoc import QDocument
@@ -87,10 +86,12 @@ class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):
 app = APIRouter(prefix="/chat", tags=["Chat"])
 
 
-@app.post("/{namespace}", response_class=EventSourceResponse)
+@app.post("/{namespace}", response_class=StreamingResponse)
 async def stream_chat(namespace: str, request: Chat = Body(...)):
     try:
         llm = LanguageModel(namespace=namespace)
         return StreamingResponse(llm.stream(request=request))
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(e)
+        ) from e

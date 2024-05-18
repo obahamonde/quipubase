@@ -5,7 +5,7 @@ from setuptools import Extension, setup  # pylint: disable=E0401
 ext_modules = [
     Extension(
         "quipubase",
-        sources=["quipubase.pyx"],
+        sources=["./quipubase.pyx"],
         include_dirs=["/usr/local/include"],
         library_dirs=["/usr/local/lib"],
         libraries=["rocksdb"],

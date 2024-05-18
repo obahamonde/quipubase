@@ -33,6 +33,7 @@ class Status(_Base):
     key: str = Field(default=None)
     definition: JsonSchema = Field(default=None)
 
+
 class TypeDef(BaseModel):
     data: Optional[Dict[str, Any]] = Field(
         default=None,

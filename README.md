@@ -1,24 +1,24 @@
-# Quipubase: An Ancestral Approach to Efficient Data Management
+# Quipubase
 
-![QuipuBase Logo](favicon.svg)
+## **An Ancestral Approach to Efficient Data Management**
 
-## Why QuipuBase?
+![QuipuBase Logo](client/public/favicon.svg)
 
-QuipuBase is an innovative document database that combines the power of modern technologies to deliver an efficient and reliable solution for storing and retrieving data. Inspired by the ancient quipu system, a form of data storage and communication using intricate knot patterns, QuipuBase adopts a similar approach to organize and manage information.
+## What is QuipuBase?
+
+QuipuBase is a novel approach for data management in the current AI landscape, relying on the sinergy of solid standards such as `json_schema`, `vector_embeddings` and `sql` [TODO].
+On Quipubase we are looking forward to be the **de facto** database choice for modern AI applications, assembling most of their components interactions within a single ecosystem leveraging edge computing to achieve single millisecond latencies in order to support real time and critical mission applications. In the near future we will adhere to the `HIPAA`, `GDPR` and `PCI` standards to breakthrough into the B2B market.
 
 ## Key Features
 
-**High-Performance Storage**: QuipuBase leverages cutting-edge storage technologies to provide lightning-fast data storage and retrieval, ensuring your data is always accessible.
+**Performant Storage**: QuipuBase leverages cutting-edge storage technologies to provide lightning-fast data definition and manipulation, ensuring your data is always accessible and in shape on matter of milliseconds.
 
-**Semantic Search Capabilities**: With advanced similarity search algorithms, QuipuBase allows you to find relevant data points quickly, even in large datasets, empowering you to uncover valuable insights.
+**Semantic Search**: Through high dimensional vector embeddings and state of the art searching algorithms, QuipuBase enables businesses and individuals to gather the most meaningful pieces of data stored into his realm leading to achieve high quality insights.
 
-**Flexible Data Modeling**: Whether you have structured or unstructured data, QuipuBase's versatile data models and intuitive SQL-like interface make it easy to store, query, and manage your information.
+**Custom Data Modeling**: No matter which data management paradigm are you coming from, our schema-driven query engine enables you to fetch the results based on the data contract you defined a priori which is heavily supported by tools such ours clients SDK's for `python` and `typescript`.
 
-**Seamless Integration**: Designed with developer productivity in mind, QuipuBase offers a Cython-powered integration, enabling smooth integration with your Python-based applications and data ecosystems.
+**Seamless Integrations**: Focused on getting things done and powered by a C++ backend, we support state of the art ai features such as `retrieval augmented generation` and `function calling` through our API, connecting directly and in a secure manner to your services via webhooks to execute what could be otherwise complex pipelines with a single request.
 
-## A Modern Approach to an Ancestral Tradition
+## Why QuipuBase?
 
-QuipuBase bridges the gap between ancient data management practices and modern technology, providing a reliable and efficient solution for organizations of all sizes. By combining the strengths of RocksDB, HNSW, and SQLite3, QuipuBase offers a unique and powerful platform for your data management needs.
-
-
-
+There was a misconception about ancient south american culture regarding it's communication systems. On the ancient Incan Empire (IV-XIV centuries) a peculiar communication and accountability system known as `Quipus` was utilized by the intellectuals of the epoch to express complex data patterns in a cohesive way which is analog to what AI tailored solutions are aiming for these days, by any means this is a projection rather an inspiration on how ancestral ideas can motivate new software projects, **Quipubase** thrives for innovation in order to augment our current capabilities from a unique perspective, because on an intelligence rush, knowledge management is key.

@@ -3,7 +3,9 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [],
+        "depends": [
+            "/usr/local/include/rocksdb/db.h"
+        ],
         "extra_compile_args": [
             "-std=c++17"
         ],
@@ -19,7 +21,7 @@
         ],
         "name": "quipubase",
         "sources": [
-            "quipubase.pyx"
+            "./quipubase.pyx"
         ]
     },
     "module_name": "quipubase"

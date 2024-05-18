@@ -9,11 +9,11 @@ ENV PYTHONUNBUFFERED=1
 
 
 RUN apt-get update && apt-get install -y \
-	chromium \
-	chromium-driver \
+	librocksdb-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
+EXPOSE 5454
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["uvicorn","main:app","--port 5454","--host","0.0.0.0"]
+CMD ["make"]
