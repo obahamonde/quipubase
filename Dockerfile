@@ -16,4 +16,4 @@ EXPOSE 5454
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["make"]
+CMD ["make serve"]
