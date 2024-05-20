@@ -6,7 +6,7 @@ from typing import Any, ClassVar, Dict, List, Optional, TypeVar
 from uuid import uuid4
 
 import numpy as np
-from fastapi import APIRouter, Body, HTTPException, Path, Query, status
+from fastapi import APIRouter, Body, Path, Query
 from numpy.typing import NDArray
 from pydantic import BaseModel, Field
 from typing_extensions import Self
@@ -37,7 +37,7 @@ class Status(_Base):
 class TypeDef(BaseModel):
     data: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="The data to be stored if the action is `putDoc` or `mergeDoc`",
+        description="The data to be stored if the action is `putDoc`,`mergeDoc,` or `findDocs`",
         examples=EXAMPLES,
     )
     definition: JsonSchema = Field(
@@ -175,7 +175,9 @@ async def _(
     Quipubase is a document database, ChatGPT can perform actions over this database to store, retrieve and delete documents provided by the user or generated with the `synth` method.
     """
 
-    klass = create_class(schema=definition.definition, base=QDocument, action=action)
+    klass = create_class(
+        namespace=namespace, schema=definition.definition, base=QDocument, action=action
+    )
     if action in ("putDoc", "mergeDoc", "findDocs"):
         assert (
             definition.data is not None
@@ -202,8 +204,3 @@ async def _(
         if action == "deleteDoc":
             return klass.delete_doc(key=key)
         return klass.scan_docs(limit=limit or 1000, offset=offset or 0)
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Invalid action `{action}`",
-        )

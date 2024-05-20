@@ -26,6 +26,7 @@ class Message(TypedDict):
 
 
 class Chat(QDocument):
+    namespace: str = Field(..., description="The namespace of the chat document.")
     instructions: str = Field(default="You are a chatbot assistant.")
     messages: list[Message]
 
@@ -69,7 +70,7 @@ class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):
             messages=cast(
                 list[ChatCompletionMessageParam],
                 [{"role": "system", "content": request.instructions}]
-                + [r for r in request.messages],
+                + request.messages,
             ),
             model=self.identifier,
             max_tokens=8192,
@@ -86,10 +87,10 @@ class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):
 app = APIRouter(prefix="/chat", tags=["Chat"])
 
 
-@app.post("/{namespace}", response_class=StreamingResponse)
-async def stream_chat(namespace: str, request: Chat = Body(...)):
+@app.post("/", response_class=StreamingResponse)
+async def stream_chat(request: Chat = Body(...)):
     try:
-        llm = LanguageModel(namespace=namespace)
+        llm = LanguageModel(namespace=request.namespace)
         return StreamingResponse(llm.stream(request=request))
     except Exception as e:
         raise HTTPException(

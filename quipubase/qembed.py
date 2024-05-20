@@ -49,4 +49,4 @@ class EmbeddingAPI(QProxy[AsyncClient]):
             text = [text]
         response = await self.__load__().post(EMBEDDINGS_URL, json={"content": text})
         vector = response.json()["content"]
-        return np.array(vector)
+        return np.array(vector, np.float32)

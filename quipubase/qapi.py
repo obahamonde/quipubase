@@ -6,7 +6,7 @@ from openai import AsyncOpenAI
 from .qconst import SERVERS, SUMMARY
 from .qdoc import app as documents_app
 from .qllm import app as llm_app
-from .qschemas import DataSamplingTool
+from .qschemas import SynthethicDataGenerator
 from .qvector import app as vector_app
 
 api = FastAPI(
@@ -50,11 +50,11 @@ def create_app(
             messages=[{"role": "user", "content": prompt}],
             model="llama3-8B-8192",
             max_tokens=8192,
-            functions=[DataSamplingTool.definition()],
+            functions=[SynthethicDataGenerator.definition()],
         )
         if response.choices[0].message.function_call:
             args = response.choices[0].message.function_call.arguments
             data = json.loads(args)
-            return await DataSamplingTool(**data).run()
+            return await SynthethicDataGenerator(**data).run()
         return response.choices[0].message.content
     return api

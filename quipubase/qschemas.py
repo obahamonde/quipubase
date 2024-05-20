@@ -31,7 +31,7 @@ def sanitize(text: str):
     Sanitize the text by removing the leading and trailing whitespaces.
     """
     if text[:2] == "```":
-        text = text[3:]
+        text = text[7:]
     if text[-3:] == "```":
         text = text[:-3]
     try:
@@ -40,27 +40,29 @@ def sanitize(text: str):
             assert isinstance(jsonified["data"], list)
         else:
             raise ValueError("Invalid JSON format")
-    except Exception as e:
-        raise Exception(f"{e.__class__.__name__}: {e}") from e
+    except (Exception, ValueError, IndexError) as e:
+        raise Exception(f"{e.__class__.__name__}: {e}") from e  # pylint: disable=W0719
     return jsonified["data"]
 
 
-def parse_anyof_oneof(schema: Dict[str, Any]) -> Union[Type[BaseModel], None]:
+def parse_anyof_oneof(
+    namespace: str, schema: Dict[str, Any]
+) -> Union[Type[BaseModel], None]:
     """
     Parse the 'anyOf' or 'oneOf' schema and return the corresponding Union type.
     """
     if "anyOf" in schema:
         return Union[
-            tuple[type](cast_to_type(sub_schema) for sub_schema in schema["anyOf"])  # type: ignore
+            tuple[type](cast_to_type(namespace, sub_schema) for sub_schema in schema["anyOf"])  # type: ignore
         ]
     if "oneOf" in schema:
         return Union[
-            tuple[type](cast_to_type(sub_schema) for sub_schema in schema["oneOf"])  # type: ignore
+            tuple[type](cast_to_type(namespace, sub_schema) for sub_schema in schema["oneOf"])  # type: ignore
         ]
     return None
 
 
-def cast_to_type(schema: Dict[str, Any]) -> Any:
+def cast_to_type(namespace: str, schema: Dict[str, Any]) -> Any:
     """
     Cast the schema to the corresponding Python type.
     """
@@ -70,14 +72,14 @@ def cast_to_type(schema: Dict[str, Any]) -> Any:
             return Literal[enum_values]  # type: ignore
     elif schema.get("type") == "object":
         if schema.get("properties"):
-            return create_class(schema=schema, base=BaseModel, action=None)  # type: ignore
+            return create_class(namespace=namespace, schema=schema, base=BaseModel, action=None)  # type: ignore
     elif schema.get("type") == "array":
-        return List[cast_to_type(schema.get("items", {}))]
+        return List[cast_to_type(namespace, schema.get("items", {}))]
     return MAPPING.get(schema.get("type", "string"), str)
 
 
 def create_class(
-    *, schema: JsonSchema, base: Type[T], action: Optional[Action]
+    *, namespace: str, schema: JsonSchema, base: Type[T], action: Optional[Action]
 ) -> Type[T]:
     """
     Create a class based on the schema, base class, and action.
@@ -87,7 +89,7 @@ def create_class(
     attributes: Dict[str, Any] = {}
     if action and action in ("putDoc", "mergeDoc", "findDocs") or not action:
         for key, value in properties.items():
-            attributes[key] = (cast_to_type(value), ...)  # type: ignore
+            attributes[key] = (cast_to_type(namespace, value), ...)  # type: ignore
     elif action and action in (
         "getDoc",
         "deleteDoc",
@@ -97,16 +99,15 @@ def create_class(
         "synthDocs",
     ):
         for key, value in properties.items():
-            attributes[key] = (Optional[cast_to_type(value)], Field(default=None))  # type: ignore
+            attributes[key] = (Optional[cast_to_type(namespace, value)], Field(default=None))  # type: ignore
     elif action:
         raise ValueError(f"Invalid action `{action}`")
-    return create_model(name, __base__=base, **attributes)  # type: ignore
+    return create_model(f"{name}:{namespace}", __base__=base, **attributes)  # type: ignore
 
 
-class DataSamplingTool(Tool, QProxy[AsyncOpenAI]):
+class SynthethicDataGenerator(Tool, QProxy[AsyncOpenAI]):
     """
-    A tool for generating synthetic data based on the given prompt, generate the proper `json_schema` and `n` samples.
-    Then your AI helper will generate the synthetic data based on the given model according to the prompt and schema.
+    This tool will generate a set of synthetic data samples based on the prompt given by the user, generating the proper `json_schema` and `n` samples.
     """
 
     json_schema: JsonSchema = Field(
@@ -117,30 +118,30 @@ class DataSamplingTool(Tool, QProxy[AsyncOpenAI]):
     @handle
     async def run(self, **kwargs: Any) -> Any:
         """
-        Generate synthetic data based on the given prompt and model.
+        Generate synthetic data based on the given prompt and n of samples.
 
         Args:
                         prompt (str): The prompt for generating the synthetic data.
                         n (int): The number of samples to generate.
-                        model (T): The model used for generating the synthetic data.
 
         Returns:
-                        list[T]: A list of generated synthetic data samples.
+                        list[object]: A list of generated synthetic data samples.
 
         Raises:
                         None
         """
         PROMPT = f"""
-	You are a JSON Schema Syntax Expert and Data Synthetizer.
-	This is the jsonschema of the data to synthetize  {json.dumps(self.json_schema)}.
-	Generate exactly {self.n} synthetic data samples that adhere strictly to the input schema provided.
+	You are a JSON Schema Syntax Expert and Synthetic Data Generator.
+	This is the jsonschema of the data to generate  {json.dumps(self.json_schema)}.
+	Generate exactly {self.n} samples that must adhere strictly to the input schema provided.
 	Output the data on the format: {{ "data": [*samples] }}, where *samples is a list of the generated samples.
-	Ensure you send a valid JSON object, free of syntax errors, including only the specified format with no prior or additional content, advice, or instructions. Just JSON data.
+	Ensure you send a valid JSON object free of syntax errors on the specified format without any prior or additional content, advice, or instructions.
 	"""
         response = await self.__load__().chat.completions.create(
             messages=[{"role": "system", "content": PROMPT}],
             model="llama3-8B-8192",
             max_tokens=8192,
+            functions=[self.definition()],
         )
         samples = response.choices[0].message.content
         if samples:
