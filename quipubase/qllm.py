@@ -28,7 +28,7 @@ class Message(TypedDict):
 class Chat(QDocument):
     namespace: str = Field(..., description="The namespace of the chat document.")
     instructions: str = Field(default="You are a chatbot assistant.")
-    messages: list[Message]
+    messages: list[Message] = Field(default_factory=list)
 
 
 class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):

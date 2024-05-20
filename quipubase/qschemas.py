@@ -102,7 +102,7 @@ def create_class(
             attributes[key] = (Optional[cast_to_type(namespace, value)], Field(default=None))  # type: ignore
     elif action:
         raise ValueError(f"Invalid action `{action}`")
-    return create_model(f"{name}:{namespace}", __base__=base, **attributes)  # type: ignore
+    return create_model(f"{name}::{hash(namespace)}", __base__=base, **attributes)  # type: ignore
 
 
 class SynthethicDataGenerator(Tool, QProxy[AsyncOpenAI]):
@@ -131,9 +131,9 @@ class SynthethicDataGenerator(Tool, QProxy[AsyncOpenAI]):
                         None
         """
         PROMPT = f"""
-	You are a JSON Schema Syntax Expert and Synthetic Data Generator.
+	You are a JSON Schema Syntax Expert and Diverse Synthetic Data Generator.
 	This is the jsonschema of the data to generate  {json.dumps(self.json_schema)}.
-	Generate exactly {self.n} samples that must adhere strictly to the input schema provided.
+	Generate exactly {self.n} diverse samples that must adhere strictly to the input schema provided.
 	Output the data on the format: {{ "data": [*samples] }}, where *samples is a list of the generated samples.
 	Ensure you send a valid JSON object free of syntax errors on the specified format without any prior or additional content, advice, or instructions.
 	"""
@@ -141,7 +141,6 @@ class SynthethicDataGenerator(Tool, QProxy[AsyncOpenAI]):
             messages=[{"role": "system", "content": PROMPT}],
             model="llama3-8B-8192",
             max_tokens=8192,
-            functions=[self.definition()],
         )
         samples = response.choices[0].message.content
         if samples:

@@ -54,6 +54,7 @@ class QDocument(_Base):
     @classmethod
     def __init_subclass__(cls, **kwargs: Any):
         os.makedirs("db", exist_ok=True)
+        cls.__name__ = cls.__name__.replace("::", "/")
         os.makedirs(f"db/{cls.__name__}", exist_ok=True)
         super().__init_subclass__(**kwargs)
 
@@ -159,7 +160,7 @@ app = APIRouter(tags=["document"], prefix="/document")
 
 
 @app.post("/{namespace}")
-async def _(
+def _(
     namespace: str = Path(description="The namespace of the document"),
     action: Action = Query(..., description="The method to be executed"),
     key: Optional[str] = Query(
@@ -178,6 +179,7 @@ async def _(
     klass = create_class(
         namespace=namespace, schema=definition.definition, base=QDocument, action=action
     )
+    print(klass.model_json_schema())
     if action in ("putDoc", "mergeDoc", "findDocs"):
         assert (
             definition.data is not None

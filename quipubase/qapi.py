@@ -1,5 +1,7 @@
 import json
-from fastapi import APIRouter, FastAPI
+import os
+import httpx
+from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from openai import AsyncOpenAI
 
@@ -14,7 +16,7 @@ api = FastAPI(
     description="AI-Driven, Schema-Flexible Document Store",
     summary=SUMMARY,
     version="0.0.1:alpha",
-    servers=[SERVERS],
+    # servers=[SERVERS],
 )
 api.add_middleware(
     CORSMiddleware,
@@ -25,6 +27,7 @@ api.add_middleware(
 )
 ai = AsyncOpenAI()
 
+AUTH0_URL = os.environ["AUTH0_URL"]
 
 def create_app(
     routers: list[APIRouter] = [documents_app, vector_app, llm_app]
@@ -57,4 +60,17 @@ def create_app(
             data = json.loads(args)
             return await SynthethicDataGenerator(**data).run()
         return response.choices[0].message.content
+
+    @api.post("/api/auth")
+    async def _(request: Request):
+        bearer = request.headers.get("Authorization")
+        if not bearer:
+            return {"code": 401, "message": "Unauthorized"}
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                AUTH0_URL,
+                headers={"Authorization": bearer},
+            )
+            return response.json()
+
     return api

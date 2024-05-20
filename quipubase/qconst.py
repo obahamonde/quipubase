@@ -54,7 +54,8 @@ MAPPING = {
 
 SUMMARY = "The `json_schema` standard is well-recognized for defining flexible API schemas, QuipuBase leverages this standard  to provide an intuitive and flexible way to customize the shape of your data, according to your needs with access to a rich set of features such as Retrieval Augmented Generation and Function Calling enabling seamless integrations and agentic workflows on top of essential features such as CRUD operations and search."
 
-SERVERS = {"url": f"http://{socket.gethostname()}"}
+# SERVERS = {"url": f"http://{socket.gethostbyname(socket.gethostname())}:5454"}
+SERVERS = None
 
 Action: TypeAlias = Literal[
     "putDoc", "getDoc", "mergeDoc", "deleteDoc", "findDocs", "scanDocs"
