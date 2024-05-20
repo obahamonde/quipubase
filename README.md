@@ -2,7 +2,7 @@
 
 ## **An Ancestral Approach to Efficient Data Management**
 
-![QuipuBase Logo](client/public/favicon.svg)
+![QuipuBase Logo](/favicon.svg)
 
 ## What is QuipuBase?
 
