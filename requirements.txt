@@ -1,1 +1,9 @@
-quipubase @ git+https://github.com/obahamonde/quipubase.git
+cython
+orjson
+numpy
+hnswlib
+python-dotenv
+uvicorn
+fastapi-slim
+python-multipart
+openai
