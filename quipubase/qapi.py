@@ -33,7 +33,7 @@ api.add_middleware(
 
 ai = AsyncOpenAI()
 
-AUTH0_URL = os.environ["AUTH0_URL"]
+AUTH0_URL = os.environ.get("AUTH0_URL")
 
 
 def create_app(
@@ -95,6 +95,7 @@ def create_app(
         if not bearer:
             return {"code": 401, "message": "Unauthorized"}
         async with httpx.AsyncClient() as client:
+            assert AUTH0_URL, "Auth0 URL not set."
             response = await client.post(
                 AUTH0_URL,
                 headers={"Authorization": bearer},

@@ -7,12 +7,11 @@ COPY . .
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-
 RUN apt-get update && apt-get install -y \
 	librocksdb-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN cd /app/quiputbase && python setup.py --build_ext --inplace
+RUN cd quipubase && pip install cython && python setup.py  build_ext --inplace
 
 EXPOSE 5454
 
