@@ -8,7 +8,7 @@ from numpy.typing import NDArray
 from pydantic import Field
 from typing_extensions import Self, TypeAlias, TypeVar
 
-from .qdoc import Base, CosimResult, Embedding, QDocument
+from .qdoc import Base, CosimResult, QDocument
 from .qembed import EmbeddingAPI
 
 Q = TypeVar("Q", bound=QDocument)
@@ -20,7 +20,7 @@ class RagRequest(Base):
     content: str | list[str]
 
 
-class QuipuVector(Embedding):
+class QuipuVector(QDocument):
     content: str | list[str] = Field(
         ..., description="The sentences to be encoded into vector embeddings"
     )

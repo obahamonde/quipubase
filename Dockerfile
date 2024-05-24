@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
 	librocksdb-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
+RUN cd /app/quiputbase && python setup.py --build_ext --inplace
+
 EXPOSE 5454
 
 RUN pip install --no-cache-dir -r requirements.txt

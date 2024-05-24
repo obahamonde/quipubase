@@ -1,11 +1,9 @@
 from __future__ import annotations
 
 import os
-from abc import ABC, abstractmethod
 from typing import Any, ClassVar, Dict, List, Optional, TypeVar
 from uuid import uuid4
 
-import numpy as np
 from fastapi import APIRouter, Body, Path, Query
 from pydantic import BaseModel, Field
 from typing_extensions import Self
@@ -241,50 +239,6 @@ class QDocument(Base):
             bool: True if the document exists, False otherwise.
         """
         return cls._db.exists(key=key)
-
-
-class Embedding(QDocument, ABC):
-    """Abstract base class for embedding documents."""
-
-    @abstractmethod
-    async def embed(
-        self, *, namespace: str, content: str
-    ) -> np.ndarray[np.float32, Any]:
-        """Embeds the given content and returns the embedding as an NDArray.
-
-        Args:
-            content (str): The content to be embedded.
-
-        Returns:
-            NDArray[Any]: The embedding of the content.
-        """
-        ...
-
-    @abstractmethod
-    async def query(
-        self,
-        *,
-        namespace: str,
-        value: np.ndarray[np.float32, Any],
-    ) -> list[CosimResult]:
-        """Queries the database for similar embeddings and returns a list of results.
-
-        Args:
-            value (NDArray[np.float32]): The embedding to query.
-
-        Returns:
-            list[Any]: A list of query results.
-        """
-        ...
-
-    @abstractmethod
-    async def upsert(self, *, namespace: str, content: str | list[str]) -> None:
-        """Upserts the given content into the database.
-
-        Args:
-            content (str | list[str]): The content to be upserted.
-        """
-        ...
 
 
 app = APIRouter(tags=["Document Store"], prefix="/document")
