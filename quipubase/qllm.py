@@ -8,7 +8,8 @@ from typing import Literal, TypeAlias, cast
 from fastapi import APIRouter, Body, HTTPException, status
 from fastapi.responses import StreamingResponse
 from openai import AsyncOpenAI
-from openai.types.chat.chat_completion_message_param import ChatCompletionMessageParam
+from openai.types.chat.chat_completion_message_param import \
+    ChatCompletionMessageParam
 from pydantic import BaseModel, Field
 from quipubase.qdoc import QDocument
 from quipubase.qproxy import QProxy

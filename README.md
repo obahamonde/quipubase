@@ -2,8 +2,6 @@
 
 ## **An Ancestral Approach to Efficient Data Management**
 
-![QuipuBase Logo](/favicon.svg)
-
 ## What is QuipuBase?
 
 QuipuBase is a novel approach for data management in the current AI landscape, relying on the sinergy of solid standards such as `json_schema`, `vector_embeddings` and `sql` [TODO].
