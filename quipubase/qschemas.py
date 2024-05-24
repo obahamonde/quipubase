@@ -131,11 +131,13 @@ class SynthethicDataGenerator(Tool, QProxy[AsyncOpenAI]):
                         None
         """
         PROMPT = f"""
-	You are a JSON Schema Syntax Expert and Diverse Synthetic Data Generator.
-	This is the jsonschema of the data to generate  {json.dumps(self.json_schema)}.
-	Generate exactly {self.n} diverse samples that must adhere strictly to the input schema provided.
-	Output the data on the format: {{ "data": [*samples] }}, where *samples is a list of the generated samples.
-	Ensure you send a valid JSON object free of syntax errors on the specified format without any prior or additional content, advice, or instructions.
+        Generate {self.n} synthetic data samples based on the following JSON schema on JSON format:
+            
+            ```json
+            {json.dumps(self.json_schema, indent=4)}
+            ```
+        The samples must be valid JSON without any leading or trailing whitespaces, backticks, or other characters that are not part of the JSON format.
+        The response must be a key `data` containing the array of generated synthetic data samples in JSON format.
 	"""
         response = await self.__load__().chat.completions.create(
             messages=[{"role": "system", "content": PROMPT}],

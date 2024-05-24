@@ -55,6 +55,20 @@ clean:
 	@rm -rf $(PROJECT_DIR)/*.gif
 	@rm -rf $(PROJECT_DIR)/*.svg
 
+.PHONY: push
+push:
+	@echo "Pushing to GitHub..."
+	@git add .
+	@git commit -m "Update"
+	@git push
+	@echo "Pushed to GitHub"
+	@echo "Pushing to Docker Hub..."
+	@docker build -t quipubase .
+	@docker tag quipubase:latest quipu/quipubase:latest
+	@docker push obahamonde/quipubase:latest
+	@echo "Pushed to Docker Hub"
+
+
 .PHONY: help
 help:
 	@echo "QuipuBase Makefile"
