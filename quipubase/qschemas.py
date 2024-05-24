@@ -8,7 +8,7 @@ from openai import AsyncOpenAI
 from pydantic import BaseModel, Field, create_model  # type: ignore
 from typing_extensions import TypeAlias, TypedDict, TypeVar
 
-from .qconst import MAPPING, Action
+from .qconst import ACTIONS, MAPPING
 from .qproxy import QProxy
 from .qtools import Tool
 from .qutils import handle
@@ -79,7 +79,7 @@ def cast_to_type(namespace: str, schema: Dict[str, Any]) -> Any:
 
 
 def create_class(
-    *, namespace: str, schema: JsonSchema, base: Type[T], action: Optional[Action]
+    *, namespace: str, schema: JsonSchema, base: Type[T], action: Optional[ACTIONS]
 ) -> Type[T]:
     """
     Create a class based on the schema, base class, and action.

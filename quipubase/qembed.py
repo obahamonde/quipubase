@@ -5,10 +5,6 @@ from httpx import AsyncClient
 
 from .qproxy import QProxy
 
-os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
-os.environ["EMBEDDINGS_URL"] = "https://qembeddings-ih27b7zwaa-tl.a.run.app/embeddings"
-EMBEDDINGS_URL = os.environ["EMBEDDINGS_URL"]
-
 
 class EmbeddingAPI(QProxy[AsyncClient]):
     """
@@ -47,6 +43,8 @@ class EmbeddingAPI(QProxy[AsyncClient]):
         """
         if isinstance(text, str):
             text = [text]
-        response = await self.__load__().post(EMBEDDINGS_URL, json={"content": text})
+        response = await self.__load__().post(
+            os.environ["EMBEDDINGS_URL"], json={"content": text}
+        )
         vector = response.json()["content"]
-        return np.array(vector, np.float32)
+        return np.array(vector, np.float32)  # type: ignore

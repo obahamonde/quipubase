@@ -1,5 +1,4 @@
 import pytest
-
 from quipubase.qdoc import QDocument, Status
 
 
@@ -49,4 +48,4 @@ def test_dog(name: str, breed: str):
     res = dog.delete_doc(key=dog.key)
     assert isinstance(res, Status)
     assert Dog.exists(key=dog.key) == False
-    assert Dog.get_doc(key=dog.key) == None
+    assert isinstance(Dog.get_doc(key=dog.key), Status)

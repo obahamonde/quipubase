@@ -7,19 +7,22 @@ from uuid import uuid4
 
 import numpy as np
 from fastapi import APIRouter, Body, Path, Query
-from numpy.typing import NDArray
 from pydantic import BaseModel, Field
 from typing_extensions import Self
 
-from .qconst import DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION, Action
-from .qschemas import JsonSchema, create_class
+from .qconst import ACTIONS, DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
+from .qschemas import JsonSchema  # pylint: disable=E0611 # type: ignore
+from .qschemas import create_class
 from .quipubase import Quipu  # pylint: disable=E0611
-from .qutils import handle
 
 T = TypeVar("T", bound="QDocument")
 
 
-class _Base(BaseModel):
+class Base(BaseModel):
+    """
+    Base class for models in the `quipubase` module.
+    """
+
     def __str__(self) -> str:
         return self.model_dump_json()
 
@@ -27,7 +30,23 @@ class _Base(BaseModel):
         return self.model_dump_json()
 
 
-class Status(_Base):
+class CosimResult(Base):
+    id: str
+    score: float
+    content: str | list[str]
+
+
+class Status(Base):
+    """
+    Represents the status of a document.
+
+    Attributes:
+        code (int): The status code.
+        message (str): The status message.
+        key (str, optional): The status key. Defaults to None.
+        definition (JsonSchema, optional): The status definition. Defaults to None.
+    """
+
     code: int
     message: str
     key: str = Field(default=None)
@@ -35,9 +54,17 @@ class Status(_Base):
 
 
 class TypeDef(BaseModel):
+    """
+    Represents a type definition.
+
+    Attributes:
+        data (Optional[Dict[str, Any]]): The data to be stored if the action is `putDoc`, `mergeDoc`, or `findDocs`.
+        definition (JsonSchema): The JSON schema definition.
+    """
+
     data: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="The data to be stored if the action is `putDoc`,`mergeDoc,` or `findDocs`",
+        description="The data to be stored if the action is `putDoc`, `mergeDoc`, or `findDocs`",
         examples=EXAMPLES,
     )
     definition: JsonSchema = Field(
@@ -47,7 +74,15 @@ class TypeDef(BaseModel):
     )
 
 
-class QDocument(_Base):
+class QDocument(Base):
+    """
+    Represents a document in `quipubase`.
+
+    Attributes:
+        _db_instances (ClassVar[dict[str, Quipu]]): A dictionary that stores the instances of the Quipu database.
+        key (str): The key of the document.
+    """
+
     _db_instances: ClassVar[dict[str, Quipu]] = {}
     key: str = Field(default_factory=lambda: str(uuid4()))
 
@@ -64,14 +99,26 @@ class QDocument(_Base):
 
     @classmethod
     def definition(cls) -> JsonSchema:
+        """
+        Returns the JSON schema definition for the document.
+
+        Returns:
+            JsonSchema: The JSON schema definition.
+        """
         return JsonSchema(
             title=cls.__name__,
+            description=cls.__doc__ or "[No description]",
             type="object",
             properties=cls.model_json_schema().get("properties", {}),
         )
 
-    @handle
     def put_doc(self) -> Status:
+        """
+        Puts the document into the database.
+
+        Returns:
+            Status: The status of the operation.
+        """
         if self._db.exists(key=self.key):
             self._db.merge_doc(self.key, self.model_dump())
         self._db.put_doc(self.key, self.model_dump())
@@ -83,15 +130,33 @@ class QDocument(_Base):
         )
 
     @classmethod
-    @handle
-    def get_doc(cls, *, key: str) -> Optional[Self]:
+    def get_doc(cls, *, key: str) -> Self | Status:
+        """
+        Retrieves a document from the database.
+
+        Args:
+            key (str): The key of the document.
+
+        Returns:
+            Optional[Self]: The retrieved document, or None if not found.
+        """
         data = cls._db.get_doc(key=key)
         if data:
             return cls(**data)
-        return None
+        return Status(
+            code=404,
+            message="Document not found",
+            key=key,
+            definition=cls.definition(),
+        )
 
-    @handle
     def merge_doc(self) -> Status:
+        """
+        Merges the document into `quipubase`.
+
+        Returns:
+            Status: The status of the operation.
+        """
         self._db.merge_doc(key=self.key, value=self.model_dump())
         return Status(
             code=200,
@@ -101,8 +166,16 @@ class QDocument(_Base):
         )
 
     @classmethod
-    @handle
     def delete_doc(cls, *, key: str) -> Status:
+        """
+        Deletes a document from `quipubase`.
+
+        Args:
+            key (str): The key of the document.
+
+        Returns:
+            Status: The status of the operation.
+        """
         cls._db.delete_doc(key=key)
         return Status(
             code=204,
@@ -112,57 +185,115 @@ class QDocument(_Base):
         )
 
     @classmethod
-    @handle
     def scan_docs(cls, *, limit: int = 1000, offset: int = 0) -> List[Self]:
+        """
+        Scans documents from `quipubase`.
+
+        Args:
+            limit (int): The maximum number of documents to scan.
+            offset (int): The offset of the documents to scan.
+
+        Returns:
+            List[Self]: The scanned documents.
+        """
         return [
             cls.model_validate(i)  # pylint: disable=E1101
             for i in cls._db.scan_docs(limit, offset)
         ]
 
     @classmethod
-    @handle
     def find_docs(cls, limit: int = 1000, offset: int = 0, **kwargs: Any) -> List[Self]:
+        """
+        Finds documents querying by the given filters.
+
+        Args:
+            limit (int): The maximum number of documents to find.
+            offset (int): The offset of the documents to find.
+            **kwargs (Any): Additional keyword arguments for filtering.
+
+        Returns:
+            List[Self]: The found documents.
+        """
         return [
             cls.model_validate(i)  # pylint: disable=E1101
             for i in cls._db.find_docs(limit, offset, kwargs)
         ]
 
     @classmethod
-    @handle
     def count(cls) -> int:
+        """
+        Counts the number of documents in the database.
+
+        Returns:
+            int: The number of documents.
+        """
         return cls._db.count()
 
     @classmethod
-    @handle
     def exists(cls, *, key: str) -> bool:
+        """
+        Checks if a document exists on `quipubase`.
+
+        Args:
+            key (str): The key of the document.
+
+        Returns:
+            bool: True if the document exists, False otherwise.
+        """
         return cls._db.exists(key=key)
 
 
 class Embedding(QDocument, ABC):
+    """Abstract base class for embedding documents."""
+
     @abstractmethod
-    async def embed(self, *, content: str) -> NDArray[Any]:
-        pass
+    async def embed(
+        self, *, namespace: str, content: str
+    ) -> np.ndarray[np.float32, Any]:
+        """Embeds the given content and returns the embedding as an NDArray.
+
+        Args:
+            content (str): The content to be embedded.
+
+        Returns:
+            NDArray[Any]: The embedding of the content.
+        """
+        ...
 
     @abstractmethod
     async def query(
         self,
         *,
-        value: NDArray[np.float32],
-    ) -> list[Any]:
-        pass
+        namespace: str,
+        value: np.ndarray[np.float32, Any],
+    ) -> list[CosimResult]:
+        """Queries the database for similar embeddings and returns a list of results.
+
+        Args:
+            value (NDArray[np.float32]): The embedding to query.
+
+        Returns:
+            list[Any]: A list of query results.
+        """
+        ...
 
     @abstractmethod
-    async def upsert(self, *, content: str | list[str]) -> None:
-        pass
+    async def upsert(self, *, namespace: str, content: str | list[str]) -> None:
+        """Upserts the given content into the database.
+
+        Args:
+            content (str | list[str]): The content to be upserted.
+        """
+        ...
 
 
-app = APIRouter(tags=["document"], prefix="/document")
+app = APIRouter(tags=["Document Store"], prefix="/document")
 
 
 @app.post("/{namespace}")
 def _(
     namespace: str = Path(description="The namespace of the document"),
-    action: Action = Query(..., description="The method to be executed"),
+    action: ACTIONS = Query(..., description="The method to be executed"),
     key: Optional[str] = Query(
         None, description="The unique identifier of the document"
     ),
@@ -173,21 +304,87 @@ def _(
     definition: TypeDef = Body(...),
 ):
     """
-    Quipubase is a document database, ChatGPT can perform actions over this database to store, retrieve and delete documents provided by the user or generated with the `synth` method.
-    """
+    `putDoc`:
+        Description: Creates a new document in the database.
+        Request:
+            - namespace: The namespace of the document.
+            - action: The method to be executed.
+            - definition: The json_schema definition of the document.
+            - data: The data to be stored.
+        Response:
+            - code: 201
+            - message: Document created
+            - key: The unique identifier of the document
+            - definition: The json_schema definition of the document
 
+    `mergeDoc`:
+        Description: Updates an existing document in the database.
+        Request:
+            - namespace: The namespace of the document.
+            - action: The method to be executed.
+            - key: The unique identifier of the document
+            - definition: The json_schema definition of the document.
+            - data: The data to be stored.
+        Response:
+            - code: 200
+            - message: Document updated
+            - key: The unique identifier of the document
+            - definition: The json_schema definition of the document
+
+    `findDocs`:
+        Description: Finds documents in the database which can be filtered by equality comparison of all the fields specified in the `definition`.
+        Request:
+            - namespace: The namespace of the document.
+            - action: The method to be executed.
+            - definition: The json_schema definition of the document.
+            - data: The data to be stored.
+        Response:
+            An array of documents filtered by the data provided.
+
+    `getDoc`:
+        Description: Retrieves a document from the database.
+        Request:
+            - namespace: The namespace of the document.
+            - action: The method to be executed.
+            - key: The unique identifier of the document
+        Response:
+            - The document object if it exists, otherwise None.
+
+    `deleteDoc`:
+        Description: Deletes a document from the database.
+        Request:
+            - namespace: The namespace of the document.
+            - action: The method to be executed.
+            - key: The unique identifier of the document
+        Response:
+            - code: 204
+            - message: Document deleted
+            - key: The unique identifier of the document
+            - definition: The json_schema definition of the document
+
+    `scanDocs`:
+        Description: Retrieves all documents from the database.
+        Request:
+            - namespace: The namespace of the document.
+            - action: The method to be executed.
+            - limit: The maximum number of documents to return
+            - offset: The number of documents to skip
+        Response:
+            - An array of documents.
+    """
     klass = create_class(
         namespace=namespace, schema=definition.definition, base=QDocument, action=action
     )
-    print(klass.model_json_schema())
     if action in ("putDoc", "mergeDoc", "findDocs"):
         assert (
             definition.data is not None
         ), f"Data must be provided for action `{action}`"
         if action == "putDoc":
             doc = klass(namespace=namespace, **definition.data)  # type: ignore
-            doc.put_doc()
-            return doc
+            status = doc.put_doc()
+            if status.code == 201 and status.key:
+                return doc
+            raise ValueError(f"Error creating document: {status}")
         if action == "mergeDoc":
             doc = klass(namespace=namespace, **definition.data)  # type: ignore
             doc.merge_doc()

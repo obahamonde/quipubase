@@ -16,4 +16,4 @@ EXPOSE 5454
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["make serve"]
+CMD ["uvicorn","main:app","--host","0.0.0.0","--port","5454","--reload"]

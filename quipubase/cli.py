@@ -1,11 +1,9 @@
 import os
+import pathlib
 import subprocess
 import sys
-import click
-import pathlib
 
-os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
-os.environ["EMBEDDINGS_URL"] = "https://qembeddings-ih27b7zwaa-tl.a.run.app/embeddings"
+import click
 
 PYTHON_EXE = sys.executable
 HOST = "0.0.0.0"

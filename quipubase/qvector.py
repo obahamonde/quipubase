@@ -1,4 +1,3 @@
-import asyncio
 from functools import cached_property
 from typing import Literal
 
@@ -6,30 +5,25 @@ import hnswlib
 import numpy as np
 from fastapi import APIRouter
 from numpy.typing import NDArray
-from pydantic import BaseModel, Field
-from typing_extensions import Self, TypeVar
+from pydantic import Field
+from typing_extensions import Self, TypeAlias, TypeVar
 
-from .qdoc import Embedding, QDocument
+from .qdoc import Base, CosimResult, Embedding, QDocument
 from .qembed import EmbeddingAPI
 
 Q = TypeVar("Q", bound=QDocument)
 
+RagAction: TypeAlias = Literal["searchDocs", "upsertDoc"]
 
-class CosimResult(BaseModel):
-    id: str
-    score: float
+
+class RagRequest(Base):
     content: str | list[str]
 
 
-class QVRequest(BaseModel):
-    content: str | list[str]
-
-
-class QVector(Embedding):
+class QuipuVector(Embedding):
     content: str | list[str] = Field(
         ..., description="The sentences to be encoded into vector embeddings"
     )
-    namespace: str = Field(..., description="The namespace of the user/org")
     value: list[float] | None = Field(
         default=None, description="The computed vector embedding from the system"
     )
@@ -42,10 +36,12 @@ class QVector(Embedding):
     def client(self):
         return EmbeddingAPI()
 
-    async def embed(self, *, content: str | list[str]):
+    async def embed(self, *, namespace: str, content: str | list[str]):
         return await self.client.encode(content)
 
-    async def query(self, *, value: NDArray[np.float32]) -> list[CosimResult]:
+    async def query(
+        self, *, namespace: str, value: NDArray[np.float32]
+    ) -> list[CosimResult]:
         """
         Cosine similarity search
         * value: the query vector
@@ -58,12 +54,7 @@ class QVector(Embedding):
         4. Return the top k results
 
         """
-        if asyncio.iscoroutinefunction(
-            self.find_docs(1000, 0, namespace=self.namespace)
-        ):
-            world: list[Self] = await self.find_docs(limit=1000, offset=0, namespace=self.namespace)  # type: ignore
-        else:
-            world: list[Self] = self.find_docs(limit=1000, offset=0, namespace=self.namespace)  # type: ignore
+        world: list[Self] = self.find_docs(limit=1000, offset=0, namespace=namespace)  # type: ignore
         if not world:
             return []
         p = hnswlib.Index(space="cosine", dim=self.dim)  # type: ignore
@@ -82,28 +73,38 @@ class QVector(Embedding):
             for i, distance in enumerate(distances[0])  # type: ignore
         ]
 
-    async def upsert(self, *, content: str | list[str]):
-        embeddings = await self.embed(content=content)
+    async def upsert(self, *, namespace: str, content: str | list[str]):
+        embeddings = await self.embed(namespace=namespace, content=content)
         instances = [
-            QVector(namespace=self.namespace, value=embedding, content=content)
-            for embedding in embeddings
+            QuipuVector(value=embedding, content=content) for embedding in embeddings
         ]
         for intance in instances:
             intance.put_doc()
 
 
-app = APIRouter(prefix="/api/qvector")
+app = APIRouter(tags=["Vector Embeddings"])
 
 
-@app.post("/search/{namespace}")
+@app.post("/vector/{namespace}")
 async def query_vector(
-    namespace: str, body: QVRequest, topK: int | None
-) -> list[CosimResult]:
-    qvector = QVector(content=body.content, namespace=namespace, top_k=topK or 5)
-    return await qvector.query(value=await qvector.embed(content=body.content))
+    namespace: str, action: RagAction, body: RagRequest, topK: int | None
+) -> list[CosimResult] | None:
+    """
+    Query the vector representation of the content and return the top K similar results.
 
+    Args:
+        namespace (str): The namespace for the vector representation.
+        action (RagAction): The action to perform.
+        body (RagRequest): The request body containing the content.
+        topK (int, optional): The number of top similar results to return. Defaults to 5.
 
-@app.post("/upsert/{namespace}")
-async def upsert_vector(namespace: str, body: QVRequest):
-    qvector = QVector(content=body.content, namespace=namespace)
-    return await qvector.upsert(content=body.content)
+    Returns:
+        list[CosimResult]: A list of CosimResult objects representing the top similar results.
+    """
+    qvector = QuipuVector(content=body.content, top_k=topK or 5)
+    if action == "searchDocs":
+        return await qvector.query(
+            value=await qvector.embed(namespace=namespace, content=body.content),
+            namespace=namespace,
+        )
+    return await qvector.upsert(namespace=namespace, content=body.content)

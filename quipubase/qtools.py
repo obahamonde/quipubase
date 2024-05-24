@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import Any
+
 from openai.types.chat.completion_create_params import Function
 from pydantic import BaseModel
+
 
 class Tool(BaseModel, ABC):
     @classmethod

@@ -22,10 +22,3 @@ On Quipubase we are looking forward to be the **de facto** database choice for m
 ## Why QuipuBase?
 
 There was a misconception about ancient south american culture regarding it's communication systems. On the ancient Incan Empire (IV-XIV centuries) a peculiar communication and accountability system known as `Quipus` was utilized by the intellectuals of the epoch to express complex data patterns in a cohesive way which is analog to what AI tailored solutions are aiming for these days, by any means this is a projection rather an inspiration on how ancestral ideas can motivate new software projects, **Quipubase** thrives for innovation in order to augment our current capabilities from a unique perspective, because on an intelligence rush, knowledge management is key.
-
-
-
-
-
-
-En el panorama actual de plataforma de computo en la nube uno de los nuevos actores que esta adquiriendo valor silenciosamente es RunPod, la subsidiaria de Docker, si esa plataforma que los desarrolladores utilizamos para construir entornos de desarrollo uniformes y enviar nuestro codigo a produccion, el modelo de negocio de pago adelantado asegura liquidez a la compania y permite tener precios competitivos al usuario final, colocando el poder de las tarjeta graficas de Nvidia al alcance del usuario final entre ellos investigadores y emprendedores, es interesante ver como empresas venden palas en esta fiebre del oro.

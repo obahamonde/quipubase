@@ -3,9 +3,7 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [
-            "/usr/local/include/rocksdb/db.h"
-        ],
+        "depends": [],
         "extra_compile_args": [
             "-std=c++17"
         ],
