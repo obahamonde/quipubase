@@ -27,3 +27,4 @@ db/
 nohup.out
 *.lock
 .pytest_cache/
+.ruff_cache/
