@@ -6,15 +6,8 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-orjson = "^3.10.3"
-numpy = "^1.26.4"
-hnswlib = "^0.8.0"
-python-dotenv = "^1.0.1"
-uvicorn = "^0.29.0"
-fastapi-slim = "^0.111.0"
-python-multipart = "^0.0.9"
-openai = "^1.30.2"
+python = "^3.10"
+quipubase = { git = "https://github.com/obahamonde/quipubase.git", branch = "main" }
 
 
 
