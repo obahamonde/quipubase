@@ -13,7 +13,6 @@ SERVE_PORT := 5454
 PYTHONDONTWRITEBYTECODE := 1
 PYTHONUNBUFFERED := 1
 
-# Target to build the project
 .PHONY: build
 build:
 	@echo "Setting environment variables..."
@@ -24,12 +23,10 @@ build:
 	@echo "Building QuipuBase..."
 	@cd $(PROJECT_DIR) && $(PYTHON) setup.py build_ext --inplace
 
-# Target to run the project in development mode
 .PHONY: dev
 dev:
 	@$(UVICORN) $(APP_MODULE) --reload --host $(HOST) --port $(DEV_PORT) --log-level debug
 
-# Target to serve the project
 .PHONY: serve
 serve:
 	@$(UVICORN) $(APP_MODULE) --host $(HOST) --port $(SERVE_PORT) --log-level info
