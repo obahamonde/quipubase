@@ -7,4 +7,3 @@ uvicorn
 fastapi-slim
 python-multipart
 openai
-fastapi-slim
