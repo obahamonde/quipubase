@@ -8,3 +8,4 @@ fastapi-slim
 python-multipart
 openai
 fastapi-slim
+quipubase @ git+https://github.com/obahamonde/quipubase.git
