@@ -44,7 +44,8 @@ class EmbeddingAPI(QProxy[AsyncClient]):
         if isinstance(text, str):
             text = [text]
         response = await self.__load__().post(
-            os.environ["EMBEDDINGS_URL"], json={"content": text}
+            os.environ.get("http://embeddings.indiecloud/embeddings", ""),
+            json={"content": text},
         )
         vector = response.json()["content"]
         return np.array(vector, np.float32)  # type: ignore

@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "quipubase"
-version = "0.0.1-alpha"
-description = ""
+version = "0.0.2-alpha"
+description = "A serverless document and vector database built at the edge for AI applications."
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-cython = "^3.0.10"
 orjson = "^3.10.3"
 numpy = "^1.26.4"
 hnswlib = "^0.8.0"
@@ -34,5 +33,5 @@ pytest = "^8.2.0"
 pytest-asyncio = "^0.23.6"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0", "setuptools", "wheel", "Cython"]
 build-backend = "poetry.core.masonry.api"
