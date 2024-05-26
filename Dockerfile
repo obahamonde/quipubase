@@ -6,6 +6,8 @@ COPY . .
 
 # ENV PYTHONDONTWRITEBYTECODE=1
 # ENV PYTHONUNBUFFERED=1
+ENV PORT=5454
+
 
 RUN apt-get update && apt-get install -y \
 	librocksdb-dev \
