@@ -29,17 +29,17 @@ class EmbeddingAPI(QProxy[AsyncClient]):
 
     async def encode(self, text: str | list[str]):
         """
-        Encodes the given text into vectors.
+                Encodes the given text into vectors.
 
-        Args:
-            text (str | list[str]): The text or list of texts to be encoded.
+                Args:
+                    text (str | list[str]): The text or list of texts to be encoded.
+        w
+                Returns:
+                    numpy.ndarray: An array of vectors representing the encoded text.
 
-        Returns:
-            numpy.ndarray: An array of vectors representing the encoded text.
-
-        Example:
-            embedding_api = EmbeddingAPI()
-            vectors = await embedding_api.encode("Hello, world!")
+                Example:
+                    embedding_api = EmbeddingAPI()
+                    vectors = await embedding_api.encode("Hello, world!")
         """
         if isinstance(text, str):
             text = [text]
