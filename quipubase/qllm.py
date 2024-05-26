@@ -36,7 +36,7 @@ class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):
     namespace: str = Field(..., description="The namespace of the language model.")
     identifier: Identifier = Field(default="llama3-8B-8192")
     instructions: str = Field(default="You are a chatbot assistant.")
-    messages: list[Message] = []
+    messages: list[Message] = Field(default_factory=list)
 
     def __load__(self) -> AsyncOpenAI:
         return AsyncOpenAI(
@@ -44,35 +44,31 @@ class LanguageModel(BaseModel, QProxy[AsyncOpenAI]):
         )
 
     async def stream(self, *, request: Chat):
+        messages = [{"role": "system", "content": request.instructions}]
+        messages.extend(request.messages)  # type: ignore
         response = await self.__load__().chat.completions.create(
-            messages=cast(
-                list[ChatCompletionMessageParam],
-                [{"role": "system", "content": request.instructions}]
-                + request.messages,
-            ),
+            messages=cast(list[ChatCompletionMessageParam], messages),
             model=self.identifier,
             max_tokens=8192,
             stream=True,
             stop=["<|eot_id|>"],
         )
         chunks = ""
-
         async for chunk in response:
             content = chunk.choices[0].delta.content
-            if content:
-                chunks += content
-                yield content
-                self.messages.append({"content": content, "role": "assistant"})
-                request.messages.append({"content": content, "role": "assistant"})
+            if not content:
+                continue
+            yield content
+            chunks += content
+            self.messages.append({"content": content, "role": "assistant"})
+            request.messages.append({"content": content, "role": "assistant"})
         request.merge_doc()
 
     async def chat(self, *, request: Chat):
+        messages = [{"role": "system", "content": request.instructions}]
+        messages.extend(request.messages)  # type: ignore
         response = await self.__load__().chat.completions.create(
-            messages=cast(
-                list[ChatCompletionMessageParam],
-                [{"role": "system", "content": request.instructions}]
-                + request.messages,
-            ),
+            messages=cast(list[ChatCompletionMessageParam], messages),
             model=self.identifier,
             max_tokens=8192,
             stop=["<|eot_id|>"],

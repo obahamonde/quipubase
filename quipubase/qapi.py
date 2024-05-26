@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from openai import AsyncOpenAI
 from typing_extensions import TypeAlias
 
-from .qconst import SERVERS, SUMMARY
+from .qconst import SUMMARY
 from .qdoc import app as documents_app
 from .qllm import app as llm_app
 from .qschemas import SynthethicDataGenerator
@@ -20,8 +20,7 @@ api = FastAPI(
     title="QuipuBase",
     description="AI-Driven, Schema-Flexible Document Store",
     summary=SUMMARY,
-    version="0.0.1:alpha",
-    servers=[SERVERS],
+    version="0.0.2",
 )
 api.add_middleware(
     CORSMiddleware,
