@@ -1,15 +1,21 @@
 [tool.poetry]
 name = "quipubase"
-version = "0.0.2-alpha"
-description = "A serverless document and vector database built at the edge for AI applications."
-authors = ["Your Name <you@example.com>"]
+version = "0.1.0"
+description = ""
+authors = ["o-bahamonde_globant <o.bahamonde@globant.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-quipubase = { git = "https://github.com/obahamonde/quipubase.git", branch = "main" }
-
-
+python = ">=3.10,<4.0"
+cython = "^3.0.10"
+orjson = "^3.10.3"
+numpy = "^1.26.4"
+hnswlib = "^0.8.0"
+python-dotenv = "^1.0.1"
+uvicorn = "^0.29.0"
+fastapi-slim = "^0.111.0"
+python-multipart = "^0.0.9"
+openai = "^1.30.3"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.11.1"
