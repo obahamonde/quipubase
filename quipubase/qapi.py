@@ -16,21 +16,6 @@ from .qvector import app as vector_app
 
 Handler: TypeAlias = Callable[[Request], Awaitable[Response]]
 
-api = FastAPI(
-    title="QuipuBase",
-    description="AI-Driven, Schema-Flexible Document Store",
-    summary=SUMMARY,
-    version="0.0.2",
-)
-api.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-ai = AsyncOpenAI()
 
 AUTH0_URL = os.environ.get("AUTH0_URL")
 
@@ -44,6 +29,20 @@ def create_app(
     Returns:
             FastAPI: The configured FastAPI application.
     """
+    ai = AsyncOpenAI()
+    api = FastAPI(
+        title="QuipuBase",
+        description="AI-Driven, Schema-Flexible Document Store",
+        summary=SUMMARY,
+        version="0.0.2",
+    )
+    api.add_middleware(
+        CORSMiddleware,
+        allow_credentials=True,
+        allow_origins=["*"],
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
     for router in routers:
         api.include_router(router, prefix="/api")
 

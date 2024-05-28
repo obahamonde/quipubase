@@ -1,12 +1,12 @@
 from functools import cached_property
-from typing import Literal
+from typing import Literal, Optional
 
 import hnswlib
 import numpy as np
 from fastapi import APIRouter
 from numpy.typing import NDArray
 from pydantic import Field
-from typing_extensions import Self, TypeAlias, TypeVar
+from typing_extensions import Self, TypeAlias, TypeVar, Union
 
 from .qdoc import Base, CosimResult, QDocument
 from .qembed import EmbeddingAPI
@@ -17,14 +17,14 @@ RagAction: TypeAlias = Literal["searchDocs", "upsertDoc"]
 
 
 class RagRequest(Base):
-    content: str | list[str]
+    content: Union[str, list[str]]
 
 
 class QuipuVector(QDocument):
-    content: str | list[str] = Field(
+    content: Union[str, list[str]] = Field(
         ..., description="The sentences to be encoded into vector embeddings"
     )
-    value: list[float] | None = Field(
+    value: Optional[list[float]] = Field(
         default=None, description="The computed vector embedding from the system"
     )
     top_k: int = Field(default=5, description="The number of top results to return")
@@ -36,7 +36,7 @@ class QuipuVector(QDocument):
     def client(self):
         return EmbeddingAPI()
 
-    async def embed(self, *, namespace: str, content: str | list[str]):
+    async def embed(self, *, namespace: str, content: Union[str, list[str]]):
         return await self.client.encode(content)
 
     async def query(
@@ -73,7 +73,7 @@ class QuipuVector(QDocument):
             for i, distance in enumerate(distances[0])  # type: ignore
         ]
 
-    async def upsert(self, *, namespace: str, content: str | list[str]):
+    async def upsert(self, *, namespace: str, content: Union[str, list[str]]):
         embeddings = await self.embed(namespace=namespace, content=content)
         instances = [
             QuipuVector(value=embedding, content=content) for embedding in embeddings
@@ -87,8 +87,8 @@ app = APIRouter(tags=["Vector Embeddings"])
 
 @app.post("/vector/{namespace}")
 async def query_vector(
-    namespace: str, action: RagAction, body: RagRequest, topK: int | None
-) -> list[CosimResult] | None:
+    namespace: str, action: RagAction, body: RagRequest, topK: Optional[int]
+) -> Optional[list[CosimResult]]:
     """
     Query the vector representation of the content and return the top K similar results.
 

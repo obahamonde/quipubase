@@ -131,22 +131,33 @@ class SynthethicDataGenerator(Tool, QProxy[AsyncOpenAI]):
                         None
         """
         PROMPT = f"""
-        Generate {self.n} synthetic data samples based on the following JSON schema on JSON format:
+        Generate a set of exactly{min(self.n,100)} unique and diverse json data samples based on the following JSON schema:
             
             ```json
             {json.dumps(self.json_schema, indent=4)}
             ```
-        The samples must be valid JSON without any leading or trailing whitespaces, backticks, or other characters that are not part of the JSON format.
-        The response must be a key `data` containing the array of generated synthetic data samples in JSON format.
-	"""
+            
+        # Instructions
+        
+        * The object generated will be have a key `data` containing the array of generated samples.
+        * The whole data structure must be a valid JSON object with no additional content.
+        * The JSON object must be syntactically valid with no backticks or other punctuation. JUST JSON.
+        * The JSON array must contain an array of objects, each object representing a sample which must adhere to the schema provided.
+        """
+
         response = await self.__load__().chat.completions.create(
             messages=[{"role": "system", "content": PROMPT}],
             model="llama3-8B-8192",
             max_tokens=8192,
+            functions=[self.definition()],
         )
-        samples = response.choices[0].message.content
-        if samples:
-            return sanitize(samples)
+        message = response.choices[0].message
+        if message.function_call:
+            data = json.loads(message.function_call.arguments)
+            obj = self.model_validate(data)
+            return await obj.run()
+        if message.content:
+            return sanitize(message.content)
         raise HTTPException(status_code=500, detail="Error generating synthetic data.")
 
     def __load__(self):

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, ClassVar, Dict, List, Optional, TypeVar
+from typing import Any, ClassVar, Dict, List, Optional, TypeVar, Union
 from uuid import uuid4
 
 from fastapi import APIRouter, Body, Path, Query
@@ -128,7 +128,7 @@ class QDocument(Base):
         )
 
     @classmethod
-    def get_doc(cls, *, key: str) -> Self | Status:
+    def get_doc(cls, *, key: str) -> Union[Self, Status]:
         """
         Retrieves a document from the database.
 

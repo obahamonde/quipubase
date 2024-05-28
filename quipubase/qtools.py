@@ -11,7 +11,7 @@ class Tool(BaseModel, ABC):
         _schema = cls.model_json_schema()
         return Function(
             name=cls.__name__,
-            parameters=_schema,
+            parameters=_schema.get("properties", {}),
             description=cls.__doc__ or "[No description available]",
         )
 

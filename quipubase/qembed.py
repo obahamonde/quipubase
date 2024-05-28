@@ -1,5 +1,5 @@
 import os
-
+from typing import Union
 import numpy as np
 from httpx import AsyncClient
 
@@ -27,7 +27,7 @@ class EmbeddingAPI(QProxy[AsyncClient]):
             timeout=60,
         )
 
-    async def encode(self, text: str | list[str]):
+    async def encode(self, text: Union[str, list[str]]):
         """
                 Encodes the given text into vectors.
 

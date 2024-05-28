@@ -5,7 +5,7 @@ import json
 import logging
 import time
 from functools import partial, wraps
-from typing import Awaitable, Callable, Coroutine, Type, TypeVar, cast
+from typing import Awaitable, Callable, Coroutine, Type, TypeVar, cast, Union
 
 from fastapi import HTTPException
 from typing_extensions import ParamSpec
@@ -49,7 +49,9 @@ def get_logger(
 logger = get_logger()
 
 
-def exception_handler(func: Callable[P, T]) -> Callable[P, T | Coroutine[None, T, T]]:
+def exception_handler(
+    func: Callable[P, T]
+) -> Callable[P, Union[T, Coroutine[None, T, T]]]:
     """
     Decorator to handle exceptions in a function.
 
@@ -86,7 +88,9 @@ def exception_handler(func: Callable[P, T]) -> Callable[P, T | Coroutine[None, T
     return wrapper
 
 
-def timing_handler(func: Callable[P, T]) -> Callable[P, T | Coroutine[None, T, T]]:
+def timing_handler(
+    func: Callable[P, T]
+) -> Callable[P, Union[T, Coroutine[None, T, T]]]:
     """
     Decorator to measure the time taken by a function.
 
@@ -119,7 +123,7 @@ def timing_handler(func: Callable[P, T]) -> Callable[P, T | Coroutine[None, T, T
 
 def retry_handler(
     func: Callable[P, T], retries: int = 3, delay: int = 1
-) -> Callable[P, T | Coroutine[None, T, T]]:
+) -> Callable[P, Union[T, Coroutine[None, T, T]]]:
     """
     Decorator to retry a function with exponential backoff.
 
@@ -179,7 +183,7 @@ def retry_handler(
 
 def handle(
     func: Callable[P, T], retries: int = 3, delay: int = 1
-) -> Callable[P, T | Coroutine[None, T, T]]:
+) -> Callable[P, Union[T, Coroutine[None, T, T]]]:
     """
     Decorator to retry a function with exponential backoff and handle exceptions.
 
@@ -190,7 +194,7 @@ def handle(
     """
     eb = partial(retry_handler, retries=retries, delay=delay)
     return cast(
-        Callable[P, T | Coroutine[None, T, T]],
+        Callable[P, Union[T, Coroutine[None, T, T]]],
         timing_handler(exception_handler(eb(func))),
     )
 
