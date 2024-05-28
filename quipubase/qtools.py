@@ -4,7 +4,7 @@ from typing import Any
 from openai.types.chat.completion_create_params import Function
 from pydantic import BaseModel
 
-this = 0
+
 class Tool(BaseModel, ABC):
     @classmethod
     def definition(cls):
