@@ -28,7 +28,7 @@ class QuipuVector(QDocument):
         default=None, description="The computed vector embedding from the system"
     )
     top_k: int = Field(default=5, description="The number of top results to return")
-    dim: Literal[384,768] = Field(
+    dim: Literal[384, 768] = Field(
         default=768, description="The dimension of the vector embeddings"
     )
 

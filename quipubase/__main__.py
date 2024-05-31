@@ -1,5 +1,4 @@
 from dotenv import load_dotenv
-
 from quipubase.cli import main
 
 load_dotenv()

@@ -5,7 +5,7 @@ import json
 import logging
 import time
 from functools import partial, wraps
-from typing import Awaitable, Callable, Coroutine, Type, TypeVar, cast, Union
+from typing import Awaitable, Callable, Coroutine, Type, TypeVar, Union, cast
 
 from fastapi import HTTPException
 from typing_extensions import ParamSpec

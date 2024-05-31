@@ -1,5 +1,4 @@
 import pytest
-
 from quipubase.qdoc import QDocument, Status
 
 

@@ -7,3 +7,4 @@ uvicorn
 fastapi-slim
 python-multipart
 openai
+eval_type_backport

@@ -68,7 +68,7 @@ def create_app(
         """
         response = await ai.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
-            model="llama3-8B-8192",
+            model="llama3-70B-8192",
             max_tokens=8192,
             functions=[SynthethicDataGenerator.definition()],
         )

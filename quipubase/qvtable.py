@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+from contextlib import contextmanager
 from functools import cached_property
 from sqlite3 import (
     Blob,
@@ -33,7 +35,6 @@ from typing import (
     TypeVar,
     Union,
 )
-from contextlib import contextmanager
 
 from .qdoc import QDocument
 

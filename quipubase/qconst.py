@@ -51,10 +51,20 @@ MAPPING = {
     "null": None,
 }
 
-SUMMARY = "The `json_schema` standard is well-recognized for defining flexible API schemas, QuipuBase leverages this standard  to provide an intuitive and flexible way to customize the shape of your data, according to your needs with access to a rich set of features such as Retrieval Augmented Generation and Function Calling enabling seamless integrations and agentic workflows on top of essential features such as CRUD operations and search."
+SUMMARY = "The json_schema standard is well-recognized for defining flexible API schemas. QuipuBase leverages this standard to offer an intuitive and adaptable way to customize your data structure according to your needs. It provides a rich set of features such as Retrieval Augmented Generation (RAG) and Function Calling, enabling seamless integrations and autonomous workflows, alongside essential functionalities like CRUD operations and search."
 
-SERVERS = {"url": "https://quipubase-ih27b7zwaa-tl.a.run.app"}
+SERVERS = {
+    "url": "https://db.indiecloud.co",
+    "description": "IndieCloud - Quipubase JSON API Server",
+}
 
 ACTIONS: TypeAlias = Literal[
-    "putDoc", "getDoc", "mergeDoc", "deleteDoc", "findDocs", "scanDocs"
+    "putDoc", "getDoc", "mergeDoc", "deleteDoc", "findDocs", "scanDocs","createTable","dropTable", "tableExists"
 ]
+
+IMAGES_URL = "https://api.runpod.ai/v2/s6a87rd752k96z"
+HEADERS = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + "WJCB6JDNWLT9QM8N2FDQ2JQYB7658CIWVJBIRBIU",
+}
+TIMEOUT = 3600

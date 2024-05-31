@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Generic, Iterable, TypeVar, cast
-
+from typing import Any, Generic, Iterable, TypeVar, cast
+from dataclasses import dataclass, field
+import httpx
 from typing_extensions import override
 
 T = TypeVar("T")
@@ -61,3 +62,112 @@ class QProxy(Generic[T], ABC):
 
     @abstractmethod
     def __load__(self) -> T: ...
+
+
+@dataclass
+class APIClient(QProxy[httpx.AsyncClient]):
+    base_url: str = field(repr=False)
+    headers: dict[str, str] = field(repr=False)
+    timeout: int = field(default=3600, repr=False)
+
+    def __load__(self) -> httpx.AsyncClient:
+        return httpx.AsyncClient(
+            base_url=self.base_url, headers=self.headers, timeout=self.timeout
+        )
+
+    async def request(
+        self,
+        *,
+        endpoint: str,
+        method: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ) -> httpx.Response:
+        client = self.__get_proxied__()
+        return await client.request(
+            method, endpoint, json=json, headers=headers or self.headers
+        )
+
+    async def get(
+        self,
+        *,
+        endpoint: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ) -> Any:
+        return await self.request(
+            endpoint=endpoint, method="GET", json=json, headers=headers
+        )
+
+    async def post(
+        self,
+        *,
+        endpoint: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ) -> Any:
+        return await self.request(
+            endpoint=endpoint, method="POST", json=json, headers=headers
+        )
+
+    async def put(
+        self,
+        *,
+        endpoint: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ) -> Any:
+        return await self.request(
+            endpoint=endpoint, method="PUT", json=json, headers=headers
+        )
+
+    async def delete(
+        self,
+        *,
+        endpoint: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ) -> Any:
+        return await self.request(
+            endpoint=endpoint, method="DELETE", json=json, headers=headers
+        )
+
+    async def text(
+        self,
+        *,
+        endpoint: str,
+        method: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ) -> str:
+        response = await self.request(
+            endpoint=endpoint, method=method, json=json, headers=headers
+        )
+        return response.text
+
+    async def blob(
+        self,
+        *,
+        endpoint: str,
+        method: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ) -> bytes:
+        response = await self.request(
+            endpoint=endpoint, method=method, json=json, headers=headers
+        )
+        return response.content
+
+    async def stream(
+        self,
+        *,
+        endpoint: str,
+        method: str,
+        json: dict[str, Any] | None,
+        headers: dict[str, str] | None,
+    ):
+        response = await self.request(
+            endpoint=endpoint, method=method, json=json, headers=headers
+        )
+        async for chunk in response.aiter_bytes():
+            yield chunk
