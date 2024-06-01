@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import torch
 from .proxy import Proxy
-from .utils import device
+from .utils import get_device
 
 
 @dataclass
@@ -24,7 +24,7 @@ class EmbeddingAPI(Proxy[SentenceTransformer]):
         vectors = await embedding_api.encode("Hello, world!")
     """
 
-    device: str = field(default_factory=device)
+    device: str = field(default_factory=get_device)
 
     def __load__(self):
         return SentenceTransformer("mpnet-base-v2")

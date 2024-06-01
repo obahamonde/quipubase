@@ -1,9 +1,11 @@
 from __future__ import annotations
+import os
 import json
-from typing import Any, ClassVar, Dict, List, Optional, TypeVar, Union
+from typing import Any, ClassVar, Dict, List, Optional, TypeVar, Union, Type
 from uuid import uuid4
-
+from datetime import datetime
 from fastapi import APIRouter, Body, Path, Query
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from typing_extensions import Self, Literal
 
@@ -11,6 +13,7 @@ from .const import DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
 from .schemas import JsonSchema  # pylint: disable=E0611 # type: ignore
 from .schemas import create_class
 from .quipubase import Quipu  # pylint: disable=E0611
+from .pubsub import PubSub
 
 T = TypeVar("T", bound="QDocument")
 
@@ -31,6 +34,25 @@ class CosimResult(Base):
     id: str
     score: float
     content: str | list[str]
+
+
+class MetaData(Base):
+    """
+    Represents the metadata of a document.
+
+    Attributes:
+                                    object:str The entity name.
+                                    key:str  The key of the document.
+                                    namespace: str The namespace of the document.
+                                    action: str The action that was executed.
+                                    timestamp: float The timestamp of the action.
+
+    """
+
+    object: str
+    key: str
+    action: Literal["put", "merge", "delete"]
+    timestamp: float = Field(default_factory=lambda: datetime.now().timestamp())
 
 
 class Status(Base):
@@ -79,20 +101,22 @@ class QDocument(Base):
                                     _db_instances (ClassVar[dict[str, Quipu]]): A dictionary that stores the instances of the Quipu database.
                                     key (str): The key of the document.
     """
-
+    _queue: Type[PubSub[MetaData]] = PubSub[MetaData]
     _db_instances: ClassVar[dict[str, Quipu]] = {}
     key: str = Field(default_factory=lambda: str(uuid4()))
 
     @classmethod
     def __init_subclass__(cls, **kwargs: Any) -> None:
+        if not os.path.exists(f"db/{cls.__name__}"):
+            os.makedirs(f"db/{cls.__name__}", exist_ok=True)
+        cls._db = cls._db_instances[cls.__name__] = Quipu(f"db/{cls.__name__}")
         super().__init_subclass__(**kwargs)
-        cls._db = cls._db_instances[cls.__name__] = Quipu(cls.__name__)
 
     @classmethod
     def __pydantic_init_subclass__(cls, **kwargs: Any) -> None:
-        super().__pydantic_init_subclass__(**kwargs)
         with open(f"db/{cls.__name__}/config.json", "w") as f:
             json.dump(cls.model_json_schema(), f)
+        super().__pydantic_init_subclass__(**kwargs)
 
     @classmethod
     def definition(cls) -> JsonSchema:
@@ -109,7 +133,11 @@ class QDocument(Base):
             properties=cls.model_json_schema().get("properties", {}),
         )
 
-    def put_doc(self) -> Status:
+    @property
+    def queue(self) -> PubSub[MetaData]:
+        return self._queue(namespace=self.__class__.__name__)
+
+    async def put_doc(self) -> Status:
         """
         Puts the document into the database.
 
@@ -119,6 +147,14 @@ class QDocument(Base):
         if self._db.exists(key=self.key):
             self._db.merge_doc(self.key, self.model_dump())
         self._db.put_doc(self.key, self.model_dump())
+        await self.queue.pub(
+            item=MetaData(
+                object=self.__class__.__name__,
+                key=self.key,
+                action="put",
+                timestamp=datetime.now().timestamp(),
+            )
+        )
         return Status(
             code=201,
             message="Document created",
@@ -148,7 +184,7 @@ class QDocument(Base):
             definition=cls.definition(),
         )
 
-    def merge_doc(self) -> Status:
+    async def merge_doc(self) -> Status:
         """
         Merges the document into `quipubase`.
 
@@ -157,6 +193,14 @@ class QDocument(Base):
         """
 
         self._db.merge_doc(key=self.key, value=self.model_dump())
+        await self.queue.pub(
+            item=MetaData(
+                object=self.__class__.__name__,
+                key=self.key,
+                action="merge",
+                timestamp=datetime.now().timestamp(),
+            )
+        )
         return Status(
             code=200,
             message="Document updated",
@@ -251,7 +295,7 @@ app = APIRouter(tags=["Document Store"], prefix="/document")
 
 
 @app.post("/{namespace}")
-def _(
+async def _(
     namespace: str = Path(description="The namespace of the document"),
     action: Literal["put", "get", "merge", "delete", "find", "query", "upsert"] = Query(
         ..., description="The method to be executed"
@@ -333,8 +377,9 @@ def _(
     )
     if action == "put":
         doc = klass(namespace=namespace, **definition.data)  # type: ignore
-        status = doc.put_doc()
+        status = await doc.put_doc()
         if status.code == 201 and status.key:
+
             return doc
         raise ValueError(f"Error creating document: {status}")
     if action == "find":
@@ -348,8 +393,37 @@ def _(
     if action == "get":
         return klass.get_doc(key=key)
     if action == "delete":
+        await klass._queue(namespace=klass.__name__).pub(  # type: ignore
+            item=MetaData(
+                object=klass.__name__,
+                key=key,
+                action="delete",
+                timestamp=datetime.now().timestamp(),
+            )
+        )
         return klass.delete_doc(key=key)
     if action == "merge":
         doc = klass(key=key, **definition.data)  # type: ignore
-        doc.merge_doc()
+        await doc.merge_doc()
         return doc
+
+
+@app.get("/{namespace}")
+async def _(namespace: str):
+    """
+    Retrieves a document from the database.
+
+    Args:
+        namespace (str): The namespace of the document.
+        key (str): The unique identifier of the document.
+
+    Returns:
+        Any: The retrieved document.
+    """
+    queue = PubSub[MetaData](namespace=namespace)
+
+    async def generator():
+        async for item in queue.sub():
+            yield item.model_dump_json()
+
+    return StreamingResponse(generator(), media_type="application/json")

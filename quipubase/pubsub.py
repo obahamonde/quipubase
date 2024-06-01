@@ -7,6 +7,18 @@ T = TypeVar("T")
 
 
 class PubSub(BaseModel, Generic[T]):
+    """
+    Represents a PubSub (Publish-Subscribe) system.
+
+    Args:
+        namespace (str): The namespace of the PubSub.
+        queue (asyncio.Queue[T], optional): A queue of items. Defaults to an empty asyncio.Queue.
+
+    Attributes:
+        namespace (str): The namespace of the PubSub.
+        queue (asyncio.Queue[T]): A queue of items.
+    """
+
     model_config = {
         "arbitrary_types_allowed": True,
         "json_encoders": {asyncio.Queue: lambda q: q.qsize()},
@@ -52,11 +64,20 @@ class PubSub(BaseModel, Generic[T]):
         return self.queue.full()
 
     async def pub(self, *, item: T):
+        """
+        Publishes an item to the PubSub.
+
+        Args:
+            item (T): The item to be published.
+        """
         while self.is_full:
             await asyncio.sleep(0.1)
         await self.queue.put(item)
 
     async def sub(self):
+        """
+        Subscribes to the PubSub and yields items as they become available.
+        """
         while True:
             while self.is_empty:
                 await asyncio.sleep(0.1)

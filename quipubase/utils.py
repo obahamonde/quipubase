@@ -236,7 +236,7 @@ def singleton(cls: Type[T]) -> Type[T]:
     return cast(Type[T], wrapper)
 
 
-def device() -> str:
+def get_device() -> str:
     """
     Returns the device to be used for computation.
 

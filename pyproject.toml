@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "quipubase"
-version = "0.0.2-alpha"
-description = "A serverless document vector datastire which can be run at the edge suitable for AI applications."
+name = "globantdb"
+version = "0.0.1-alpha"
+description = "A serverless document vector datastore which can be run at the edge suitable for AI applications."
 authors = ["Oscar Bahamonde <o.bahamonde@globant.com>"]
 readme = "README.md"
 
@@ -11,11 +11,9 @@ cython = "^3.0.10"
 orjson = "^3.10.3"
 numpy = "^1.26.4"
 hnswlib = "^0.8.0"
-python-dotenv = "^1.0.1"
 uvicorn = "^0.29.0"
 fastapi-slim = "^0.111.0"
-openai = "^1.30.3"
-eval-type-backport = "^0.2.0"
+sentence-transformers = "^3.0.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.11.1"
@@ -23,9 +21,6 @@ black = "^21.12b0"
 isort = "^5.10.2"
 pytest = "^8.2.0"
 pytest-asyncio = "^0.23.6"
-
-[tool.poetry.scripts]
-quipubase = "quipubase.cli:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "setuptools", "wheel", "Cython"]

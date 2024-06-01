@@ -51,7 +51,9 @@ MAPPING = {
 
 SUMMARY = "The json_schema standard is well-recognized for defining flexible API schemas. QuipuBase leverages this standard to offer an intuitive and adaptable way to customize your data structure according to your needs. It provides a rich set of features such as Retrieval Augmented Generation (RAG) and Function Calling, enabling seamless integrations and autonomous workflows, alongside essential functionalities like CRUD operations and search."
 
-SERVERS = {
-    "url": "https://db.indiecloud.co",
-    "description": "IndieCloud - Quipubase JSON API Server",
-}
+SERVERS = [
+    {
+        "url": "https://db.indiecloud.co",
+        "description": "IndieCloud - Quipubase JSON API Server",
+    }
+]

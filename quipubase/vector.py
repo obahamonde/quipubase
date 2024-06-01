@@ -81,7 +81,7 @@ class QuipuVector(QDocument):
             QuipuVector(value=embedding, content=content) for embedding in embeddings
         ]
         for intance in instances:
-            intance.put_doc()
+            await intance.put_doc()
 
 
 app = APIRouter(tags=["Vector Embeddings"])
