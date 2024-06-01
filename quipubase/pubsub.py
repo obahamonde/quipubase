@@ -9,6 +9,7 @@ T = TypeVar("T")
 class PubSub(BaseModel, Generic[T]):
     model_config = {
         "arbitrary_types_allowed": True,
+        "json_encoders": {asyncio.Queue: lambda q: q.qsize()},
     }
     namespace: str = Field(..., description="The namespace of the PubSub")
     queue: Annotated[
@@ -18,7 +19,19 @@ class PubSub(BaseModel, Generic[T]):
                 "title": "Queue",
                 "description": "A queue of items",
                 "type": "object",
-                "properties": {"items": {"type": "array", "items": {"type": "object"}}},
+                "properties": {
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the PubSub",
+                    },
+                    "queue": {
+                        "type": "integer",
+                        "description": "The max size of the queue",
+                    },
+                    "size": {"type": "integer"},
+                    "is_empty": {"type": "boolean"},
+                    "is_full": {"type": "boolean"},
+                },
             }
         ),
     ] = Field(default_factory=asyncio.Queue)

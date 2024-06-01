@@ -8,8 +8,8 @@ from numpy.typing import NDArray
 from pydantic import Field
 from typing_extensions import Self, TypeAlias, TypeVar, Union
 
-from .qdoc import Base, CosimResult, QDocument
-from .qembed import EmbeddingAPI
+from .documents import Base, CosimResult, QDocument
+from .embed import EmbeddingAPI
 
 Q = TypeVar("Q", bound=QDocument)
 
@@ -75,6 +75,8 @@ class QuipuVector(QDocument):
 
     async def upsert(self, *, namespace: str, content: Union[str, list[str]]):
         embeddings = await self.embed(namespace=namespace, content=content)
+        if not isinstance(embeddings, np.ndarray):
+            embeddings = embeddings.cpu().numpy()
         instances = [
             QuipuVector(value=embedding, content=content) for embedding in embeddings
         ]
@@ -101,10 +103,14 @@ async def query_vector(
     Returns:
         list[CosimResult]: A list of CosimResult objects representing the top similar results.
     """
+
     qvector = QuipuVector(content=body.content, top_k=topK or 5)
+    embeddings = await qvector.embed(namespace=namespace, content=body.content)
+    if not isinstance(embeddings, np.ndarray):
+        embeddings = embeddings.cpu().numpy()
     if action == "searchDocs":
         return await qvector.query(
-            value=await qvector.embed(namespace=namespace, content=body.content),
+            value=embeddings,
             namespace=namespace,
         )
     return await qvector.upsert(namespace=namespace, content=body.content)

@@ -1,5 +1,3 @@
-from typing_extensions import Literal, TypeAlias
-
 EXAMPLES = [
     {
         "title": "JobPosting",
@@ -57,14 +55,3 @@ SERVERS = {
     "url": "https://db.indiecloud.co",
     "description": "IndieCloud - Quipubase JSON API Server",
 }
-
-ACTIONS: TypeAlias = Literal[
-    "putDoc", "getDoc", "mergeDoc", "deleteDoc", "findDocs", "scanDocs","createTable","dropTable", "tableExists"
-]
-
-IMAGES_URL = "https://api.runpod.ai/v2/s6a87rd752k96z"
-HEADERS = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + "WJCB6JDNWLT9QM8N2FDQ2JQYB7658CIWVJBIRBIU",
-}
-TIMEOUT = 3600
