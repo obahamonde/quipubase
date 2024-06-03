@@ -16,10 +16,14 @@
         "language": "c++",
         "libraries": [
             "rocksdb",
-            "bz2"
+            "bz2",
+            "lz4",
+            "zstd",
+            "snappy"
         ],
         "library_dirs": [
             "/usr/local/lib",
+            "/lib/x86_64-linux-gnu",
             "/usr/lib/x86_64-linux-gnu"
         ],
         "name": "quipubase",

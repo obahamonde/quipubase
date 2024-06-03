@@ -18,7 +18,7 @@ def main():
 
 
 @main.command()
-def clean():
+def cache_clean():
     """Clear the __pycache__ directory."""
     file_count = 0
     dir_count = 0
@@ -39,7 +39,7 @@ def clean():
 @click.option(
     "--name", default="quipubase", help="The name to use for the Docker image."
 )
-def deploy(tag: str, name: str):
+def push(tag: str, name: str):
     """Build the Quipubase Docker image."""
     print("Building Quipubase...")
     subprocess.run(
@@ -64,7 +64,7 @@ def deploy(tag: str, name: str):
 def run(host: str, port: str):
     """Run the Quipubase server."""
     print("Building Quipubase...")
-    subprocess.run([PYTHON_EXE, "setup.py", "build-ext", "--inplace"], check=True)
+    subprocess.run([PYTHON_EXE, "setup.py", "build_ext", "--inplace"], check=True)
     print("Quipubase build successful!")
     subprocess.run(
         [PYTHON_EXE, "-m", "uvicorn", ENTRYPOINT, "host", host, "port", port],
@@ -77,3 +77,14 @@ def run(host: str, port: str):
 def test():
     """Run the Quipubase tests."""
     subprocess.run([PYTHON_EXE, "-m", "pytest", "tests"], check=True)
+
+
+@main.command()
+def lib():
+    """Install RocksDB Storage Dependencies"""
+    debian_deps = ["libbz2-dev", "liblz4-dev", "libzstd-dev", "libsnappy-dev"]
+    subprocess.run(["apt-get", "install", "-y", *debian_deps], check=True)
+
+
+if __name__ == "__main__":
+    main()

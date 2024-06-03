@@ -1,4 +1,3 @@
-import os
 from typing import Union
 import numpy as np
 from httpx import AsyncClient
@@ -6,7 +5,7 @@ from httpx import AsyncClient
 from .qproxy import QProxy
 
 
-class EmbeddingAPI(QProxy[AsyncClient]):
+class QuipuEmbeddings(QProxy[AsyncClient]):
     """
     A class that provides an API for encoding text into vectors using an asynchronous client.
 
@@ -44,7 +43,7 @@ class EmbeddingAPI(QProxy[AsyncClient]):
         if isinstance(text, str):
             text = [text]
         response = await self.__load__().post(
-            f"{os.getenv('EMBEDDINGS_URL')}/embeddings",
+            "https://oof2utm5ex8z8e-8000.proxy.runpod.net/embeddings",
             json={"content": text},
         )
         vector = response.json()["content"]

@@ -8,12 +8,12 @@ from fastapi import APIRouter, Body, Path, Query
 from pydantic import BaseModel, Field
 from typing_extensions import Self
 
-from .qconst import ACTIONS, DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
+from .qconst import Actions, DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
 from .qschemas import JsonSchema  # pylint: disable=E0611 # type: ignore
 from .qschemas import create_class
 from .quipubase import Quipu  # pylint: disable=E0611
 
-T = TypeVar("T", bound="QDocument")
+T = TypeVar("T", bound='QDocument') # type: ignore
 
 
 class Base(BaseModel):
@@ -31,7 +31,7 @@ class Base(BaseModel):
 class CosimResult(Base):
     id: str
     score: float
-    content: str | list[str]
+    content: str | list[str] | list[float]
 
 
 class Status(Base):
@@ -72,7 +72,7 @@ class TypeDef(BaseModel):
     )
 
 
-class QDocument(Base):
+class QuipuDocument(Base):
     """
     Represents a document in `quipubase`.
 
@@ -110,7 +110,7 @@ class QDocument(Base):
             properties=cls.model_json_schema().get("properties", {}),
         )
 
-    def put_doc(self) -> Status:
+    def put_doc(self):
         """
         Puts the document into the database.
 
@@ -120,12 +120,7 @@ class QDocument(Base):
         if self._db.exists(key=self.key):
             self._db.merge_doc(self.key, self.model_dump())
         self._db.put_doc(self.key, self.model_dump())
-        return Status(
-            code=201,
-            message="Document created",
-            key=self.key,
-            definition=self.definition(),
-        )
+        return self
 
     @classmethod
     def get_doc(cls, *, key: str) -> Union[Self, Status]:
@@ -148,7 +143,7 @@ class QDocument(Base):
             definition=cls.definition(),
         )
 
-    def merge_doc(self) -> Status:
+    def merge_doc(self) -> Self:
         """
         Merges the document into `quipubase`.
 
@@ -156,12 +151,7 @@ class QDocument(Base):
             Status: The status of the operation.
         """
         self._db.merge_doc(key=self.key, value=self.model_dump())
-        return Status(
-            code=200,
-            message="Document updated",
-            key=self.key,
-            definition=self.definition(),
-        )
+        return self
 
     @classmethod
     def delete_doc(cls, *, key: str) -> Status:
@@ -212,10 +202,10 @@ class QDocument(Base):
         Returns:
             List[Self]: The found documents.
         """
-        return [
-            cls.model_validate(i)  # pylint: disable=E1101
-            for i in cls._db.find_docs(limit, offset, kwargs)
-        ]
+        response = cls._db.find_docs(
+            limit=limit, offset=offset, kwargs=kwargs
+        )
+        return [cls.model_validate(i) for i in response]
 
     @classmethod
     def count(cls) -> int:
@@ -247,7 +237,7 @@ app = APIRouter(tags=["Document Store"], prefix="/document")
 @app.post("/{namespace}")
 def _(
     namespace: str = Path(description="The namespace of the document"),
-    action: ACTIONS = Query(..., description="The method to be executed"),
+    action: Actions = Query(..., description="The method to be executed"),
     key: Optional[str] = Query(
         None, description="The unique identifier of the document"
     ),
@@ -258,102 +248,34 @@ def _(
     definition: TypeDef = Body(...),
 ):
     """
-    `putDoc`:
-        Description: Creates a new document in the database.
-        Request:
-            - namespace: The namespace of the document.
-            - action: The method to be executed.
-            - definition: The json_schema definition of the document.
-            - data: The data to be stored.
-        Response:
-            - code: 201
-            - message: Document created
-            - key: The unique identifier of the document
-            - definition: The json_schema definition of the document
-
-    `mergeDoc`:
-        Description: Updates an existing document in the database.
-        Request:
-            - namespace: The namespace of the document.
-            - action: The method to be executed.
-            - key: The unique identifier of the document
-            - definition: The json_schema definition of the document.
-            - data: The data to be stored.
-        Response:
-            - code: 200
-            - message: Document updated
-            - key: The unique identifier of the document
-            - definition: The json_schema definition of the document
-
-    `findDocs`:
-        Description: Finds documents in the database which can be filtered by equality comparison of all the fields specified in the `definition`.
-        Request:
-            - namespace: The namespace of the document.
-            - action: The method to be executed.
-            - definition: The json_schema definition of the document.
-            - data: The data to be stored.
-        Response:
-            An array of documents filtered by the data provided.
-
-    `getDoc`:
-        Description: Retrieves a document from the database.
-        Request:
-            - namespace: The namespace of the document.
-            - action: The method to be executed.
-            - key: The unique identifier of the document
-        Response:
-            - The document object if it exists, otherwise None.
-
-    `deleteDoc`:
-        Description: Deletes a document from the database.
-        Request:
-            - namespace: The namespace of the document.
-            - action: The method to be executed.
-            - key: The unique identifier of the document
-        Response:
-            - code: 204
-            - message: Document deleted
-            - key: The unique identifier of the document
-            - definition: The json_schema definition of the document
-
-    `scanDocs`:
-        Description: Retrieves all documents from the database.
-        Request:
-            - namespace: The namespace of the document.
-            - action: The method to be executed.
-            - limit: The maximum number of documents to return
-            - offset: The number of documents to skip
-        Response:
-            - An array of documents.
+    `put`: Description: Creates a new document in the database.
+    `merge`: Description: Updates an existing document in the database.
+    `find`: Description: Finds documents in the database which can be filtered by equality comparison of all the fields specified in the `definition`.
+    `get`:Description: Retrieves a document from the database.
+    `delete`: Description: Deletes a document from the database
     """
     klass = create_class(
-        namespace=namespace, schema=definition.definition, base=QDocument, action=action
+        namespace=namespace, schema=definition.definition, base=QuipuDocument, action=action
     )
-    if action in ("putDoc", "mergeDoc", "findDocs"):
+    if action in ("put", "merge"):
         assert (
             definition.data is not None
         ), f"Data must be provided for action `{action}`"
-        if action == "putDoc":
+        if action == "put":
             doc = klass(namespace=namespace, **definition.data)  # type: ignore
-            status = doc.put_doc()
-            if status.code == 201 and status.key:
-                return doc
-            raise ValueError(f"Error creating document: {status}")
-        if action == "mergeDoc":
+            return doc.put_doc()
+        if action == "merge":
             doc = klass(namespace=namespace, **definition.data)  # type: ignore
-            doc.merge_doc()
-            return doc
-        if action == "findDocs":
-            return klass.find_docs(
-                limit=limit or 1000,
-                offset=offset or 0,
-                namespace=namespace,
-                **definition.data,
-            )
-    if action in ("getDoc", "deleteDoc", "scanDocs"):
-        assert key is not None, f"Key must be provided for action `{action}`"
-        if action == "getDoc":
-            return klass.get_doc(key=key)
-        if action == "deleteDoc":
-            return klass.delete_doc(key=key)
+            return doc.merge_doc()
+    if action == "find":
+        if definition.data is not None:
+            return klass.find_docs(limit=limit or 1000, offset=offset or 0,**definition.data)
         return klass.scan_docs(limit=limit or 1000, offset=offset or 0)
+    if action in ("get", "delete"):
+        assert key is not None, f"Key must be provided for action `{action}`"
+        if action == "get":
+            return klass.get_doc(key=key)
+        if action == "delete":
+            return klass.delete_doc(key=key)
+
+

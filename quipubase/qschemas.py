@@ -1,17 +1,13 @@
 from __future__ import annotations
-
+import base64
 import json
 from typing import Any, Dict, List, Literal, Optional, Type, Union
-
-from fastapi import HTTPException
-from openai import AsyncOpenAI
 from pydantic import BaseModel, Field, create_model  # type: ignore
 from typing_extensions import TypeAlias, TypedDict, TypeVar
 
-from .qconst import ACTIONS, MAPPING
-from .qproxy import QProxy
-from .qtools import Tool
-from .qutils import handle
+from .qconst import Actions, MAPPING
+
+
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -79,7 +75,7 @@ def cast_to_type(namespace: str, schema: Dict[str, Any]) -> Any:
 
 
 def create_class(
-    *, namespace: str, schema: JsonSchema, base: Type[T], action: Optional[ACTIONS]
+    *, namespace: str, schema: JsonSchema, base: Type[T], action: Optional[Actions]
 ) -> Type[T]:
     """
     Create a class based on the schema, base class, and action.
@@ -87,78 +83,12 @@ def create_class(
     name = schema.get("title", "Model")
     properties = schema.get("properties", {})
     attributes: Dict[str, Any] = {}
-    if action and action in ("putDoc", "mergeDoc", "findDocs") or not action:
+    if action and action in ("put", "merge", "find") or not action:
         for key, value in properties.items():
             attributes[key] = (cast_to_type(namespace, value), ...)  # type: ignore
-    elif action and action in (
-        "getDoc",
-        "deleteDoc",
-        "scanDocs",
-        "countDocs",
-        "existsDoc",
-        "synthDocs",
-    ):
+    elif action and action in ("get", "delete", "scan"):
         for key, value in properties.items():
             attributes[key] = (Optional[cast_to_type(namespace, value)], Field(default=None))  # type: ignore
     elif action:
         raise ValueError(f"Invalid action `{action}`")
-    return create_model(f"{name}::{hash(namespace)}", __base__=base, **attributes)  # type: ignore
-
-
-class SynthethicDataGenerator(Tool, QProxy[AsyncOpenAI]):
-    """
-    This tool will generate a set of synthetic data samples based on the prompt given by the user, generating the proper `json_schema` and `n` samples.
-    """
-
-    json_schema: JsonSchema = Field(
-        ..., description="The JSON schema of the data to synthetize."
-    )
-    n: int = Field(..., description="The number of samples to generate.")
-
-    @handle
-    async def run(self, **kwargs: Any) -> Any:
-        """
-        Generate synthetic data based on the given prompt and n of samples.
-
-        Args:
-                        prompt (str): The prompt for generating the synthetic data.
-                        n (int): The number of samples to generate.
-
-        Returns:
-                        list[object]: A list of generated synthetic data samples.
-
-        Raises:
-                        None
-        """
-        PROMPT = f"""
-        Generate a set of exactly{min(self.n,100)} unique and diverse json data samples based on the following JSON schema:
-            
-            ```json
-            {json.dumps(self.json_schema, indent=4)}
-            ```
-            
-        # Instructions
-        
-        * The object generated will be have a key `data` containing the array of generated samples.
-        * The whole data structure must be a valid JSON object with no additional content.
-        * The JSON object must be syntactically valid with no backticks or other punctuation. JUST JSON.
-        * The JSON array must contain an array of objects, each object representing a sample which must adhere to the schema provided.
-        """
-
-        response = await self.__load__().chat.completions.create(
-            messages=[{"role": "system", "content": PROMPT}],
-            model="llama3-8B-8192",
-            max_tokens=8192,
-            functions=[self.definition()],
-        )
-        message = response.choices[0].message
-        if message.function_call:
-            data = json.loads(message.function_call.arguments)
-            obj = self.model_validate(data)
-            return await obj.run()
-        if message.content:
-            return sanitize(message.content)
-        raise HTTPException(status_code=500, detail="Error generating synthetic data.")
-
-    def __load__(self):
-        return AsyncOpenAI()
+    return create_model(f"{name}::{base64.b64encode(name.encode()).decode()}", __base__=base,**attributes)  # type: ignore

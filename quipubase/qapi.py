@@ -1,27 +1,13 @@
-import json
-import os
-from typing import Awaitable, Callable
-
-import httpx
-from fastapi import APIRouter, FastAPI, Request, Response
+from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from openai import AsyncOpenAI
-from typing_extensions import TypeAlias
+from fastapi.responses import HTMLResponse
 
-from .qconst import SUMMARY
+from .qconst import DESCRIPTION
 from .qdoc import app as documents_app
-from .qllm import app as llm_app
-from .qschemas import SynthethicDataGenerator
 from .qvector import app as vector_app
 
-Handler: TypeAlias = Callable[[Request], Awaitable[Response]]
-
-
-AUTH0_URL = os.environ.get("AUTH0_URL")
-
-
 def create_app(
-    routers: list[APIRouter] = [documents_app, vector_app, llm_app]
+    routers: list[APIRouter] = [documents_app, vector_app]
 ) -> FastAPI:
     """
     Create and configure the QuipuBase API.
@@ -29,12 +15,12 @@ def create_app(
     Returns:
             FastAPI: The configured FastAPI application.
     """
-    ai = AsyncOpenAI()
     api = FastAPI(
         title="QuipuBase",
-        description="AI-Driven, Schema-Flexible Document Store",
-        summary=SUMMARY,
-        version="0.0.2",
+        description=DESCRIPTION,
+        summary="AI-Driven, Schema-Flexible Document Vector  Store",
+        version="0.0.3",
+        servers=[{"url": "https://oof2utm5ex8z8e-5000.proxy.runpod.net"}, {"url": "http://quipubase-ih27b7zwaa-tl.a.run.app/"}, {"url": "http://db.indiecloud.com"}, {"url": "http://localhost:5454"}]
     )
     api.add_middleware(
         CORSMiddleware,
@@ -46,59 +32,32 @@ def create_app(
     for router in routers:
         api.include_router(router, prefix="/api")
 
-    @api.get("/", tags=["Health"])
-    @api.get("/api", tags=["Health"])
+    @api.get("/", tags=["Landing"])
+    def _():
+        """
+        Landing page for QuipuBase.
+        """
+        return HTMLResponse(
+            """
+            <html>
+                <head>
+                    <title>QuipuBase</title>
+                </head>
+                <body>
+                    <h1>QuipuBase</h1>
+                    <p>Welcome to QuipuBase, the AI-driven, schema-flexible document store.</p>
+                    <p>For more information, visit the <a href="/docs">documentation</a>.</p>
+                </body>
+            </html>
+            """
+        )
+    
     @api.get("/api/health", tags=["Health"])
     def _():
         """
         Health check endpoint for QuipuBase.
         """
         return {"code": 200, "message": "QuipuBase is running!"}
-
-    @api.get("/api/synth", tags=["Synthetic Data"])
-    async def _(prompt: str):
-        """
-        Generates synthetic data based on the given prompt.
-
-        Args:
-            prompt (str): The prompt for generating the synthetic data.
-
-        Returns:
-            Data: An object with a key `data` containing the array of generated synthetic data samples.
-        """
-        response = await ai.chat.completions.create(
-            messages=[{"role": "user", "content": prompt}],
-            model="llama3-8B-8192",
-            max_tokens=8192,
-            functions=[SynthethicDataGenerator.definition()],
-        )
-        if response.choices[0].message.function_call:
-            args = response.choices[0].message.function_call.arguments
-            data = json.loads(args)
-            return await SynthethicDataGenerator(**data).run()
-        return response.choices[0].message.content
-
-    @api.post("/api/auth", tags=["Authentication"])
-    async def _(request: Request):
-        """
-        Authenticates the user with Auth0.
-
-        Args:
-            request (Request): The request object containing the bearer token.
-
-        Returns:
-            User: The user information according to Auth0 schema definition.
-        """
-        bearer = request.headers.get("Authorization")
-        if not bearer:
-            return {"code": 401, "message": "Unauthorized"}
-        async with httpx.AsyncClient() as client:
-            assert AUTH0_URL, "Auth0 URL not set."
-            response = await client.post(
-                AUTH0_URL,
-                headers={"Authorization": bearer},
-            )
-            return response.json()
 
     @api.get("/", tags=["Root"])
     def _(request: Request):

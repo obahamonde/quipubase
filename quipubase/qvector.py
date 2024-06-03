@@ -8,10 +8,10 @@ from numpy.typing import NDArray
 from pydantic import Field
 from typing_extensions import Self, TypeAlias, TypeVar, Union
 
-from .qdoc import Base, CosimResult, QDocument
-from .qembed import EmbeddingAPI
+from .qdoc import Base, CosimResult, QuipuDocument
+from .qembed import QuipuEmbeddings
 
-Q = TypeVar("Q", bound=QDocument)
+Q = TypeVar("Q", bound=QuipuDocument)
 
 RagAction: TypeAlias = Literal["searchDocs", "upsertDoc"]
 
@@ -20,7 +20,7 @@ class RagRequest(Base):
     content: Union[str, list[str]]
 
 
-class QuipuVector(QDocument):
+class QuipuVector(QuipuDocument):
     content: Union[str, list[str]] = Field(
         ..., description="The sentences to be encoded into vector embeddings"
     )
@@ -28,13 +28,13 @@ class QuipuVector(QDocument):
         default=None, description="The computed vector embedding from the system"
     )
     top_k: int = Field(default=5, description="The number of top results to return")
-    dim: Literal[384,768] = Field(
+    dim: Literal[384, 768] = Field(
         default=768, description="The dimension of the vector embeddings"
     )
 
     @cached_property
     def client(self):
-        return EmbeddingAPI()
+        return QuipuEmbeddings()
 
     async def embed(self, *, namespace: str, content: Union[str, list[str]]):
         return await self.client.encode(content)
@@ -45,14 +45,7 @@ class QuipuVector(QDocument):
         """
         Cosine similarity search
         * value: the query vector
-        * returns: a list of CosimResult
-
-        **Steps**
-        1. Get all the vectors from the namespace
-        2. Create a hnswlib index and add all the vectors to it
-        3. Query the index with the query vector
-        4. Return the top k results
-
+        * returns: a list of CosimResult objects
         """
         world: list[Self] = self.find_docs(limit=1000, offset=0, namespace=namespace)  # type: ignore
         if not world:
@@ -91,13 +84,6 @@ async def query_vector(
 ) -> Optional[list[CosimResult]]:
     """
     Query the vector representation of the content and return the top K similar results.
-
-    Args:
-        namespace (str): The namespace for the vector representation.
-        action (RagAction): The action to perform.
-        body (RagRequest): The request body containing the content.
-        topK (int, optional): The number of top similar results to return. Defaults to 5.
-
     Returns:
         list[CosimResult]: A list of CosimResult objects representing the top similar results.
     """

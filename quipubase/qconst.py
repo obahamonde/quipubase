@@ -51,10 +51,8 @@ MAPPING = {
     "null": None,
 }
 
-SUMMARY = "The `json_schema` standard is well-recognized for defining flexible API schemas, QuipuBase leverages this standard  to provide an intuitive and flexible way to customize the shape of your data, according to your needs with access to a rich set of features such as Retrieval Augmented Generation and Function Calling enabling seamless integrations and agentic workflows on top of essential features such as CRUD operations and search."
+DESCRIPTION = "The `json_schema` standard is well-recognized for defining flexible API schemas, QuipuBase leverages it to provide an intuitive and flexible way to tailor your data modelling needs with access to a rich set of features such as Retrieval multimodal semantic search and schema-driven development."
 
-SERVERS = {"url": "https://quipubase-ih27b7zwaa-tl.a.run.app"}
+SERVERS = {"url": "https://db.indiecloud.com/api"}
 
-ACTIONS: TypeAlias = Literal[
-    "putDoc", "getDoc", "mergeDoc", "deleteDoc", "findDocs", "scanDocs"
-]
+Actions: TypeAlias = Literal["put", "get", "merge", "delete", "find"]

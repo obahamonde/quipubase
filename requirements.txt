@@ -5,5 +5,3 @@ hnswlib
 python-dotenv
 uvicorn
 fastapi-slim
-python-multipart
-openai

@@ -1,9 +1,9 @@
 import pytest
 
-from quipubase.qdoc import QDocument, Status
+from quipubase.qdoc import QuipuDocument, Status
 
 
-class Dog(QDocument):
+class Dog(QuipuDocument):
     name: str
     breed: str
 
