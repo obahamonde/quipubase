@@ -3,17 +3,15 @@ from typing import Literal, Optional
 
 import hnswlib
 import numpy as np
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from numpy.typing import NDArray
 from pydantic import Field
-from typing_extensions import Self, TypeAlias, TypeVar, Union
+from typing_extensions import Self, TypeVar, Union
 
-from .qdoc import Base, CosimResult, QuipuDocument
+from .qdoc import Base, CosimResult, QuipuDocument, Status
 from .qembed import QuipuEmbeddings
 
 Q = TypeVar("Q", bound=QuipuDocument)
-
-RagAction: TypeAlias = Literal["searchDocs", "upsertDoc"]
 
 
 class RagRequest(Base):
@@ -45,7 +43,14 @@ class QuipuVector(QuipuDocument):
         """
         Cosine similarity search
         * value: the query vector
-        * returns: a list of CosimResult objects
+        * returns: a list of CosimResult
+
+        **Steps**
+        1. Get all the vectors from the namespace
+        2. Create a hnswlib index and add all the vectors to it
+        3. Query the index with the query vector
+        4. Return the top k results
+
         """
         world: list[Self] = self.find_docs(limit=1000, offset=0, namespace=namespace)  # type: ignore
         if not world:
@@ -80,17 +85,37 @@ app = APIRouter(tags=["Vector Embeddings"])
 
 @app.post("/vector/{namespace}")
 async def query_vector(
-    namespace: str, action: RagAction, body: RagRequest, topK: Optional[int]
-) -> Optional[list[CosimResult]]:
+    namespace: str,
+    body: RagRequest,
+    action: Optional[Literal["query", "upsert"]] = Query(
+        None, description="The action to perform can be `query`, `upsert`"
+    ),
+    topK: Optional[int] = Query(
+        None, description="The number of top results to return"
+    ),
+) -> Optional[list[CosimResult] | Status]:
     """
     Query the vector representation of the content and return the top K similar results.
+
+    Args:
+        namespace (str): The namespace for the vector representation.
+        action (RagAction): The action to perform.
+        body (RagRequest): The request body containing the content.
+        topK (int, optional): The number of top similar results to return. Defaults to 5.
+
     Returns:
         list[CosimResult]: A list of CosimResult objects representing the top similar results.
     """
     qvector = QuipuVector(content=body.content, top_k=topK or 5)
-    if action == "searchDocs":
+    if action == "query":
         return await qvector.query(
             value=await qvector.embed(namespace=namespace, content=body.content),
             namespace=namespace,
         )
-    return await qvector.upsert(namespace=namespace, content=body.content)
+    await qvector.upsert(namespace=namespace, content=body.content)
+    return Status(
+        code=200,
+        message="Upserted successfully",
+        key=qvector.key,
+        definition=qvector.definition(),
+    )

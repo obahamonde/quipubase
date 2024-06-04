@@ -1,8 +1,9 @@
 # type: ignore
 from threading import Lock as mutex
 from typing import Any, TypeVar
-from typing_extensions import ParamSpec
+
 import orjson
+from typing_extensions import ParamSpec
 
 from libcpp cimport bool
 from libcpp.string cimport string

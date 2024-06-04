@@ -1,6 +1,10 @@
 import pytest
+<<<<<<< HEAD
 
 from quipubase.qdoc import QuipuDocument, Status
+=======
+from quipubase.documents import QDocument, Status
+>>>>>>> d9ce0b98a79c88603e7bd0370e77017f80998029
 
 
 class Dog(QuipuDocument):
@@ -48,5 +52,5 @@ def test_dog(name: str, breed: str):
     assert isinstance(dogs_filtered[0], Dog)
     res = dog.delete_doc(key=dog.key)
     assert isinstance(res, Status)
-    assert Dog.exists(key=dog.key) == False
+    assert Dog.exists(key=dog.key) is not True
     assert isinstance(Dog.get_doc(key=dog.key), Status)

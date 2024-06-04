@@ -1,5 +1,3 @@
-from typing_extensions import Literal, TypeAlias
-
 EXAMPLES = [
     {
         "title": "JobPosting",
@@ -51,8 +49,11 @@ MAPPING = {
     "null": None,
 }
 
-DESCRIPTION = "The `json_schema` standard is well-recognized for defining flexible API schemas, QuipuBase leverages it to provide an intuitive and flexible way to tailor your data modelling needs with access to a rich set of features such as Retrieval multimodal semantic search and schema-driven development."
+DESCRIPTION = "The `json_schema` standard is well-recognized for defining flexible API schemas, QuipuBase leverages this standard  to provide an intuitive and flexible way to customize the shape of your data, according to your needs with access to a rich set of features such as Retrieval Augmented Generation and Function Calling enabling seamless integrations and agentic workflows on top of essential features such as CRUD operations and search."
 
-SERVERS = {"url": "https://db.indiecloud.com/api"}
-
-Actions: TypeAlias = Literal["put", "get", "merge", "delete", "find"]
+SERVERS = [
+    {"url": "https://oof2utm5ex8z8e-5000.proxy.runpod.net"},
+    {"url": "http://quipubase-ih27b7zwaa-tl.a.run.app/"},
+    {"url": "http://db.indiecloud.com"},
+    {"url": "http://localhost:5454"},
+]

@@ -1,12 +1,12 @@
 from __future__ import annotations
-import base64
+
 import json
 from typing import Any, Dict, List, Literal, Optional, Type, Union
+
 from pydantic import BaseModel, Field, create_model  # type: ignore
 from typing_extensions import TypeAlias, TypedDict, TypeVar
 
-from .qconst import Actions, MAPPING
-
+from .const import MAPPING
 
 
 T = TypeVar("T", bound=BaseModel)
@@ -18,7 +18,7 @@ Property: TypeAlias = Dict[str, object]
 class JsonSchema(TypedDict, total=False):
     title: str
     description: str
-    type: str
+    type: Literal["object"]
     properties: Property
 
 
@@ -75,7 +75,13 @@ def cast_to_type(namespace: str, schema: Dict[str, Any]) -> Any:
 
 
 def create_class(
-    *, namespace: str, schema: JsonSchema, base: Type[T], action: Optional[Actions]
+    *,
+    namespace: str,
+    schema: JsonSchema,
+    base: Type[T],
+    action: Optional[
+        Literal["put", "get", "merge", "delete", "find", "query", "upsert"]
+    ],
 ) -> Type[T]:
     """
     Create a class based on the schema, base class, and action.
@@ -86,9 +92,13 @@ def create_class(
     if action and action in ("put", "merge", "find") or not action:
         for key, value in properties.items():
             attributes[key] = (cast_to_type(namespace, value), ...)  # type: ignore
-    elif action and action in ("get", "delete", "scan"):
+    elif action and action in (
+        "get",
+        "delete",
+        "scan",
+    ):
         for key, value in properties.items():
             attributes[key] = (Optional[cast_to_type(namespace, value)], Field(default=None))  # type: ignore
     elif action:
         raise ValueError(f"Invalid action `{action}`")
-    return create_model(f"{name}::{base64.b64encode(name.encode()).decode()}", __base__=base,**attributes)  # type: ignore
+    return create_model(f"{name}::{hash(namespace)}", __base__=base, **attributes)  # type: ignore

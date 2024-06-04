@@ -2,13 +2,12 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from typing import Generic, Iterable, TypeVar, cast
-
 from typing_extensions import override
 
 T = TypeVar("T")
 
 
-class QProxy(Generic[T], ABC):
+class Proxy(Generic[T], ABC):
     """Implements data methods to pretend that an instance is another instance.
 
     This includes forwarding attribute access and other methods.
@@ -19,28 +18,28 @@ class QProxy(Generic[T], ABC):
 
     def __getattr__(self, attr: str) -> object:
         proxied = self.__get_proxied__()
-        if isinstance(proxied, QProxy):
+        if isinstance(proxied, Proxy):
             return proxied  # pyright: ignore
         return getattr(proxied, attr)
 
     @override
     def __repr__(self) -> str:
         proxied = self.__get_proxied__()
-        if isinstance(proxied, QProxy):
+        if isinstance(proxied, Proxy):
             return proxied.__class__.__name__
         return repr(self.__get_proxied__())
 
     @override
     def __str__(self) -> str:
         proxied = self.__get_proxied__()
-        if isinstance(proxied, QProxy):
+        if isinstance(proxied, Proxy):
             return proxied.__class__.__name__
         return str(proxied)
 
     @override
     def __dir__(self) -> Iterable[str]:
         proxied = self.__get_proxied__()
-        if isinstance(proxied, QProxy):
+        if isinstance(proxied, Proxy):
             return []
         return proxied.__dir__()
 
@@ -48,7 +47,7 @@ class QProxy(Generic[T], ABC):
     @override
     def __class__(self) -> type:  # pyright: ignore
         proxied = self.__get_proxied__()
-        if issubclass(type(proxied), QProxy):
+        if issubclass(type(proxied), Proxy):
             return type(proxied)
         return proxied.__class__
 

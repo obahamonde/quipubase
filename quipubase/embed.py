@@ -1,11 +1,12 @@
-from typing import Union
+import os
+
 import numpy as np
 from httpx import AsyncClient
 
 from .proxy import Proxy
 
 
-class QuipuEmbeddings(Proxy[AsyncClient]):
+class EmbeddingAPI(Proxy[AsyncClient]):
     """
     A class that provides an API for encoding text into vectors using an asynchronous client.
 
@@ -23,10 +24,10 @@ class QuipuEmbeddings(Proxy[AsyncClient]):
 
     def __load__(self):
         return AsyncClient(
-            timeout=600,
+            timeout=60,
         )
 
-    async def encode(self, text: Union[str, list[str]]):
+    async def encode(self, text: str | list[str]):
         """
                 Encodes the given text into vectors.
 
@@ -43,7 +44,7 @@ class QuipuEmbeddings(Proxy[AsyncClient]):
         if isinstance(text, str):
             text = [text]
         response = await self.__load__().post(
-            "https://oof2utm5ex8z8e-8000.proxy.runpod.net/embeddings",
+            f"{os.getenv('EMBEDDINGS_URL')}/embeddings",
             json={"content": text},
         )
         vector = response.json()["content"]

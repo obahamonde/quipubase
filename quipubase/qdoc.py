@@ -6,14 +6,14 @@ from uuid import uuid4
 
 from fastapi import APIRouter, Body, Path, Query
 from pydantic import BaseModel, Field
-from typing_extensions import Self
+from typing_extensions import Self, Literal
 
-from .qconst import Actions, DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
-from .qschemas import JsonSchema  # pylint: disable=E0611 # type: ignore
-from .qschemas import create_class
+from .const import DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
+from .schemas import JsonSchema  # pylint: disable=E0611 # type: ignore
+from .schemas import create_class
 from .quipubase import Quipu  # pylint: disable=E0611
 
-T = TypeVar("T", bound='QDocument') # type: ignore
+T = TypeVar("T", bound="QDocument")  # type: ignore
 
 
 class Base(BaseModel):
@@ -62,7 +62,7 @@ class TypeDef(BaseModel):
 
     data: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="The data to be stored if the action is `putDoc`, `mergeDoc`, or `findDocs`",
+        description="The data to be stored if the action is `put`, `merge`, or `findDocs`",
         examples=EXAMPLES,
     )
     definition: JsonSchema = Field(
@@ -202,9 +202,7 @@ class QuipuDocument(Base):
         Returns:
             List[Self]: The found documents.
         """
-        response = cls._db.find_docs(
-            limit=limit, offset=offset, kwargs=kwargs
-        )
+        response = cls._db.find_docs(limit=limit, offset=offset, kwargs=kwargs)
         return [cls.model_validate(i) for i in response]
 
     @classmethod
@@ -237,7 +235,9 @@ app = APIRouter(tags=["Document Store"], prefix="/document")
 @app.post("/{namespace}")
 def _(
     namespace: str = Path(description="The namespace of the document"),
-    action: Actions = Query(..., description="The method to be executed"),
+    action: Literal["put", "merge", "find", "get", "delete"] = Query(
+        ..., description="The action to perform"
+    ),
     key: Optional[str] = Query(
         None, description="The unique identifier of the document"
     ),
@@ -255,7 +255,10 @@ def _(
     `delete`: Description: Deletes a document from the database
     """
     klass = create_class(
-        namespace=namespace, schema=definition.definition, base=QuipuDocument, action=action
+        namespace=namespace,
+        schema=definition.definition,
+        base=QuipuDocument,
+        action=action,
     )
     if action in ("put", "merge"):
         assert (
@@ -269,7 +272,9 @@ def _(
             return doc.merge_doc()
     if action == "find":
         if definition.data is not None:
-            return klass.find_docs(limit=limit or 1000, offset=offset or 0,**definition.data)
+            return klass.find_docs(
+                limit=limit or 1000, offset=offset or 0, **definition.data
+            )
         return klass.scan_docs(limit=limit or 1000, offset=offset or 0)
     if action in ("get", "delete"):
         assert key is not None, f"Key must be provided for action `{action}`"
@@ -277,5 +282,3 @@ def _(
             return klass.get_doc(key=key)
         if action == "delete":
             return klass.delete_doc(key=key)
-
-
