@@ -49,9 +49,7 @@ cdef extern from "rocksdb/db.h" namespace "rocksdb":
         const char* data()
         size_t size()
    
-    cdef extern from "custom_comparator.h":
-    cdef cppclass CustomComparator "CustomComparator" (rocksdb::Comparator):
-        CustomComparator()
+
 
 cdef class Quipu:
     cdef DB* db
