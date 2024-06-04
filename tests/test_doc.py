@@ -1,10 +1,6 @@
 import pytest
-<<<<<<< HEAD
 
 from quipubase.qdoc import QuipuDocument, Status
-=======
-from quipubase.documents import QDocument, Status
->>>>>>> d9ce0b98a79c88603e7bd0370e77017f80998029
 
 
 class Dog(QuipuDocument):
