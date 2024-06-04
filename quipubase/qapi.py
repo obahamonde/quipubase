@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import RedirectResponse
 
 from .const import DESCRIPTION, SERVERS
 from .qdoc import app as documents_app
@@ -37,20 +37,7 @@ def create_app(
         """
         Landing page for QuipuBase.
         """
-        return HTMLResponse(
-            """
-            <html>
-                <head>
-                    <title>QuipuBase</title>
-                </head>
-                <body>
-                    <h1>QuipuBase</h1>
-                    <p>Welcome to QuipuBase, the AI-driven, schema-flexible document store.</p>
-                    <p>For more information, visit the <a href="/docs">documentation</a>.</p>
-                </body>
-            </html>
-            """
-        )
+        return RedirectResponse(url="/docs")
 
     @api.get("/api/health", tags=["Health"])
     def _():
