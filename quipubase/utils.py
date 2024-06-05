@@ -1,5 +1,4 @@
 from __future__ import annotations
-import torch
 import asyncio
 import json
 import logging
@@ -234,13 +233,3 @@ def singleton(cls: Type[T]) -> Type[T]:
         return instances[cls]
 
     return cast(Type[T], wrapper)
-
-
-def get_device() -> str:
-    """
-    Returns the device to be used for computation.
-
-    Returns:
-        str: The device to be used for computation.
-    """
-    return "cuda" if torch.cuda.is_available() else "cpu"

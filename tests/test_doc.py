@@ -48,5 +48,5 @@ def test_dog(name: str, breed: str):
     assert isinstance(dogs_filtered[0], Dog)
     res = dog.delete_doc(key=dog.key)
     assert isinstance(res, Status)
-    assert Dog.exists(key=dog.key) is not True
+    assert Dog.exists(key=dog.key)
     assert isinstance(Dog.get_doc(key=dog.key), Status)

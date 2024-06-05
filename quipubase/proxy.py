@@ -2,9 +2,13 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from typing import Generic, Iterable, TypeVar, cast
+from pydantic import BaseModel, create_model  # type: ignore
+from typing import Type, Optional, TypeVar, Generic
+
 from typing_extensions import override
 
 T = TypeVar("T")
+T_ = TypeVar("T_", bound=BaseModel)
 
 
 class Proxy(Generic[T], ABC):
@@ -60,3 +64,24 @@ class Proxy(Generic[T], ABC):
 
     @abstractmethod
     def __load__(self) -> T: ...
+
+
+def create_partial_model(base_model: Type[T]) -> Type[T]:
+    """
+    Create a new model with all fields optional based on the provided base model.
+    """
+    fields = {
+        name: (Optional[typ], None) for name, typ in base_model.__annotations__.items()
+    }
+    partial_cls = create_model(f"Partial{base_model.__name__}", **fields)  # type: ignore
+    return partial_cls  # type: ignore
+
+
+class Partial(Generic[T_]):
+    """
+    Partial class for models, creating a version where all fields are optional.
+    """
+
+    @classmethod
+    def __class_getitem__(cls, item: Type[T_]) -> Type[T_]:
+        return create_partial_model(item)

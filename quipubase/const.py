@@ -54,6 +54,6 @@ DESCRIPTION = "The `json_schema` standard is well-recognized for defining flexib
 SERVERS = [
     {"url": "https://oof2utm5ex8z8e-5000.proxy.runpod.net"},
     {"url": "http://quipubase-ih27b7zwaa-tl.a.run.app/"},
-    {"url": "http://db.indiecloud.com"},
+    {"url": "https://db.indiecloud.co"},
     {"url": "http://localhost:5454"},
 ]

@@ -43,7 +43,7 @@ class QuipuEmbeddings(Proxy[AsyncClient]):
         if isinstance(text, str):
             text = [text]
         response = await self.__load__().post(
-            "https://oof2utm5ex8z8e-8000.proxy.runpod.net/embeddings",
+            "https://embeddings.indiecloud.co/api/embeddings",
             json={"content": text},
         )
         vector = response.json()["content"]

@@ -3,7 +3,7 @@ from typing import Literal, Optional
 
 import hnswlib
 import numpy as np
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Body
 from numpy.typing import NDArray
 from pydantic import Field
 from typing_extensions import Self, TypeVar, Union
@@ -18,7 +18,14 @@ class RagRequest(Base):
     content: Union[str, list[str]]
 
 
+class UpsertedCount(Base):
+    upsertedCount: int
+
+
 class QuipuVector(QuipuDocument):
+    namespace: str = Field(
+        ..., description="The namespace for the vector representation"
+    )
     content: Union[str, list[str]] = Field(
         ..., description="The sentences to be encoded into vector embeddings"
     )
@@ -54,7 +61,7 @@ class QuipuVector(QuipuDocument):
         """
         world: list[Self] = self.find_docs(limit=1000, offset=0, namespace=namespace)  # type: ignore
         if not world:
-            return []
+            raise ValueError("No vectors found in the namespace")
         p = hnswlib.Index(space="cosine", dim=self.dim)  # type: ignore
         p.init_index(max_elements=len(world), ef_construction=200, M=16)  # type: ignore
         p.set_ef(50)  # type: ignore
@@ -74,10 +81,14 @@ class QuipuVector(QuipuDocument):
     async def upsert(self, *, namespace: str, content: Union[str, list[str]]):
         embeddings = await self.embed(namespace=namespace, content=content)
         instances = [
-            QuipuVector(value=embedding, content=content) for embedding in embeddings
+            QuipuVector(value=embedding, content=content, namespace=namespace)
+            for embedding in embeddings
         ]
+        count = 0
         for intance in instances:
+            count += 1
             intance.put_doc()
+        return UpsertedCount(upsertedCount=count)
 
 
 app = APIRouter(tags=["Vector Embeddings"])
@@ -86,14 +97,14 @@ app = APIRouter(tags=["Vector Embeddings"])
 @app.post("/vector/{namespace}")
 async def query_vector(
     namespace: str,
-    body: RagRequest,
-    action: Optional[Literal["query", "upsert"]] = Query(
-        None, description="The action to perform can be `query`, `upsert`"
+    body: RagRequest = Body(...),
+    action: Literal["query", "upsert"] = Query(
+        "upsert", description="The action to perform can be `query`, `upsert`"
     ),
     topK: Optional[int] = Query(
         None, description="The number of top results to return"
     ),
-) -> Optional[list[CosimResult] | Status]:
+) -> Optional[Union[list[CosimResult], Status]]:
     """
     Query the vector representation of the content and return the top K similar results.
 
@@ -106,7 +117,7 @@ async def query_vector(
     Returns:
         list[CosimResult]: A list of CosimResult objects representing the top similar results.
     """
-    qvector = QuipuVector(content=body.content, top_k=topK or 5)
+    qvector = QuipuVector(content=body.content, top_k=topK or 5, namespace=namespace)
     if action == "query":
         return await qvector.query(
             value=await qvector.embed(namespace=namespace, content=body.content),

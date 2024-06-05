@@ -110,6 +110,11 @@ class QuipuDocument(Base):
             properties=cls.model_json_schema().get("properties", {}),
         )
 
+    def __init__(self, **data: Any):
+        if data.get("key") is None:
+            data["key"] = str(uuid4())
+        super().__init__(**data)
+
     def put_doc(self):
         """
         Puts the document into the database.
