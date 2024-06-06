@@ -1,9 +1,10 @@
+import asyncio
 from functools import cached_property
 from typing import Literal, Optional
 
 import hnswlib
 import numpy as np
-from fastapi import APIRouter, Query, Body
+from fastapi import APIRouter, Body, Query
 from numpy.typing import NDArray
 from pydantic import Field
 from typing_extensions import Self, TypeVar, Union
@@ -59,7 +60,7 @@ class QuipuVector(QuipuDocument):
         4. Return the top k results
 
         """
-        world: list[Self] = self.find_docs(limit=1000, offset=0, namespace=namespace)  # type: ignore
+        world: list[Self] = await self.find_docs(limit=1000, offset=0, namespace=namespace)  # type: ignore
         if not world:
             raise ValueError("No vectors found in the namespace")
         p = hnswlib.Index(space="cosine", dim=self.dim)  # type: ignore
@@ -84,11 +85,8 @@ class QuipuVector(QuipuDocument):
             QuipuVector(value=embedding, content=content, namespace=namespace)
             for embedding in embeddings
         ]
-        count = 0
-        for intance in instances:
-            count += 1
-            intance.put_doc()
-        return UpsertedCount(upsertedCount=count)
+        result = await asyncio.gather(*[instance.put_doc() for instance in instances])
+        return UpsertedCount(upsertedCount=len(result))
 
 
 app = APIRouter(tags=["Vector Embeddings"])

@@ -4,3 +4,4 @@ numpy
 hnswlib
 uvicorn
 fastapi-slim
+sse-starlette

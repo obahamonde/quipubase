@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Generic, Iterable, TypeVar, cast
-from pydantic import BaseModel, create_model  # type: ignore
-from typing import Type, Optional, TypeVar, Generic
+from typing import Generic, Iterable, Optional, Type, TypeVar, cast
 
+from pydantic import BaseModel, create_model  # type: ignore
 from typing_extensions import override
 
 T = TypeVar("T")

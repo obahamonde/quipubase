@@ -8,7 +8,6 @@ from typing_extensions import TypeAlias, TypedDict, TypeVar
 
 from .const import MAPPING
 
-
 T = TypeVar("T", bound=BaseModel)
 
 

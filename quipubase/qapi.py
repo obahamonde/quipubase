@@ -6,6 +6,7 @@ from .const import DESCRIPTION, SERVERS
 from .qdoc import app as documents_app
 from .qvector import app as vector_app
 
+
 def create_app(
     routers: list[APIRouter] = [documents_app, vector_app]
 ) -> FastAPI:
