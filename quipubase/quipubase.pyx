@@ -129,10 +129,7 @@ cdef class Quipu:
         return orjson.loads(value)
    
     def put_doc(self, str key, dict[str,Any] value):
-        if self.exists(key):
-            raise ValueError(f"Object with id {key} already exists")
         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))
-    
  
     def delete_doc(self, str key):
         if not self.exists(key):

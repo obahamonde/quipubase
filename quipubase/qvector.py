@@ -62,7 +62,7 @@ class QuipuVector(QuipuDocument):
         """
         world: list[Self] = await self.find_docs(limit=1000, offset=0, namespace=namespace)  # type: ignore
         if not world:
-            raise ValueError("No vectors found in the namespace")
+            return []
         p = hnswlib.Index(space="cosine", dim=self.dim)  # type: ignore
         p.init_index(max_elements=len(world), ef_construction=200, M=16)  # type: ignore
         p.set_ef(50)  # type: ignore

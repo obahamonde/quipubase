@@ -5,3 +5,5 @@ hnswlib
 uvicorn
 fastapi-slim
 sse-starlette
+httpx
+eval-type-backport
