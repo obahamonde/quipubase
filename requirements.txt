@@ -7,3 +7,4 @@ fastapi-slim
 sse-starlette
 httpx
 eval-type-backport
+sse-starlette
