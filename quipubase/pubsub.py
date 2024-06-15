@@ -1,6 +1,6 @@
 from asyncio import Queue
-from dataclasses import dataclass
-from typing import Dict, Generic, TypeVar
+from dataclasses import dataclass, field
+from typing import AsyncGenerator, Dict, Generic, TypeVar
 
 from typing_extensions import Literal
 
@@ -20,11 +20,11 @@ class Exchange(Generic[T]):
     namespace: str
 
 
-class SubscriberManager(Generic[T]):
-    def __init__(self):
-        self.exchanges: Dict[str, Exchange[T]] = {}
+@dataclass
+class PubSub(Generic[T]):
+    exchanges: Dict[str, Exchange[T]] = field(default_factory=dict)
 
-    async def add_subscriber(self, namespace: str, subscriber: str) -> Queue[T]:
+    async def sub(self, namespace: str, subscriber: str) -> AsyncGenerator[T, None]:
         if namespace not in self.exchanges:
             self.exchanges[namespace] = Exchange(
                 channels={}, event="suscribe", namespace=namespace
@@ -33,17 +33,17 @@ class SubscriberManager(Generic[T]):
         queue = Queue[T]()
         channel = Channel(subscriber=subscriber, publisher=queue)
         self.exchanges[namespace].channels[subscriber] = channel
+        while True:
+            yield await queue.get()
 
-        return queue
-
-    async def remove_subscriber(self, namespace: str, subscriber: str):
+    def remove(self, namespace: str, subscriber: str):
         if namespace in self.exchanges:
             if subscriber in self.exchanges[namespace].channels:
                 del self.exchanges[namespace].channels[subscriber]
             if not self.exchanges[namespace].channels:
                 del self.exchanges[namespace]
 
-    async def notify_subscribers(self, namespace: str, message: T):
+    async def pub(self, namespace: str, message: T):
         if namespace in self.exchanges:
             for channel in self.exchanges[namespace].channels.values():
                 await channel.publisher.put(message)

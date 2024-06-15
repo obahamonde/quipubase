@@ -1,21 +1,18 @@
 from __future__ import annotations
 
 import asyncio
-import base64
 import os
 import types
-from functools import cached_property
 from typing import Any, ClassVar, Dict, Optional, Type, TypeVar
 from uuid import uuid4
 
-from fastapi import APIRouter, BackgroundTasks, Body, Path, Query, Request
-from fastapi.responses import StreamingResponse
+from fastapi import APIRouter, Body, Path, Query, Request
 from pydantic import BaseModel, Field
 from sse_starlette import EventSourceResponse
 from typing_extensions import Literal, Self
 
 from .const import DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
-from .pubsub import SubscriberManager
+from .pubsub import PubSub
 from .quipubase import Quipu  # pylint: disable=E0611
 from .schemas import JsonSchema  # pylint: disable=E0611 # type: ignore
 from .schemas import create_class
@@ -24,10 +21,6 @@ T = TypeVar("T", bound="QuipuDocument")  # type: ignore
 
 
 class Base(BaseModel):
-    """
-    Base class for models in the `quipubase` module.
-    """
-
     def __str__(self) -> str:
         return self.model_dump_json()
 
@@ -41,17 +34,7 @@ class CosimResult(Base):
     content: str | list[str] | list[float]
 
 
-class Status(Base):
-    """
-    Represents the status of a document.
-
-    Attributes:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    code (int): The status code.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    message (str): The status message.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    key (str, optional): The status key. Defaults to None.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    definition (JsonSchema, optional): The status definition. Defaults to None.
-    """
-
+class Status(BaseModel):
     code: int
     message: str
     key: str = Field(default=None)
@@ -59,14 +42,6 @@ class Status(Base):
 
 
 class TypeDef(BaseModel):
-    """
-    Represents a type definition.
-
-    Attributes:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    data (Optional[Dict[str, Any]]): The data to be stored if the action is `putDoc`, `mergeDoc`, or `findDocs`.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    definition (JsonSchema): The JSON schema definition.
-    """
-
     data: Optional[Dict[str, Any]] = Field(
         default=None,
         description="The data to be stored if the action is `put`, `merge`, or `findDocs`",
@@ -80,17 +55,9 @@ class TypeDef(BaseModel):
 
 
 class QuipuDocument(Base):
-    """
-    Represents a document in `quipubase`.
-
-    Attributes:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    _db_instances (ClassVar[dict[str, Quipu]]): A dictionary that stores the instances of the Quipu database.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    key (str): The key of the document.
-    """
-
     _db_instances: ClassVar[dict[str, Quipu]] = {}
     _subclasses: ClassVar[dict[str, Type[QuipuDocument]]] = {}
-    _subscriptions: ClassVar[dict[str, SubscriberManager[QuipuDocument]]] = {}
+    _subscriptions: ClassVar[dict[str, Type[PubSub[Self]]]] = {}
     key: str = Field(default_factory=lambda: str(uuid4()))
 
     @classmethod
@@ -103,17 +70,32 @@ class QuipuDocument(Base):
         if cls.__name__ not in cls._db_instances:
             cls._db_instances[cls.__name__] = Quipu(f"db/{cls.__name__}")
         if cls.__name__ not in cls._subscriptions:
-            cls._subscriptions[cls.__name__] = SubscriberManager[cls]()
+            cls._subscriptions[cls.__name__] = PubSub[cls]
         cls._db = cls._db_instances[cls.__name__]
 
     @classmethod
-    def definition(cls) -> JsonSchema:
-        """
-        Returns the JSON schema definition for the document.
+    async def pub(cls, namespace: str, message: Self):
+        if namespace in cls._subscriptions:
+            await cls._subscriptions[namespace]().pub(
+                namespace=namespace, message=message
+            )
+        else:
+            cls._subscriptions[namespace] = PubSub[cls]
+            await cls._subscriptions[namespace]().pub(
+                namespace=namespace, message=message
+            )
 
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        JsonSchema: The JSON schema definition.
-        """
+    @classmethod
+    async def sub(cls, namespace: str):
+        if namespace not in cls._subscriptions:
+            cls._subscriptions[namespace] = asyncio.Queue[cls]()  # type: ignore
+        async for message in cls._subscriptions[namespace]().sub(
+            namespace=namespace, subscriber=cls.__name__
+        ):
+            yield message
+
+    @classmethod
+    def definition(cls) -> JsonSchema:
         return JsonSchema(
             title=cls.__name__,
             description=cls.__doc__ or "[No description]",
@@ -123,12 +105,6 @@ class QuipuDocument(Base):
 
     @types.coroutine
     def put_doc(self):
-        """
-        Puts the document into the database.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Status: The status of the operation.
-        """
         if self._db.exists(key=self.key):
             self._db.merge_doc(self.key, self.model_dump())
         yield
@@ -138,15 +114,6 @@ class QuipuDocument(Base):
     @classmethod
     @types.coroutine
     def get_doc(cls, *, key: str):
-        """
-        Retrieves a document from the database.
-
-        Args:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        key (str): The key of the document.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Optional[Self]: The retrieved document, or None if not found.
-        """
         data = cls._db.get_doc(key=key)
         yield
         if data:
@@ -160,12 +127,6 @@ class QuipuDocument(Base):
 
     @types.coroutine
     def merge_doc(self):
-        """
-        Merges the document into `quipubase`.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Status: The status of the operation.
-        """
         self._db.merge_doc(key=self.key, value=self.model_dump())
         yield
         return self
@@ -173,15 +134,6 @@ class QuipuDocument(Base):
     @classmethod
     @types.coroutine
     def delete_doc(cls, *, key: str):
-        """
-        Deletes a document from `quipubase`.
-
-        Args:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        key (str): The key of the document.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Status: The status of the operation.
-        """
         cls._db.delete_doc(key=key)
         yield
         return Status(
@@ -194,16 +146,6 @@ class QuipuDocument(Base):
     @classmethod
     @types.coroutine
     def scan_docs(cls, *, limit: int = 1000, offset: int = 0):
-        """
-        Scans documents from `quipubase`.
-
-        Args:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        limit (int): The maximum number of documents to scan.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        offset (int): The offset of the documents to scan.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        List[Self]: The scanned documents.
-        """
         yield
         return [
             cls.model_validate(i)  # pylint: disable=E1101
@@ -213,17 +155,6 @@ class QuipuDocument(Base):
     @classmethod
     @types.coroutine
     def find_docs(cls, limit: int = 1000, offset: int = 0, **kwargs: Any):
-        """
-        Finds documents querying by the given filters.
-
-        Args:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        limit (int): The maximum number of documents to find.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        offset (int): The offset of the documents to find.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        **kwargs (Any): Additional keyword arguments for filtering.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        List[Self]: The found documents.
-        """
         response = cls._db.find_docs(limit=limit, offset=offset, kwargs=kwargs)
         yield
         return [cls.model_validate(i) for i in response]
@@ -231,58 +162,23 @@ class QuipuDocument(Base):
     @classmethod
     @types.coroutine
     def count(cls):
-        """
-        Counts the number of documents in the database.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        int: The number of documents.
-        """
         yield
         return cls._db.count()
 
     @classmethod
     @types.coroutine
     def exists(cls, *, key: str):
-        """
-        Checks if a document exists on `quipubase`.
-
-        Args:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        key (str): The key of the document.
-
-        Returns:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        bool: True if the document exists, False otherwise.
-        """
         yield
         return cls._db.exists(key=key)
 
     @classmethod
-    async def subscribe(cls, namespace: str, subscriber: str, request: Request):
-        """
-        Subscribes to the changes of the documents in the database.
-
-        Args:
-            namespace (str): The namespace of the document.
-            subscriber (str): The subscriber name.
-            request (Request): The request object.
-
-        Returns:
-            AsyncGenerator[str, None]: An async generator of the changes.
-        """
-        queue = await cls._subscriptions[cls.__name__].add_subscriber(
-            namespace=namespace, subscriber=subscriber
-        )
-        while True:
-            try:
-                if await request.is_disconnected():
-                    break
-                message = await queue.get()
-                yield message.model_dump_json()
-            except asyncio.CancelledError:
-                break
-            finally:
-                await cls._subscriptions[cls.__name__].remove_subscriber(
-                    namespace=namespace, subscriber=subscriber
-                )
+    async def subscribe(cls, namespace: str, subscriber: str):
+        if namespace not in QuipuDocument._subclasses:
+            raise ValueError("Namespace not found")
+        async for chunk in cls._subscriptions[cls.__name__]().listen(
+            namespace=namespace
+        ):
+            yield chunk.render()
 
 
 app = APIRouter(tags=["Document Store"], prefix="/document")
@@ -344,7 +240,7 @@ async def document_action(
         if action == "delete":
             doc = await klass.get_doc(key=key)
             assert isinstance(doc, klass), "Document not found"
-            await SubscriberManager[klass]().notify_subscribers(namespace, doc)
+            await PubSub[klass]().pub(namespace=namespace, message=doc)
             return await klass.delete_doc(key=key)
 
 
@@ -357,5 +253,7 @@ async def document_subscribe(
     """
     Subscribes to the changes of the documents in the database.
     """
+    if namespace not in QuipuDocument._subclasses:
+        return Status(code=404, message="Namespace not found", key=namespace)
     klass = QuipuDocument._subclasses[namespace]
-    return EventSourceResponse(klass.subscribe(namespace, subscriber, request))
+    return EventSourceResponse(klass.sub(namespace=namespace))
