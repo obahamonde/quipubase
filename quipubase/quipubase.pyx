@@ -1,15 +1,12 @@
 # type: ignore
 from threading import Lock as mutex
-from typing import Any, TypeVar
 
 import orjson
-from typing_extensions import ParamSpec
 
 from libcpp cimport bool
 from libcpp.string cimport string
 
-T = TypeVar("T")
-P = ParamSpec("P")
+
 
 cdef extern from "rocksdb/db.h" namespace "rocksdb":
     cdef cppclass DB:
@@ -162,6 +159,10 @@ cdef class Quipu:
         it.SeekToFirst()
         try:
             while it.Valid() and len(results) < limit:
+                if offset > 0:
+                    offset -= 1
+                    it.Next()
+                    continue
                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
                 for key, value in kwargs.items():
                     if doc.get(key) != value:

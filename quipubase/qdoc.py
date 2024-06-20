@@ -1,18 +1,14 @@
 from __future__ import annotations
-
-import asyncio
 import os
 import types
 from typing import Any, ClassVar, Dict, Optional, Type, TypeVar
 from uuid import uuid4
 
-from fastapi import APIRouter, Body, Path, Query, Request
+from fastapi import APIRouter, Body, Path, Query
 from pydantic import BaseModel, Field
-from sse_starlette import EventSourceResponse
-from typing_extensions import Literal, Self
+from typing_extensions import Literal
 
 from .const import DEF_EXAMPLES, EXAMPLES, JSON_SCHEMA_DESCRIPTION
-from .pubsub import PubSub
 from .quipubase import Quipu  # pylint: disable=E0611
 from .schemas import JsonSchema  # pylint: disable=E0611 # type: ignore
 from .schemas import create_class
@@ -57,7 +53,6 @@ class TypeDef(BaseModel):
 class QuipuDocument(Base):
     _db_instances: ClassVar[dict[str, Quipu]] = {}
     _subclasses: ClassVar[dict[str, Type[QuipuDocument]]] = {}
-    _subscriptions: ClassVar[dict[str, Type[PubSub[Self]]]] = {}
     key: str = Field(default_factory=lambda: str(uuid4()))
 
     @classmethod
@@ -69,30 +64,7 @@ class QuipuDocument(Base):
 
         if cls.__name__ not in cls._db_instances:
             cls._db_instances[cls.__name__] = Quipu(f"db/{cls.__name__}")
-        if cls.__name__ not in cls._subscriptions:
-            cls._subscriptions[cls.__name__] = PubSub[cls]
         cls._db = cls._db_instances[cls.__name__]
-
-    @classmethod
-    async def pub(cls, namespace: str, message: Self):
-        if namespace in cls._subscriptions:
-            await cls._subscriptions[namespace]().pub(
-                namespace=namespace, message=message
-            )
-        else:
-            cls._subscriptions[namespace] = PubSub[cls]
-            await cls._subscriptions[namespace]().pub(
-                namespace=namespace, message=message
-            )
-
-    @classmethod
-    async def sub(cls, namespace: str):
-        if namespace not in cls._subscriptions:
-            cls._subscriptions[namespace] = asyncio.Queue[cls]()  # type: ignore
-        async for message in cls._subscriptions[namespace]().sub(
-            namespace=namespace, subscriber=cls.__name__
-        ):
-            yield message
 
     @classmethod
     def definition(cls) -> JsonSchema:
@@ -171,15 +143,6 @@ class QuipuDocument(Base):
         yield
         return cls._db.exists(key=key)
 
-    @classmethod
-    async def subscribe(cls, namespace: str, subscriber: str):
-        if namespace not in QuipuDocument._subclasses:
-            raise ValueError("Namespace not found")
-        async for chunk in cls._subscriptions[cls.__name__]().listen(
-            namespace=namespace
-        ):
-            yield chunk.render()
-
 
 app = APIRouter(tags=["Document Store"], prefix="/document")
 
@@ -200,11 +163,11 @@ async def document_action(
     definition: TypeDef = Body(...),
 ):
     """
-    `put`: Description: Creates a new document in the database.
-    `merge`: Description: Updates an existing document in the database.
-    `find`: Description: Finds documents in the database which can be filtered by equality comparison of all the fields specified in the `definition`.
-    `get`:Description: Retrieves a document from the database.
-    `delete`: Description: Deletes a document from the database
+    `put`: Description: Creates a new document.
+    `merge`: Description: Updates an existing document.
+    `find`: Description: Finds documents in filtered by certain criteria.
+    `get`:Description: Retrieves a document.
+    `delete`: Description: Deletes a document.
     """
     klass = create_class(
         namespace=namespace,
@@ -212,21 +175,15 @@ async def document_action(
         base=QuipuDocument,
         action=action,
     )
-    QuipuDocument._subclasses[klass.__name__] = klass
+    QuipuDocument._subclasses[klass.__name__] = klass  # type: ignore
     if action in ("put", "merge"):
         assert (
             definition.data is not None
         ), f"Data must be provided for action `{action}`"
         if action == "put":
-            doc = klass(namespace=namespace, **definition.data)  # type: ignore
-            await doc.put_doc()
-            await SubscriberManager[klass]().notify_subscribers(namespace, doc)
-            return doc
+            return await klass(namespace=namespace, **definition.data).put_doc()  # type: ignore
         if action == "merge":
-            doc = klass(namespace=namespace, **definition.data)  # type: ignore
-            await doc.merge_doc()
-            await SubscriberManager[klass]().notify_subscribers(namespace, doc)
-            return doc
+            return await klass(namespace=namespace, **definition.data).merge_doc()  # type: ignore
     if action == "find":
         if definition.data is not None:
             return await klass.find_docs(
@@ -238,22 +195,4 @@ async def document_action(
         if action == "get":
             return await klass.get_doc(key=key)
         if action == "delete":
-            doc = await klass.get_doc(key=key)
-            assert isinstance(doc, klass), "Document not found"
-            await PubSub[klass]().pub(namespace=namespace, message=doc)
             return await klass.delete_doc(key=key)
-
-
-@app.get("/{namespace}/subscribe")
-async def document_subscribe(
-    request: Request,
-    namespace: str = Path(description="The namespace of the document"),
-    subscriber: str = Query(..., description="The subscriber name"),
-):
-    """
-    Subscribes to the changes of the documents in the database.
-    """
-    if namespace not in QuipuDocument._subclasses:
-        return Status(code=404, message="Namespace not found", key=namespace)
-    klass = QuipuDocument._subclasses[namespace]
-    return EventSourceResponse(klass.sub(namespace=namespace))

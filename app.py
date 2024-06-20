@@ -1,7 +1,7 @@
 import os
 
 
-def process_python_files(root_dir, output_file):
+def process_python_files(root_dir: str, output_file: str) -> None:
     with open(output_file, "w") as md_file:
         for root, _, files in os.walk(root_dir):
             for file in files:
