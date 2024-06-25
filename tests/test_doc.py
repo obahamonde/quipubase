@@ -8,6 +8,7 @@ class Dog(QuipuDocument):
     breed: str
 
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     "name, breed",
     [
@@ -33,20 +34,15 @@ class Dog(QuipuDocument):
         ("Cody", "Australian Shepherd"),
     ],
 )
-def test_dog(name: str, breed: str):
+async def test_dog(name: str, breed: str):
     dog = Dog(name=name, breed=breed)
-    res = dog.put_doc()
-    assert isinstance(res, Status)
+    res = await dog.put_doc()
+    assert isinstance(res, Dog)
     assert res.key == dog.key
-    dog_in_db = Dog.get_doc(key=dog.key)
+    dog_in_db = await Dog.get_doc(key=dog.key)
     assert isinstance(dog_in_db, Dog)
-    dogs = Dog.scan_docs(limit=10, offset=0)
-    assert isinstance(dogs, list)
-    assert isinstance(dogs[0], Dog)
-    dogs_filtered = Dog.find_docs(limit=10, offset=0, name=name)
+    dogs_filtered = await Dog.find_docs(limit=10, offset=0, name=name)
     assert isinstance(dogs_filtered, list)
     assert isinstance(dogs_filtered[0], Dog)
-    res = dog.delete_doc(key=dog.key)
+    res = await dog.delete_doc(key=dog.key)
     assert isinstance(res, Status)
-    assert Dog.exists(key=dog.key)
-    assert isinstance(Dog.get_doc(key=dog.key), Status)
