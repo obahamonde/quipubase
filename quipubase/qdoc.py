@@ -37,7 +37,7 @@ class Status(BaseModel):
     definition: JsonSchema = Field(default=None)
 
 
-class TypeDef(BaseModel):
+class BaseDocument(Base):
     data: Optional[Dict[str, Any]] = Field(
         default=None,
         description="The data to be stored if the action is `put`, `merge`, or `findDocs`",
@@ -160,7 +160,7 @@ async def document_action(
         None, description="The maximum number of documents to return"
     ),
     offset: Optional[int] = Query(None, description="The number of documents to skip"),
-    definition: TypeDef = Body(...),
+    definition: BaseDocument = Body(...),
 ):
     """
     `put`: Description: Creates a new document.

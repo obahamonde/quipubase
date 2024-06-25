@@ -19,6 +19,7 @@ sse-starlette = "^2.1.0"
 python-jose = "^3.3.0"
 cryptography = "^42.0.8"
 iso8601 = "^2.1.0"
+pyarrow = "^16.1.0"
 
 
 [tool.poetry.dev-dependencies]
