@@ -12,6 +12,7 @@ env/
 *.log
 *.debug
 *.db
+*.json
 *.sqlite
 *.csv
 .vscode/

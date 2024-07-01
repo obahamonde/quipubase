@@ -65,6 +65,11 @@ push:
 	@docker push obahamonde/quipubase:latest
 	@echo "Pushed to Docker Hub"
 
+.PHONY: deploy
+deploy:
+	@echo "Deploying to Kubernetes..."
+	@kubectl apply -f kubernetes/deployment.yaml
+	
 
 .PHONY: help
 help:

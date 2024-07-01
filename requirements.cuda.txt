@@ -1,0 +1,14 @@
+authlib
+cryptography
+cython
+eval-type-backport
+fastapi-slim
+httpx
+iso8601
+itsdangerous
+numpy
+orjson
+python-jose
+uvicorn
+faiss-gpu
+pyarrow
