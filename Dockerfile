@@ -60,6 +60,6 @@ RUN apt-get update && apt-get install -y \
 
 # Install application dependencies
 
-EXPOSE 8080
+EXPOSE 5454
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5454"]
