@@ -68,7 +68,7 @@ push:
 .PHONY: deploy
 deploy:
 	@echo "Deploying to Kubernetes..."
-	@kubectl apply -f kubernetes/deployment.yaml
+	@bash deploy.sh
 	
 
 .PHONY: help

@@ -4,7 +4,7 @@
 {
     "distutils": {
         "depends": [
-            "/usr/include/rocksdb/db.h"
+            "/usr/local/include/rocksdb/db.h"
         ],
         "extra_compile_args": [
             "-std=c++17"
@@ -1537,7 +1537,7 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_9quipubase_Quipu;
 
-/* "quipubase.pyx":54
+/* "quipubase.pyx":51
  * 
  * 
  * cdef class Quipu:             # <<<<<<<<<<<<<<
@@ -2464,14 +2464,11 @@ static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_RuntimeError;
 static PyObject *__pyx_builtin_TypeError;
 /* #### Code section: string_decls ### */
-static const char __pyx_k_P[] = "P";
-static const char __pyx_k_T[] = "T";
 static const char __pyx_k__3[] = ".";
 static const char __pyx_k__4[] = "*";
 static const char __pyx_k_gc[] = "gc";
 static const char __pyx_k_it[] = "it";
-static const char __pyx_k_Any[] = "Any";
-static const char __pyx_k__29[] = "?";
+static const char __pyx_k__27[] = "?";
 static const char __pyx_k_doc[] = "doc";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_int[] = "int";
@@ -2505,9 +2502,7 @@ static const char __pyx_k_option[] = "option";
 static const char __pyx_k_orjson[] = "orjson";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_return[] = "return";
-static const char __pyx_k_typing[] = "typing";
 static const char __pyx_k_update[] = "update";
-static const char __pyx_k_TypeVar[] = "TypeVar";
 static const char __pyx_k_db_path[] = "db_path";
 static const char __pyx_k_disable[] = "disable";
 static const char __pyx_k_get_doc[] = "get_doc";
@@ -2516,7 +2511,6 @@ static const char __pyx_k_results[] = "results";
 static const char __pyx_k_existing[] = "existing";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_setstate[] = "__setstate__";
-static const char __pyx_k_ParamSpec[] = "ParamSpec";
 static const char __pyx_k_Quipu_get[] = "Quipu.get";
 static const char __pyx_k_Quipu_put[] = "Quipu.put";
 static const char __pyx_k_TypeError[] = "TypeError";
@@ -2551,7 +2545,6 @@ static const char __pyx_k_Quipu_merge_doc[] = "Quipu.merge_doc";
 static const char __pyx_k_Quipu_scan_docs[] = "Quipu.scan_docs";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_Quipu_delete_doc[] = "Quipu.delete_doc";
-static const char __pyx_k_typing_extensions[] = "typing_extensions";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_OPT_SERIALIZE_NUMPY[] = "OPT_SERIALIZE_NUMPY";
@@ -2572,7 +2565,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
 static PyObject *__pyx_pf_9quipubase_5Quipu_16put_doc(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
 static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, int __pyx_v_limit, int __pyx_v_offset, bool __pyx_v_keys_only); /* proto */
-static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, int __pyx_v_limit, CYTHON_UNUSED int __pyx_v_offset, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, int __pyx_v_limit, int __pyx_v_offset, PyObject *__pyx_v_kwargs); /* proto */
 static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_9quipubase_5Quipu_26__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9quipubase_Quipu *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9quipubase_5Quipu_28__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
@@ -2615,13 +2608,10 @@ typedef struct {
   PyObject *__pyx_type_9quipubase_Quipu;
   #endif
   PyTypeObject *__pyx_ptype_9quipubase_Quipu;
-  PyObject *__pyx_n_s_Any;
   PyObject *__pyx_kp_u_Failed_to_open_database;
   PyObject *__pyx_n_s_Lock;
   PyObject *__pyx_n_s_OPT_SERIALIZE_NUMPY;
   PyObject *__pyx_kp_u_Object_with_id;
-  PyObject *__pyx_n_s_P;
-  PyObject *__pyx_n_s_ParamSpec;
   PyObject *__pyx_n_s_Quipu;
   PyObject *__pyx_n_s_Quipu___reduce_cython;
   PyObject *__pyx_n_s_Quipu___setstate_cython;
@@ -2637,11 +2627,9 @@ typedef struct {
   PyObject *__pyx_n_s_Quipu_put_doc;
   PyObject *__pyx_n_s_Quipu_scan_docs;
   PyObject *__pyx_n_s_RuntimeError;
-  PyObject *__pyx_n_s_T;
   PyObject *__pyx_n_s_TypeError;
-  PyObject *__pyx_n_s_TypeVar;
   PyObject *__pyx_n_s_ValueError;
-  PyObject *__pyx_n_s__29;
+  PyObject *__pyx_n_s__27;
   PyObject *__pyx_kp_u__3;
   PyObject *__pyx_n_s__4;
   PyObject *__pyx_n_s_asyncio_coroutines;
@@ -2707,36 +2695,32 @@ typedef struct {
   PyObject *__pyx_kp_s_stringsource;
   PyObject *__pyx_n_s_test;
   PyObject *__pyx_n_s_threading;
-  PyObject *__pyx_n_s_typing;
-  PyObject *__pyx_n_s_typing_extensions;
   PyObject *__pyx_n_s_update;
   PyObject *__pyx_n_s_value;
   PyObject *__pyx_tuple_;
   PyObject *__pyx_tuple__2;
   PyObject *__pyx_tuple__5;
-  PyObject *__pyx_tuple__6;
-  PyObject *__pyx_tuple__7;
-  PyObject *__pyx_tuple__10;
-  PyObject *__pyx_tuple__13;
+  PyObject *__pyx_tuple__8;
+  PyObject *__pyx_tuple__11;
+  PyObject *__pyx_tuple__16;
   PyObject *__pyx_tuple__18;
-  PyObject *__pyx_tuple__20;
+  PyObject *__pyx_tuple__19;
   PyObject *__pyx_tuple__21;
   PyObject *__pyx_tuple__23;
   PyObject *__pyx_tuple__25;
-  PyObject *__pyx_tuple__27;
-  PyObject *__pyx_codeobj__8;
+  PyObject *__pyx_codeobj__6;
+  PyObject *__pyx_codeobj__7;
   PyObject *__pyx_codeobj__9;
-  PyObject *__pyx_codeobj__11;
+  PyObject *__pyx_codeobj__10;
   PyObject *__pyx_codeobj__12;
+  PyObject *__pyx_codeobj__13;
   PyObject *__pyx_codeobj__14;
   PyObject *__pyx_codeobj__15;
-  PyObject *__pyx_codeobj__16;
   PyObject *__pyx_codeobj__17;
-  PyObject *__pyx_codeobj__19;
+  PyObject *__pyx_codeobj__20;
   PyObject *__pyx_codeobj__22;
   PyObject *__pyx_codeobj__24;
   PyObject *__pyx_codeobj__26;
-  PyObject *__pyx_codeobj__28;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -2781,13 +2765,10 @@ static int __pyx_m_clear(PyObject *m) {
   #endif
   Py_CLEAR(clear_module_state->__pyx_ptype_9quipubase_Quipu);
   Py_CLEAR(clear_module_state->__pyx_type_9quipubase_Quipu);
-  Py_CLEAR(clear_module_state->__pyx_n_s_Any);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Failed_to_open_database);
   Py_CLEAR(clear_module_state->__pyx_n_s_Lock);
   Py_CLEAR(clear_module_state->__pyx_n_s_OPT_SERIALIZE_NUMPY);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Object_with_id);
-  Py_CLEAR(clear_module_state->__pyx_n_s_P);
-  Py_CLEAR(clear_module_state->__pyx_n_s_ParamSpec);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quipu);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quipu___reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quipu___setstate_cython);
@@ -2803,11 +2784,9 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Quipu_put_doc);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quipu_scan_docs);
   Py_CLEAR(clear_module_state->__pyx_n_s_RuntimeError);
-  Py_CLEAR(clear_module_state->__pyx_n_s_T);
   Py_CLEAR(clear_module_state->__pyx_n_s_TypeError);
-  Py_CLEAR(clear_module_state->__pyx_n_s_TypeVar);
   Py_CLEAR(clear_module_state->__pyx_n_s_ValueError);
-  Py_CLEAR(clear_module_state->__pyx_n_s__29);
+  Py_CLEAR(clear_module_state->__pyx_n_s__27);
   Py_CLEAR(clear_module_state->__pyx_kp_u__3);
   Py_CLEAR(clear_module_state->__pyx_n_s__4);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
@@ -2873,36 +2852,32 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_s_stringsource);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
   Py_CLEAR(clear_module_state->__pyx_n_s_threading);
-  Py_CLEAR(clear_module_state->__pyx_n_s_typing);
-  Py_CLEAR(clear_module_state->__pyx_n_s_typing_extensions);
   Py_CLEAR(clear_module_state->__pyx_n_s_update);
   Py_CLEAR(clear_module_state->__pyx_n_s_value);
   Py_CLEAR(clear_module_state->__pyx_tuple_);
   Py_CLEAR(clear_module_state->__pyx_tuple__2);
   Py_CLEAR(clear_module_state->__pyx_tuple__5);
-  Py_CLEAR(clear_module_state->__pyx_tuple__6);
-  Py_CLEAR(clear_module_state->__pyx_tuple__7);
-  Py_CLEAR(clear_module_state->__pyx_tuple__10);
-  Py_CLEAR(clear_module_state->__pyx_tuple__13);
+  Py_CLEAR(clear_module_state->__pyx_tuple__8);
+  Py_CLEAR(clear_module_state->__pyx_tuple__11);
+  Py_CLEAR(clear_module_state->__pyx_tuple__16);
   Py_CLEAR(clear_module_state->__pyx_tuple__18);
-  Py_CLEAR(clear_module_state->__pyx_tuple__20);
+  Py_CLEAR(clear_module_state->__pyx_tuple__19);
   Py_CLEAR(clear_module_state->__pyx_tuple__21);
   Py_CLEAR(clear_module_state->__pyx_tuple__23);
   Py_CLEAR(clear_module_state->__pyx_tuple__25);
-  Py_CLEAR(clear_module_state->__pyx_tuple__27);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__8);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__6);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__7);
   Py_CLEAR(clear_module_state->__pyx_codeobj__9);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__11);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__10);
   Py_CLEAR(clear_module_state->__pyx_codeobj__12);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__13);
   Py_CLEAR(clear_module_state->__pyx_codeobj__14);
   Py_CLEAR(clear_module_state->__pyx_codeobj__15);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__16);
   Py_CLEAR(clear_module_state->__pyx_codeobj__17);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__19);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__20);
   Py_CLEAR(clear_module_state->__pyx_codeobj__22);
   Py_CLEAR(clear_module_state->__pyx_codeobj__24);
   Py_CLEAR(clear_module_state->__pyx_codeobj__26);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__28);
   return 0;
 }
 #endif
@@ -2925,13 +2900,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   #endif
   Py_VISIT(traverse_module_state->__pyx_ptype_9quipubase_Quipu);
   Py_VISIT(traverse_module_state->__pyx_type_9quipubase_Quipu);
-  Py_VISIT(traverse_module_state->__pyx_n_s_Any);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Failed_to_open_database);
   Py_VISIT(traverse_module_state->__pyx_n_s_Lock);
   Py_VISIT(traverse_module_state->__pyx_n_s_OPT_SERIALIZE_NUMPY);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Object_with_id);
-  Py_VISIT(traverse_module_state->__pyx_n_s_P);
-  Py_VISIT(traverse_module_state->__pyx_n_s_ParamSpec);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quipu);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quipu___reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quipu___setstate_cython);
@@ -2947,11 +2919,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Quipu_put_doc);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quipu_scan_docs);
   Py_VISIT(traverse_module_state->__pyx_n_s_RuntimeError);
-  Py_VISIT(traverse_module_state->__pyx_n_s_T);
   Py_VISIT(traverse_module_state->__pyx_n_s_TypeError);
-  Py_VISIT(traverse_module_state->__pyx_n_s_TypeVar);
   Py_VISIT(traverse_module_state->__pyx_n_s_ValueError);
-  Py_VISIT(traverse_module_state->__pyx_n_s__29);
+  Py_VISIT(traverse_module_state->__pyx_n_s__27);
   Py_VISIT(traverse_module_state->__pyx_kp_u__3);
   Py_VISIT(traverse_module_state->__pyx_n_s__4);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
@@ -3017,36 +2987,32 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_s_stringsource);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
   Py_VISIT(traverse_module_state->__pyx_n_s_threading);
-  Py_VISIT(traverse_module_state->__pyx_n_s_typing);
-  Py_VISIT(traverse_module_state->__pyx_n_s_typing_extensions);
   Py_VISIT(traverse_module_state->__pyx_n_s_update);
   Py_VISIT(traverse_module_state->__pyx_n_s_value);
   Py_VISIT(traverse_module_state->__pyx_tuple_);
   Py_VISIT(traverse_module_state->__pyx_tuple__2);
   Py_VISIT(traverse_module_state->__pyx_tuple__5);
-  Py_VISIT(traverse_module_state->__pyx_tuple__6);
-  Py_VISIT(traverse_module_state->__pyx_tuple__7);
-  Py_VISIT(traverse_module_state->__pyx_tuple__10);
-  Py_VISIT(traverse_module_state->__pyx_tuple__13);
+  Py_VISIT(traverse_module_state->__pyx_tuple__8);
+  Py_VISIT(traverse_module_state->__pyx_tuple__11);
+  Py_VISIT(traverse_module_state->__pyx_tuple__16);
   Py_VISIT(traverse_module_state->__pyx_tuple__18);
-  Py_VISIT(traverse_module_state->__pyx_tuple__20);
+  Py_VISIT(traverse_module_state->__pyx_tuple__19);
   Py_VISIT(traverse_module_state->__pyx_tuple__21);
   Py_VISIT(traverse_module_state->__pyx_tuple__23);
   Py_VISIT(traverse_module_state->__pyx_tuple__25);
-  Py_VISIT(traverse_module_state->__pyx_tuple__27);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__8);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__6);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__7);
   Py_VISIT(traverse_module_state->__pyx_codeobj__9);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__11);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__10);
   Py_VISIT(traverse_module_state->__pyx_codeobj__12);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__13);
   Py_VISIT(traverse_module_state->__pyx_codeobj__14);
   Py_VISIT(traverse_module_state->__pyx_codeobj__15);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__16);
   Py_VISIT(traverse_module_state->__pyx_codeobj__17);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__19);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__20);
   Py_VISIT(traverse_module_state->__pyx_codeobj__22);
   Py_VISIT(traverse_module_state->__pyx_codeobj__24);
   Py_VISIT(traverse_module_state->__pyx_codeobj__26);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__28);
   return 0;
 }
 #endif
@@ -3085,13 +3051,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_type_9quipubase_Quipu __pyx_mstate_global->__pyx_type_9quipubase_Quipu
 #endif
 #define __pyx_ptype_9quipubase_Quipu __pyx_mstate_global->__pyx_ptype_9quipubase_Quipu
-#define __pyx_n_s_Any __pyx_mstate_global->__pyx_n_s_Any
 #define __pyx_kp_u_Failed_to_open_database __pyx_mstate_global->__pyx_kp_u_Failed_to_open_database
 #define __pyx_n_s_Lock __pyx_mstate_global->__pyx_n_s_Lock
 #define __pyx_n_s_OPT_SERIALIZE_NUMPY __pyx_mstate_global->__pyx_n_s_OPT_SERIALIZE_NUMPY
 #define __pyx_kp_u_Object_with_id __pyx_mstate_global->__pyx_kp_u_Object_with_id
-#define __pyx_n_s_P __pyx_mstate_global->__pyx_n_s_P
-#define __pyx_n_s_ParamSpec __pyx_mstate_global->__pyx_n_s_ParamSpec
 #define __pyx_n_s_Quipu __pyx_mstate_global->__pyx_n_s_Quipu
 #define __pyx_n_s_Quipu___reduce_cython __pyx_mstate_global->__pyx_n_s_Quipu___reduce_cython
 #define __pyx_n_s_Quipu___setstate_cython __pyx_mstate_global->__pyx_n_s_Quipu___setstate_cython
@@ -3107,11 +3070,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Quipu_put_doc __pyx_mstate_global->__pyx_n_s_Quipu_put_doc
 #define __pyx_n_s_Quipu_scan_docs __pyx_mstate_global->__pyx_n_s_Quipu_scan_docs
 #define __pyx_n_s_RuntimeError __pyx_mstate_global->__pyx_n_s_RuntimeError
-#define __pyx_n_s_T __pyx_mstate_global->__pyx_n_s_T
 #define __pyx_n_s_TypeError __pyx_mstate_global->__pyx_n_s_TypeError
-#define __pyx_n_s_TypeVar __pyx_mstate_global->__pyx_n_s_TypeVar
 #define __pyx_n_s_ValueError __pyx_mstate_global->__pyx_n_s_ValueError
-#define __pyx_n_s__29 __pyx_mstate_global->__pyx_n_s__29
+#define __pyx_n_s__27 __pyx_mstate_global->__pyx_n_s__27
 #define __pyx_kp_u__3 __pyx_mstate_global->__pyx_kp_u__3
 #define __pyx_n_s__4 __pyx_mstate_global->__pyx_n_s__4
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
@@ -3177,36 +3138,32 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_s_stringsource __pyx_mstate_global->__pyx_kp_s_stringsource
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
 #define __pyx_n_s_threading __pyx_mstate_global->__pyx_n_s_threading
-#define __pyx_n_s_typing __pyx_mstate_global->__pyx_n_s_typing
-#define __pyx_n_s_typing_extensions __pyx_mstate_global->__pyx_n_s_typing_extensions
 #define __pyx_n_s_update __pyx_mstate_global->__pyx_n_s_update
 #define __pyx_n_s_value __pyx_mstate_global->__pyx_n_s_value
 #define __pyx_tuple_ __pyx_mstate_global->__pyx_tuple_
 #define __pyx_tuple__2 __pyx_mstate_global->__pyx_tuple__2
 #define __pyx_tuple__5 __pyx_mstate_global->__pyx_tuple__5
-#define __pyx_tuple__6 __pyx_mstate_global->__pyx_tuple__6
-#define __pyx_tuple__7 __pyx_mstate_global->__pyx_tuple__7
-#define __pyx_tuple__10 __pyx_mstate_global->__pyx_tuple__10
-#define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
+#define __pyx_tuple__8 __pyx_mstate_global->__pyx_tuple__8
+#define __pyx_tuple__11 __pyx_mstate_global->__pyx_tuple__11
+#define __pyx_tuple__16 __pyx_mstate_global->__pyx_tuple__16
 #define __pyx_tuple__18 __pyx_mstate_global->__pyx_tuple__18
-#define __pyx_tuple__20 __pyx_mstate_global->__pyx_tuple__20
+#define __pyx_tuple__19 __pyx_mstate_global->__pyx_tuple__19
 #define __pyx_tuple__21 __pyx_mstate_global->__pyx_tuple__21
 #define __pyx_tuple__23 __pyx_mstate_global->__pyx_tuple__23
 #define __pyx_tuple__25 __pyx_mstate_global->__pyx_tuple__25
-#define __pyx_tuple__27 __pyx_mstate_global->__pyx_tuple__27
-#define __pyx_codeobj__8 __pyx_mstate_global->__pyx_codeobj__8
+#define __pyx_codeobj__6 __pyx_mstate_global->__pyx_codeobj__6
+#define __pyx_codeobj__7 __pyx_mstate_global->__pyx_codeobj__7
 #define __pyx_codeobj__9 __pyx_mstate_global->__pyx_codeobj__9
-#define __pyx_codeobj__11 __pyx_mstate_global->__pyx_codeobj__11
+#define __pyx_codeobj__10 __pyx_mstate_global->__pyx_codeobj__10
 #define __pyx_codeobj__12 __pyx_mstate_global->__pyx_codeobj__12
+#define __pyx_codeobj__13 __pyx_mstate_global->__pyx_codeobj__13
 #define __pyx_codeobj__14 __pyx_mstate_global->__pyx_codeobj__14
 #define __pyx_codeobj__15 __pyx_mstate_global->__pyx_codeobj__15
-#define __pyx_codeobj__16 __pyx_mstate_global->__pyx_codeobj__16
 #define __pyx_codeobj__17 __pyx_mstate_global->__pyx_codeobj__17
-#define __pyx_codeobj__19 __pyx_mstate_global->__pyx_codeobj__19
+#define __pyx_codeobj__20 __pyx_mstate_global->__pyx_codeobj__20
 #define __pyx_codeobj__22 __pyx_mstate_global->__pyx_codeobj__22
 #define __pyx_codeobj__24 __pyx_mstate_global->__pyx_codeobj__24
 #define __pyx_codeobj__26 __pyx_mstate_global->__pyx_codeobj__26
-#define __pyx_codeobj__28 __pyx_mstate_global->__pyx_codeobj__28
 /* #### Code section: module_code ### */
 
 /* "string.from_py":13
@@ -3527,7 +3484,7 @@ static CYTHON_INLINE PyObject *__pyx_convert_PyByteArray_string_to_py_6libcpp_6s
   return __pyx_r;
 }
 
-/* "quipubase.pyx":63
+/* "quipubase.pyx":60
  *     cdef object lock
  * 
  *     def __cinit__(self, str db_path):             # <<<<<<<<<<<<<<
@@ -3571,12 +3528,12 @@ static int __pyx_pw_9quipubase_5Quipu_1__cinit__(PyObject *__pyx_v_self, PyObjec
           (void)__Pyx_Arg_NewRef_VARARGS(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__cinit__") < 0)) __PYX_ERR(0, 63, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__cinit__") < 0)) __PYX_ERR(0, 60, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -3587,7 +3544,7 @@ static int __pyx_pw_9quipubase_5Quipu_1__cinit__(PyObject *__pyx_v_self, PyObjec
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 60, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3601,7 +3558,7 @@ static int __pyx_pw_9quipubase_5Quipu_1__cinit__(PyObject *__pyx_v_self, PyObjec
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_db_path), (&PyString_Type), 1, "db_path", 1))) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_db_path), (&PyString_Type), 1, "db_path", 1))) __PYX_ERR(0, 60, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu___cinit__(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_db_path);
 
   /* function exit code */
@@ -3634,31 +3591,31 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 1);
 
-  /* "quipubase.pyx":64
+  /* "quipubase.pyx":61
  * 
  *     def __cinit__(self, str db_path):
  *         if not db_path:             # <<<<<<<<<<<<<<
  *             raise ValueError("db_path must be provided")
  *         self.options = Options()
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_db_path); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_db_path); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 61, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (unlikely(__pyx_t_2)) {
 
-    /* "quipubase.pyx":65
+    /* "quipubase.pyx":62
  *     def __cinit__(self, str db_path):
  *         if not db_path:
  *             raise ValueError("db_path must be provided")             # <<<<<<<<<<<<<<
  *         self.options = Options()
  *         self.options.create_if_missing = True
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 65, __pyx_L1_error)
+    __PYX_ERR(0, 62, __pyx_L1_error)
 
-    /* "quipubase.pyx":64
+    /* "quipubase.pyx":61
  * 
  *     def __cinit__(self, str db_path):
  *         if not db_path:             # <<<<<<<<<<<<<<
@@ -3667,7 +3624,7 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
  */
   }
 
-  /* "quipubase.pyx":66
+  /* "quipubase.pyx":63
  *         if not db_path:
  *             raise ValueError("db_path must be provided")
  *         self.options = Options()             # <<<<<<<<<<<<<<
@@ -3676,7 +3633,7 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
  */
   __pyx_v_self->options = rocksdb::Options();
 
-  /* "quipubase.pyx":67
+  /* "quipubase.pyx":64
  *             raise ValueError("db_path must be provided")
  *         self.options = Options()
  *         self.options.create_if_missing = True             # <<<<<<<<<<<<<<
@@ -3685,7 +3642,7 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
  */
   __pyx_v_self->options.create_if_missing = 1;
 
-  /* "quipubase.pyx":68
+  /* "quipubase.pyx":65
  *         self.options = Options()
  *         self.options.create_if_missing = True
  *         self.write_options = WriteOptions()             # <<<<<<<<<<<<<<
@@ -3694,7 +3651,7 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
  */
   __pyx_v_self->write_options = rocksdb::WriteOptions();
 
-  /* "quipubase.pyx":69
+  /* "quipubase.pyx":66
  *         self.options.create_if_missing = True
  *         self.write_options = WriteOptions()
  *         self.read_options = ReadOptions()             # <<<<<<<<<<<<<<
@@ -3703,27 +3660,27 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
  */
   __pyx_v_self->read_options = rocksdb::ReadOptions();
 
-  /* "quipubase.pyx":70
+  /* "quipubase.pyx":67
  *         self.write_options = WriteOptions()
  *         self.read_options = ReadOptions()
  *         self.db_path = db_path.encode()             # <<<<<<<<<<<<<<
  *         self.lock = mutex()
  *         self.open_db()
  */
-  __pyx_t_3 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_db_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_db_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_3); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_3); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->db_path = __PYX_STD_MOVE_IF_SUPPORTED(__pyx_t_4);
 
-  /* "quipubase.pyx":71
+  /* "quipubase.pyx":68
  *         self.read_options = ReadOptions()
  *         self.db_path = db_path.encode()
  *         self.lock = mutex()             # <<<<<<<<<<<<<<
  *         self.open_db()
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_mutex); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_mutex); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   __pyx_t_7 = 0;
@@ -3743,7 +3700,7 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
     PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+1-__pyx_t_7, 0+__pyx_t_7);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -3753,16 +3710,16 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
   __pyx_v_self->lock = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "quipubase.pyx":72
+  /* "quipubase.pyx":69
  *         self.db_path = db_path.encode()
  *         self.lock = mutex()
  *         self.open_db()             # <<<<<<<<<<<<<<
  * 
  *     cdef void open_db(self):
  */
-  ((struct __pyx_vtabstruct_9quipubase_Quipu *)__pyx_v_self->__pyx_vtab)->open_db(__pyx_v_self); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 72, __pyx_L1_error)
+  ((struct __pyx_vtabstruct_9quipubase_Quipu *)__pyx_v_self->__pyx_vtab)->open_db(__pyx_v_self); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 69, __pyx_L1_error)
 
-  /* "quipubase.pyx":63
+  /* "quipubase.pyx":60
  *     cdef object lock
  * 
  *     def __cinit__(self, str db_path):             # <<<<<<<<<<<<<<
@@ -3784,7 +3741,7 @@ static int __pyx_pf_9quipubase_5Quipu___cinit__(struct __pyx_obj_9quipubase_Quip
   return __pyx_r;
 }
 
-/* "quipubase.pyx":74
+/* "quipubase.pyx":71
  *         self.open_db()
  * 
  *     cdef void open_db(self):             # <<<<<<<<<<<<<<
@@ -3811,7 +3768,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("open_db", 1);
 
-  /* "quipubase.pyx":75
+  /* "quipubase.pyx":72
  * 
  *     cdef void open_db(self):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -3819,9 +3776,9 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
  *             if not self.status.ok():
  */
   /*with:*/ {
-    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L3_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -3841,7 +3798,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L3_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -3856,7 +3813,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
         __Pyx_XGOTREF(__pyx_t_8);
         /*try:*/ {
 
-          /* "quipubase.pyx":76
+          /* "quipubase.pyx":73
  *     cdef void open_db(self):
  *         with self.lock:
  *             self.status = DB.Open(self.options, self.db_path, &self.db)             # <<<<<<<<<<<<<<
@@ -3865,7 +3822,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
  */
           __pyx_v_self->status = rocksdb::DB::Open(__pyx_v_self->options, __pyx_v_self->db_path, (&__pyx_v_self->db));
 
-          /* "quipubase.pyx":77
+          /* "quipubase.pyx":74
  *         with self.lock:
  *             self.status = DB.Open(self.options, self.db_path, &self.db)
  *             if not self.status.ok():             # <<<<<<<<<<<<<<
@@ -3875,26 +3832,26 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
           __pyx_t_9 = (!(__pyx_v_self->status.ok() != 0));
           if (unlikely(__pyx_t_9)) {
 
-            /* "quipubase.pyx":78
+            /* "quipubase.pyx":75
  *             self.status = DB.Open(self.options, self.db_path, &self.db)
  *             if not self.status.ok():
  *                 raise RuntimeError(f"Failed to open database: {self.status.ToString().decode()}")             # <<<<<<<<<<<<<<
  * 
  *     cdef void close_db(self):
  */
-            __pyx_t_2 = __Pyx_decode_cpp_string(__pyx_v_self->status.ToString(), 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L7_error)
+            __pyx_t_2 = __Pyx_decode_cpp_string(__pyx_v_self->status.ToString(), 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_2);
-            __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Failed_to_open_database, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Failed_to_open_database, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_RuntimeError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L7_error)
+            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_RuntimeError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_Raise(__pyx_t_2, 0, 0, 0);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __PYX_ERR(0, 78, __pyx_L7_error)
+            __PYX_ERR(0, 75, __pyx_L7_error)
 
-            /* "quipubase.pyx":77
+            /* "quipubase.pyx":74
  *         with self.lock:
  *             self.status = DB.Open(self.options, self.db_path, &self.db)
  *             if not self.status.ok():             # <<<<<<<<<<<<<<
@@ -3903,7 +3860,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
  */
           }
 
-          /* "quipubase.pyx":75
+          /* "quipubase.pyx":72
  * 
  *     cdef void open_db(self):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -3921,20 +3878,20 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("quipubase.Quipu.open_db", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 75, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 72, __pyx_L9_except_error)
           __Pyx_XGOTREF(__pyx_t_2);
           __Pyx_XGOTREF(__pyx_t_3);
           __Pyx_XGOTREF(__pyx_t_4);
-          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 75, __pyx_L9_except_error)
+          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 72, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_10);
           __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_10, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 75, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 72, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_11);
           __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_11);
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-          if (__pyx_t_9 < 0) __PYX_ERR(0, 75, __pyx_L9_except_error)
+          if (__pyx_t_9 < 0) __PYX_ERR(0, 72, __pyx_L9_except_error)
           __pyx_t_12 = (!__pyx_t_9);
           if (unlikely(__pyx_t_12)) {
             __Pyx_GIVEREF(__pyx_t_2);
@@ -3942,7 +3899,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
             __Pyx_XGIVEREF(__pyx_t_4);
             __Pyx_ErrRestoreWithState(__pyx_t_2, __pyx_t_3, __pyx_t_4);
             __pyx_t_2 = 0; __pyx_t_3 = 0; __pyx_t_4 = 0; 
-            __PYX_ERR(0, 75, __pyx_L9_except_error)
+            __PYX_ERR(0, 72, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3968,7 +3925,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
         if (__pyx_t_1) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 75, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 72, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -3983,7 +3940,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
     __pyx_L17:;
   }
 
-  /* "quipubase.pyx":74
+  /* "quipubase.pyx":71
  *         self.open_db()
  * 
  *     cdef void open_db(self):             # <<<<<<<<<<<<<<
@@ -4003,7 +3960,7 @@ static void __pyx_f_9quipubase_5Quipu_open_db(struct __pyx_obj_9quipubase_Quipu 
   __Pyx_RefNannyFinishContext();
 }
 
-/* "quipubase.pyx":80
+/* "quipubase.pyx":77
  *                 raise RuntimeError(f"Failed to open database: {self.status.ToString().decode()}")
  * 
  *     cdef void close_db(self):             # <<<<<<<<<<<<<<
@@ -4027,7 +3984,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("close_db", 1);
 
-  /* "quipubase.pyx":81
+  /* "quipubase.pyx":78
  * 
  *     cdef void close_db(self):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -4035,9 +3992,9 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
  *                 self.db.Close()
  */
   /*with:*/ {
-    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L3_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -4057,7 +4014,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L3_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -4067,7 +4024,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
         (void)__pyx_t_6; (void)__pyx_t_7; (void)__pyx_t_8; /* mark used */
         /*try:*/ {
 
-          /* "quipubase.pyx":82
+          /* "quipubase.pyx":79
  *     cdef void close_db(self):
  *         with self.lock:
  *             if self.db:             # <<<<<<<<<<<<<<
@@ -4077,7 +4034,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
           __pyx_t_9 = (__pyx_v_self->db != 0);
           if (__pyx_t_9) {
 
-            /* "quipubase.pyx":83
+            /* "quipubase.pyx":80
  *         with self.lock:
  *             if self.db:
  *                 self.db.Close()             # <<<<<<<<<<<<<<
@@ -4086,7 +4043,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
  */
             __pyx_v_self->db->Close();
 
-            /* "quipubase.pyx":84
+            /* "quipubase.pyx":81
  *             if self.db:
  *                 self.db.Close()
  *                 del self.db             # <<<<<<<<<<<<<<
@@ -4095,7 +4052,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
  */
             delete __pyx_v_self->db;
 
-            /* "quipubase.pyx":82
+            /* "quipubase.pyx":79
  *     cdef void close_db(self):
  *         with self.lock:
  *             if self.db:             # <<<<<<<<<<<<<<
@@ -4104,7 +4061,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
  */
           }
 
-          /* "quipubase.pyx":81
+          /* "quipubase.pyx":78
  * 
  *     cdef void close_db(self):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -4119,7 +4076,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
         if (__pyx_t_1) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 78, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -4134,7 +4091,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
     __pyx_L14:;
   }
 
-  /* "quipubase.pyx":80
+  /* "quipubase.pyx":77
  *                 raise RuntimeError(f"Failed to open database: {self.status.ToString().decode()}")
  * 
  *     cdef void close_db(self):             # <<<<<<<<<<<<<<
@@ -4153,7 +4110,7 @@ static void __pyx_f_9quipubase_5Quipu_close_db(struct __pyx_obj_9quipubase_Quipu
   __Pyx_RefNannyFinishContext();
 }
 
-/* "quipubase.pyx":86
+/* "quipubase.pyx":83
  *                 del self.db
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -4179,16 +4136,16 @@ static void __pyx_pf_9quipubase_5Quipu_2__dealloc__(struct __pyx_obj_9quipubase_
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "quipubase.pyx":87
+  /* "quipubase.pyx":84
  * 
  *     def __dealloc__(self):
  *         self.close_db()             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  ((struct __pyx_vtabstruct_9quipubase_Quipu *)__pyx_v_self->__pyx_vtab)->close_db(__pyx_v_self); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 87, __pyx_L1_error)
+  ((struct __pyx_vtabstruct_9quipubase_Quipu *)__pyx_v_self->__pyx_vtab)->close_db(__pyx_v_self); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 84, __pyx_L1_error)
 
-  /* "quipubase.pyx":86
+  /* "quipubase.pyx":83
  *                 del self.db
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -4203,7 +4160,7 @@ static void __pyx_pf_9quipubase_5Quipu_2__dealloc__(struct __pyx_obj_9quipubase_
   __pyx_L0:;
 }
 
-/* "quipubase.pyx":90
+/* "quipubase.pyx":87
  * 
  * 
  *     def put(self, str key, bytes value):             # <<<<<<<<<<<<<<
@@ -4267,7 +4224,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 87, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -4275,14 +4232,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 87, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("put", 1, 2, 2, 1); __PYX_ERR(0, 90, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("put", 1, 2, 2, 1); __PYX_ERR(0, 87, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "put") < 0)) __PYX_ERR(0, 90, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "put") < 0)) __PYX_ERR(0, 87, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -4295,7 +4252,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("put", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 90, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("put", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 87, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4309,8 +4266,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 90, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyBytes_Type), 1, "value", 1))) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyBytes_Type), 1, "value", 1))) __PYX_ERR(0, 87, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_4put(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key, __pyx_v_value);
 
   /* function exit code */
@@ -4350,7 +4307,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("put", 1);
 
-  /* "quipubase.pyx":91
+  /* "quipubase.pyx":88
  * 
  *     def put(self, str key, bytes value):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -4358,9 +4315,9 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
  * 
  */
   /*with:*/ {
-    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L3_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -4380,7 +4337,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -4395,21 +4352,21 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
         __Pyx_XGOTREF(__pyx_t_8);
         /*try:*/ {
 
-          /* "quipubase.pyx":92
+          /* "quipubase.pyx":89
  *     def put(self, str key, bytes value):
  *         with self.lock:
  *             self.db.Put(self.write_options, key.encode(), value)             # <<<<<<<<<<<<<<
  * 
  *     def get(self, str key):
  */
-          __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L7_error)
+          __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_9 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L7_error)
+          __pyx_t_9 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L7_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __pyx_t_10 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_v_value); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L7_error)
+          __pyx_t_10 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_v_value); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L7_error)
           __pyx_v_self->db->Put(__pyx_v_self->write_options, __pyx_t_9, __pyx_t_10);
 
-          /* "quipubase.pyx":91
+          /* "quipubase.pyx":88
  * 
  *     def put(self, str key, bytes value):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -4427,20 +4384,20 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("quipubase.Quipu.put", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 91, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 88, __pyx_L9_except_error)
           __Pyx_XGOTREF(__pyx_t_2);
           __Pyx_XGOTREF(__pyx_t_3);
           __Pyx_XGOTREF(__pyx_t_4);
-          __pyx_t_11 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 91, __pyx_L9_except_error)
+          __pyx_t_11 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 88, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_11);
           __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_11, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 91, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 88, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_12);
           __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (__pyx_t_13 < 0) __PYX_ERR(0, 91, __pyx_L9_except_error)
+          if (__pyx_t_13 < 0) __PYX_ERR(0, 88, __pyx_L9_except_error)
           __pyx_t_14 = (!__pyx_t_13);
           if (unlikely(__pyx_t_14)) {
             __Pyx_GIVEREF(__pyx_t_2);
@@ -4448,7 +4405,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
             __Pyx_XGIVEREF(__pyx_t_4);
             __Pyx_ErrRestoreWithState(__pyx_t_2, __pyx_t_3, __pyx_t_4);
             __pyx_t_2 = 0; __pyx_t_3 = 0; __pyx_t_4 = 0; 
-            __PYX_ERR(0, 91, __pyx_L9_except_error)
+            __PYX_ERR(0, 88, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -4474,7 +4431,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
         if (__pyx_t_1) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 88, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -4489,7 +4446,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
     __pyx_L16:;
   }
 
-  /* "quipubase.pyx":90
+  /* "quipubase.pyx":87
  * 
  * 
  *     def put(self, str key, bytes value):             # <<<<<<<<<<<<<<
@@ -4513,7 +4470,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_4put(struct __pyx_obj_9quipubase_Qui
   return __pyx_r;
 }
 
-/* "quipubase.pyx":94
+/* "quipubase.pyx":91
  *             self.db.Put(self.write_options, key.encode(), value)
  * 
  *     def get(self, str key):             # <<<<<<<<<<<<<<
@@ -4574,12 +4531,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get") < 0)) __PYX_ERR(0, 94, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get") < 0)) __PYX_ERR(0, 91, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -4590,7 +4547,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4604,7 +4561,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 91, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_6get(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key);
 
   /* function exit code */
@@ -4644,7 +4601,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get", 1);
 
-  /* "quipubase.pyx":96
+  /* "quipubase.pyx":93
  *     def get(self, str key):
  *         cdef string value
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -4652,9 +4609,9 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
  *             if not self.status.ok():
  */
   /*with:*/ {
-    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L3_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -4674,7 +4631,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L3_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -4689,20 +4646,20 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
         __Pyx_XGOTREF(__pyx_t_8);
         /*try:*/ {
 
-          /* "quipubase.pyx":97
+          /* "quipubase.pyx":94
  *         cdef string value
  *         with self.lock:
  *             self.status = self.db.Get(self.read_options, key.encode(), &value)             # <<<<<<<<<<<<<<
  *             if not self.status.ok():
  *                 return None
  */
-          __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L7_error)
+          __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_9 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 97, __pyx_L7_error)
+          __pyx_t_9 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L7_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __pyx_v_self->status = __pyx_v_self->db->Get(__pyx_v_self->read_options, __pyx_t_9, (&__pyx_v_value));
 
-          /* "quipubase.pyx":98
+          /* "quipubase.pyx":95
  *         with self.lock:
  *             self.status = self.db.Get(self.read_options, key.encode(), &value)
  *             if not self.status.ok():             # <<<<<<<<<<<<<<
@@ -4712,7 +4669,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
           __pyx_t_10 = (!(__pyx_v_self->status.ok() != 0));
           if (__pyx_t_10) {
 
-            /* "quipubase.pyx":99
+            /* "quipubase.pyx":96
  *             self.status = self.db.Get(self.read_options, key.encode(), &value)
  *             if not self.status.ok():
  *                 return None             # <<<<<<<<<<<<<<
@@ -4723,7 +4680,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
             __pyx_r = Py_None; __Pyx_INCREF(Py_None);
             goto __pyx_L11_try_return;
 
-            /* "quipubase.pyx":98
+            /* "quipubase.pyx":95
  *         with self.lock:
  *             self.status = self.db.Get(self.read_options, key.encode(), &value)
  *             if not self.status.ok():             # <<<<<<<<<<<<<<
@@ -4732,7 +4689,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
  */
           }
 
-          /* "quipubase.pyx":100
+          /* "quipubase.pyx":97
  *             if not self.status.ok():
  *                 return None
  *             return value             # <<<<<<<<<<<<<<
@@ -4740,13 +4697,13 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
  *     def delete(self, str key):
  */
           __Pyx_XDECREF(__pyx_r);
-          __pyx_t_2 = __pyx_convert_PyBytes_string_to_py_6libcpp_6string_std__in_string(__pyx_v_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L7_error)
+          __pyx_t_2 = __pyx_convert_PyBytes_string_to_py_6libcpp_6string_std__in_string(__pyx_v_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
           __pyx_r = __pyx_t_2;
           __pyx_t_2 = 0;
           goto __pyx_L11_try_return;
 
-          /* "quipubase.pyx":96
+          /* "quipubase.pyx":93
  *     def get(self, str key):
  *         cdef string value
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -4760,20 +4717,20 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("quipubase.Quipu.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 96, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 93, __pyx_L9_except_error)
           __Pyx_XGOTREF(__pyx_t_2);
           __Pyx_XGOTREF(__pyx_t_3);
           __Pyx_XGOTREF(__pyx_t_4);
-          __pyx_t_11 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 96, __pyx_L9_except_error)
+          __pyx_t_11 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 93, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_11);
           __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_11, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 96, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 93, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_12);
           __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (__pyx_t_10 < 0) __PYX_ERR(0, 96, __pyx_L9_except_error)
+          if (__pyx_t_10 < 0) __PYX_ERR(0, 93, __pyx_L9_except_error)
           __pyx_t_13 = (!__pyx_t_10);
           if (unlikely(__pyx_t_13)) {
             __Pyx_GIVEREF(__pyx_t_2);
@@ -4781,7 +4738,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
             __Pyx_XGIVEREF(__pyx_t_4);
             __Pyx_ErrRestoreWithState(__pyx_t_2, __pyx_t_3, __pyx_t_4);
             __pyx_t_2 = 0; __pyx_t_3 = 0; __pyx_t_4 = 0; 
-            __PYX_ERR(0, 96, __pyx_L9_except_error)
+            __PYX_ERR(0, 93, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -4812,7 +4769,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
         if (__pyx_t_1) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 96, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 93, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -4824,7 +4781,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
         if (__pyx_t_1) {
           __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 96, __pyx_L1_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
@@ -4841,7 +4798,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
     __pyx_L17:;
   }
 
-  /* "quipubase.pyx":94
+  /* "quipubase.pyx":91
  *             self.db.Put(self.write_options, key.encode(), value)
  * 
  *     def get(self, str key):             # <<<<<<<<<<<<<<
@@ -4865,7 +4822,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_6get(struct __pyx_obj_9quipubase_Qui
   return __pyx_r;
 }
 
-/* "quipubase.pyx":102
+/* "quipubase.pyx":99
  *             return value
  * 
  *     def delete(self, str key):             # <<<<<<<<<<<<<<
@@ -4926,12 +4883,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 102, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "delete") < 0)) __PYX_ERR(0, 102, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "delete") < 0)) __PYX_ERR(0, 99, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -4942,7 +4899,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("delete", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 102, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("delete", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 99, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4956,7 +4913,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 99, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_8delete(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key);
 
   /* function exit code */
@@ -4995,7 +4952,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("delete", 1);
 
-  /* "quipubase.pyx":103
+  /* "quipubase.pyx":100
  * 
  *     def delete(self, str key):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -5003,9 +4960,9 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
  * 
  */
   /*with:*/ {
-    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L3_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_v_self->lock, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -5025,7 +4982,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L3_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -5040,20 +4997,20 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
         __Pyx_XGOTREF(__pyx_t_8);
         /*try:*/ {
 
-          /* "quipubase.pyx":104
+          /* "quipubase.pyx":101
  *     def delete(self, str key):
  *         with self.lock:
  *             self.db.Delete(self.write_options, key.encode())             # <<<<<<<<<<<<<<
  * 
  * 
  */
-          __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L7_error)
+          __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_9 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 104, __pyx_L7_error)
+          __pyx_t_9 = __pyx_convert_string_from_py_6libcpp_6string_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 101, __pyx_L7_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           (void)(__pyx_v_self->db->Delete(__pyx_v_self->write_options, __pyx_t_9));
 
-          /* "quipubase.pyx":103
+          /* "quipubase.pyx":100
  * 
  *     def delete(self, str key):
  *         with self.lock:             # <<<<<<<<<<<<<<
@@ -5071,20 +5028,20 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("quipubase.Quipu.delete", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 103, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 100, __pyx_L9_except_error)
           __Pyx_XGOTREF(__pyx_t_2);
           __Pyx_XGOTREF(__pyx_t_3);
           __Pyx_XGOTREF(__pyx_t_4);
-          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 103, __pyx_L9_except_error)
+          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 100, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_10);
           __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_10, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 100, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_11);
           __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_11);
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-          if (__pyx_t_12 < 0) __PYX_ERR(0, 103, __pyx_L9_except_error)
+          if (__pyx_t_12 < 0) __PYX_ERR(0, 100, __pyx_L9_except_error)
           __pyx_t_13 = (!__pyx_t_12);
           if (unlikely(__pyx_t_13)) {
             __Pyx_GIVEREF(__pyx_t_2);
@@ -5092,7 +5049,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
             __Pyx_XGIVEREF(__pyx_t_4);
             __Pyx_ErrRestoreWithState(__pyx_t_2, __pyx_t_3, __pyx_t_4);
             __pyx_t_2 = 0; __pyx_t_3 = 0; __pyx_t_4 = 0; 
-            __PYX_ERR(0, 103, __pyx_L9_except_error)
+            __PYX_ERR(0, 100, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5118,7 +5075,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
         if (__pyx_t_1) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, NULL);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 103, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 100, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -5133,7 +5090,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
     __pyx_L16:;
   }
 
-  /* "quipubase.pyx":102
+  /* "quipubase.pyx":99
  *             return value
  * 
  *     def delete(self, str key):             # <<<<<<<<<<<<<<
@@ -5157,7 +5114,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_8delete(struct __pyx_obj_9quipubase_
   return __pyx_r;
 }
 
-/* "quipubase.pyx":107
+/* "quipubase.pyx":104
  * 
  * 
  *     def exists(self, str key)->bool:             # <<<<<<<<<<<<<<
@@ -5218,12 +5175,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 104, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "exists") < 0)) __PYX_ERR(0, 107, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "exists") < 0)) __PYX_ERR(0, 104, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -5234,7 +5191,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("exists", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 107, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("exists", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 104, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5248,7 +5205,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 107, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 104, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_10exists(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key);
 
   /* function exit code */
@@ -5279,7 +5236,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_10exists(struct __pyx_obj_9quipubase
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("exists", 1);
 
-  /* "quipubase.pyx":108
+  /* "quipubase.pyx":105
  * 
  *     def exists(self, str key)->bool:
  *         return self.get(key) is not None             # <<<<<<<<<<<<<<
@@ -5287,7 +5244,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_10exists(struct __pyx_obj_9quipubase
  *     def count(self)->int:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -5307,19 +5264,19 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_10exists(struct __pyx_obj_9quipubase
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_key};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_t_5 = (__pyx_t_1 != Py_None);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "quipubase.pyx":107
+  /* "quipubase.pyx":104
  * 
  * 
  *     def exists(self, str key)->bool:             # <<<<<<<<<<<<<<
@@ -5340,7 +5297,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_10exists(struct __pyx_obj_9quipubase
   return __pyx_r;
 }
 
-/* "quipubase.pyx":110
+/* "quipubase.pyx":107
  *         return self.get(key) is not None
  * 
  *     def count(self)->int:             # <<<<<<<<<<<<<<
@@ -5401,7 +5358,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("count", 1);
 
-  /* "quipubase.pyx":111
+  /* "quipubase.pyx":108
  * 
  *     def count(self)->int:
  *         cdef int count = 0             # <<<<<<<<<<<<<<
@@ -5410,7 +5367,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
  */
   __pyx_v_count = 0;
 
-  /* "quipubase.pyx":112
+  /* "quipubase.pyx":109
  *     def count(self)->int:
  *         cdef int count = 0
  *         cdef Iterator* it = self.db.NewIterator(self.read_options)             # <<<<<<<<<<<<<<
@@ -5419,7 +5376,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
  */
   __pyx_v_it = __pyx_v_self->db->NewIterator(__pyx_v_self->read_options);
 
-  /* "quipubase.pyx":113
+  /* "quipubase.pyx":110
  *         cdef int count = 0
  *         cdef Iterator* it = self.db.NewIterator(self.read_options)
  *         try:             # <<<<<<<<<<<<<<
@@ -5428,7 +5385,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
  */
   /*try:*/ {
 
-    /* "quipubase.pyx":114
+    /* "quipubase.pyx":111
  *         cdef Iterator* it = self.db.NewIterator(self.read_options)
  *         try:
  *             it.SeekToFirst()             # <<<<<<<<<<<<<<
@@ -5437,7 +5394,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
  */
     __pyx_v_it->SeekToFirst();
 
-    /* "quipubase.pyx":115
+    /* "quipubase.pyx":112
  *         try:
  *             it.SeekToFirst()
  *             while it.Valid():             # <<<<<<<<<<<<<<
@@ -5448,7 +5405,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
       __pyx_t_1 = (__pyx_v_it->Valid() != 0);
       if (!__pyx_t_1) break;
 
-      /* "quipubase.pyx":116
+      /* "quipubase.pyx":113
  *             it.SeekToFirst()
  *             while it.Valid():
  *                 count += 1             # <<<<<<<<<<<<<<
@@ -5457,7 +5414,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
  */
       __pyx_v_count = (__pyx_v_count + 1);
 
-      /* "quipubase.pyx":117
+      /* "quipubase.pyx":114
  *             while it.Valid():
  *                 count += 1
  *                 it.Next()             # <<<<<<<<<<<<<<
@@ -5468,7 +5425,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
     }
   }
 
-  /* "quipubase.pyx":119
+  /* "quipubase.pyx":116
  *                 it.Next()
  *         finally:
  *             del it             # <<<<<<<<<<<<<<
@@ -5483,7 +5440,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
     __pyx_L5:;
   }
 
-  /* "quipubase.pyx":120
+  /* "quipubase.pyx":117
  *         finally:
  *             del it
  *         return count             # <<<<<<<<<<<<<<
@@ -5491,14 +5448,14 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(__Pyx_Py3Int_CheckExact(__pyx_t_2)) || __Pyx_RaiseUnexpectedTypeError("int", __pyx_t_2))) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (!(likely(__Pyx_Py3Int_CheckExact(__pyx_t_2)) || __Pyx_RaiseUnexpectedTypeError("int", __pyx_t_2))) __PYX_ERR(0, 117, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "quipubase.pyx":110
+  /* "quipubase.pyx":107
  *         return self.get(key) is not None
  * 
  *     def count(self)->int:             # <<<<<<<<<<<<<<
@@ -5517,7 +5474,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_12count(struct __pyx_obj_9quipubase_
   return __pyx_r;
 }
 
-/* "quipubase.pyx":124
+/* "quipubase.pyx":121
  * 
  * 
  *     def get_doc(self, str key):             # <<<<<<<<<<<<<<
@@ -5578,12 +5535,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 124, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 121, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_doc") < 0)) __PYX_ERR(0, 124, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_doc") < 0)) __PYX_ERR(0, 121, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -5594,7 +5551,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_doc", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 124, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_doc", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 121, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5608,7 +5565,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 124, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 121, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_14get_doc(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key);
 
   /* function exit code */
@@ -5640,14 +5597,14 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_doc", 1);
 
-  /* "quipubase.pyx":126
+  /* "quipubase.pyx":123
  *     def get_doc(self, str key):
  *         cdef bytes value
  *         value = self.get(key)             # <<<<<<<<<<<<<<
  *         if value is None:
  *             return None
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -5667,15 +5624,15 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_key};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_t_1))) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_t_1))) __PYX_ERR(0, 123, __pyx_L1_error)
   __pyx_v_value = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":127
+  /* "quipubase.pyx":124
  *         cdef bytes value
  *         value = self.get(key)
  *         if value is None:             # <<<<<<<<<<<<<<
@@ -5685,7 +5642,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
   __pyx_t_5 = (__pyx_v_value == ((PyObject*)Py_None));
   if (__pyx_t_5) {
 
-    /* "quipubase.pyx":128
+    /* "quipubase.pyx":125
  *         value = self.get(key)
  *         if value is None:
  *             return None             # <<<<<<<<<<<<<<
@@ -5696,7 +5653,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "quipubase.pyx":127
+    /* "quipubase.pyx":124
  *         cdef bytes value
  *         value = self.get(key)
  *         if value is None:             # <<<<<<<<<<<<<<
@@ -5705,7 +5662,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
  */
   }
 
-  /* "quipubase.pyx":129
+  /* "quipubase.pyx":126
  *         if value is None:
  *             return None
  *         return orjson.loads(value)             # <<<<<<<<<<<<<<
@@ -5713,9 +5670,9 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
  *     def put_doc(self, str key, dict[str,Any] value):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_orjson); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_orjson); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_loads); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_loads); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -5736,7 +5693,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_value};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
@@ -5744,7 +5701,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "quipubase.pyx":124
+  /* "quipubase.pyx":121
  * 
  * 
  *     def get_doc(self, str key):             # <<<<<<<<<<<<<<
@@ -5766,7 +5723,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_14get_doc(struct __pyx_obj_9quipubas
   return __pyx_r;
 }
 
-/* "quipubase.pyx":131
+/* "quipubase.pyx":128
  *         return orjson.loads(value)
  * 
  *     def put_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
@@ -5830,7 +5787,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 131, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 128, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -5838,14 +5795,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 131, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 128, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("put_doc", 1, 2, 2, 1); __PYX_ERR(0, 131, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("put_doc", 1, 2, 2, 1); __PYX_ERR(0, 128, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "put_doc") < 0)) __PYX_ERR(0, 131, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "put_doc") < 0)) __PYX_ERR(0, 128, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -5858,7 +5815,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("put_doc", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 131, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("put_doc", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 128, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5872,8 +5829,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 131, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyDict_Type), 1, "value", 1))) __PYX_ERR(0, 131, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyDict_Type), 1, "value", 1))) __PYX_ERR(0, 128, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_16put_doc(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key, __pyx_v_value);
 
   /* function exit code */
@@ -5907,35 +5864,35 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_16put_doc(struct __pyx_obj_9quipubas
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("put_doc", 1);
 
-  /* "quipubase.pyx":132
+  /* "quipubase.pyx":129
  * 
  *     def put_doc(self, str key, dict[str,Any] value):
  *         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))             # <<<<<<<<<<<<<<
  * 
  *     def delete_doc(self, str key):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_put); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_put); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_orjson); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_orjson); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dumps); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dumps); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_value);
   __Pyx_GIVEREF(__pyx_v_value);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_value)) __PYX_ERR(0, 132, __pyx_L1_error);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_value)) __PYX_ERR(0, 129, __pyx_L1_error);
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_orjson); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_orjson); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_OPT_SERIALIZE_NUMPY); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_OPT_SERIALIZE_NUMPY); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_option, __pyx_t_7) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_option, __pyx_t_7) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5959,13 +5916,13 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_16put_doc(struct __pyx_obj_9quipubas
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 2+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":131
+  /* "quipubase.pyx":128
  *         return orjson.loads(value)
  * 
  *     def put_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
@@ -5992,7 +5949,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_16put_doc(struct __pyx_obj_9quipubas
   return __pyx_r;
 }
 
-/* "quipubase.pyx":134
+/* "quipubase.pyx":131
  *         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))
  * 
  *     def delete_doc(self, str key):             # <<<<<<<<<<<<<<
@@ -6053,12 +6010,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 134, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 131, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "delete_doc") < 0)) __PYX_ERR(0, 134, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "delete_doc") < 0)) __PYX_ERR(0, 131, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -6069,7 +6026,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("delete_doc", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 134, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("delete_doc", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 131, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6083,7 +6040,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 131, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_18delete_doc(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key);
 
   /* function exit code */
@@ -6117,14 +6074,14 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("delete_doc", 1);
 
-  /* "quipubase.pyx":135
+  /* "quipubase.pyx":132
  * 
  *     def delete_doc(self, str key):
  *         if not self.exists(key):             # <<<<<<<<<<<<<<
  *             raise ValueError(f"Object with id {key} not found")
  *         self.delete(key)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_exists); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_exists); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -6144,23 +6101,23 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipu
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_key};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_6 = (!__pyx_t_5);
   if (unlikely(__pyx_t_6)) {
 
-    /* "quipubase.pyx":136
+    /* "quipubase.pyx":133
  *     def delete_doc(self, str key):
  *         if not self.exists(key):
  *             raise ValueError(f"Object with id {key} not found")             # <<<<<<<<<<<<<<
  *         self.delete(key)
  * 
  */
-    __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_7 = 0;
     __pyx_t_8 = 127;
@@ -6168,7 +6125,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipu
     __pyx_t_7 += 15;
     __Pyx_GIVEREF(__pyx_kp_u_Object_with_id);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Object_with_id);
-    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_key, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_key, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_8 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) > __pyx_t_8) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) : __pyx_t_8;
     __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
@@ -6179,17 +6136,17 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipu
     __pyx_t_7 += 10;
     __Pyx_GIVEREF(__pyx_kp_u_not_found);
     PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_not_found);
-    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 136, __pyx_L1_error)
+    __PYX_ERR(0, 133, __pyx_L1_error)
 
-    /* "quipubase.pyx":135
+    /* "quipubase.pyx":132
  * 
  *     def delete_doc(self, str key):
  *         if not self.exists(key):             # <<<<<<<<<<<<<<
@@ -6198,14 +6155,14 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipu
  */
   }
 
-  /* "quipubase.pyx":137
+  /* "quipubase.pyx":134
  *         if not self.exists(key):
  *             raise ValueError(f"Object with id {key} not found")
  *         self.delete(key)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_delete); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_delete); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -6225,13 +6182,13 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipu
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_key};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":134
+  /* "quipubase.pyx":131
  *         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))
  * 
  *     def delete_doc(self, str key):             # <<<<<<<<<<<<<<
@@ -6254,7 +6211,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_18delete_doc(struct __pyx_obj_9quipu
   return __pyx_r;
 }
 
-/* "quipubase.pyx":140
+/* "quipubase.pyx":137
  * 
  * 
  *     def scan_docs(self, int limit, int offset, bool keys_only=False):             # <<<<<<<<<<<<<<
@@ -6321,7 +6278,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -6329,21 +6286,21 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("scan_docs", 0, 2, 3, 1); __PYX_ERR(0, 140, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("scan_docs", 0, 2, 3, 1); __PYX_ERR(0, 137, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_keys_only);
           if (value) { values[2] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "scan_docs") < 0)) __PYX_ERR(0, 140, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "scan_docs") < 0)) __PYX_ERR(0, 137, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -6355,17 +6312,17 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_limit = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_limit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L3_error)
-    __pyx_v_offset = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_offset == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L3_error)
+    __pyx_v_limit = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_limit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L3_error)
+    __pyx_v_offset = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_offset == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L3_error)
     if (values[2]) {
-      __pyx_v_keys_only = __Pyx_PyObject_IsTrue(values[2]); if (unlikely((__pyx_v_keys_only == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L3_error)
+      __pyx_v_keys_only = __Pyx_PyObject_IsTrue(values[2]); if (unlikely((__pyx_v_keys_only == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L3_error)
     } else {
       __pyx_v_keys_only = ((bool)0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("scan_docs", 0, 2, 3, __pyx_nargs); __PYX_ERR(0, 140, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("scan_docs", 0, 2, 3, __pyx_nargs); __PYX_ERR(0, 137, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6417,19 +6374,19 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("scan_docs", 1);
 
-  /* "quipubase.pyx":141
+  /* "quipubase.pyx":138
  * 
  *     def scan_docs(self, int limit, int offset, bool keys_only=False):
  *         cdef list results = []             # <<<<<<<<<<<<<<
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  *         it.SeekToFirst()
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_results = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":142
+  /* "quipubase.pyx":139
  *     def scan_docs(self, int limit, int offset, bool keys_only=False):
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())             # <<<<<<<<<<<<<<
@@ -6438,7 +6395,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
   __pyx_v_it = __pyx_v_self->db->NewIterator(rocksdb::ReadOptions());
 
-  /* "quipubase.pyx":143
+  /* "quipubase.pyx":140
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  *         it.SeekToFirst()             # <<<<<<<<<<<<<<
@@ -6447,7 +6404,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
   __pyx_v_it->SeekToFirst();
 
-  /* "quipubase.pyx":144
+  /* "quipubase.pyx":141
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  *         it.SeekToFirst()
  *         try:             # <<<<<<<<<<<<<<
@@ -6456,7 +6413,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
   /*try:*/ {
 
-    /* "quipubase.pyx":145
+    /* "quipubase.pyx":142
  *         it.SeekToFirst()
  *         try:
  *             while it.Valid() and len(results) < limit:             # <<<<<<<<<<<<<<
@@ -6470,13 +6427,13 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
         __pyx_t_2 = __pyx_t_3;
         goto __pyx_L8_bool_binop_done;
       }
-      __pyx_t_4 = __Pyx_PyList_GET_SIZE(__pyx_v_results); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 145, __pyx_L4_error)
+      __pyx_t_4 = __Pyx_PyList_GET_SIZE(__pyx_v_results); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 142, __pyx_L4_error)
       __pyx_t_3 = (__pyx_t_4 < __pyx_v_limit);
       __pyx_t_2 = __pyx_t_3;
       __pyx_L8_bool_binop_done:;
       if (!__pyx_t_2) break;
 
-      /* "quipubase.pyx":146
+      /* "quipubase.pyx":143
  *         try:
  *             while it.Valid() and len(results) < limit:
  *                 if offset > 0:             # <<<<<<<<<<<<<<
@@ -6486,7 +6443,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
       __pyx_t_2 = (__pyx_v_offset > 0);
       if (__pyx_t_2) {
 
-        /* "quipubase.pyx":147
+        /* "quipubase.pyx":144
  *             while it.Valid() and len(results) < limit:
  *                 if offset > 0:
  *                     offset -= 1             # <<<<<<<<<<<<<<
@@ -6495,7 +6452,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
         __pyx_v_offset = (__pyx_v_offset - 1);
 
-        /* "quipubase.pyx":148
+        /* "quipubase.pyx":145
  *                 if offset > 0:
  *                     offset -= 1
  *                     it.Next()             # <<<<<<<<<<<<<<
@@ -6504,7 +6461,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
         __pyx_v_it->Next();
 
-        /* "quipubase.pyx":149
+        /* "quipubase.pyx":146
  *                     offset -= 1
  *                     it.Next()
  *                     continue             # <<<<<<<<<<<<<<
@@ -6513,7 +6470,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
         goto __pyx_L6_continue;
 
-        /* "quipubase.pyx":146
+        /* "quipubase.pyx":143
  *         try:
  *             while it.Valid() and len(results) < limit:
  *                 if offset > 0:             # <<<<<<<<<<<<<<
@@ -6522,7 +6479,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
       }
 
-      /* "quipubase.pyx":150
+      /* "quipubase.pyx":147
  *                     it.Next()
  *                     continue
  *                 if keys_only:             # <<<<<<<<<<<<<<
@@ -6532,26 +6489,26 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
       __pyx_t_2 = (__pyx_v_keys_only != 0);
       if (__pyx_t_2) {
 
-        /* "quipubase.pyx":151
+        /* "quipubase.pyx":148
  *                     continue
  *                 if keys_only:
  *                     results.append((<bytes>it.key().data())[:it.key().size()])             # <<<<<<<<<<<<<<
  *                 else:
  *                     results.append(orjson.loads((<bytes>it.value().data())[:it.value().size()]))
  */
-        __pyx_t_1 = __Pyx_PyBytes_FromString(__pyx_v_it->key().data()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L4_error)
+        __pyx_t_1 = __Pyx_PyBytes_FromString(__pyx_v_it->key().data()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_1);
         if (unlikely(__pyx_t_1 == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 151, __pyx_L4_error)
+          __PYX_ERR(0, 148, __pyx_L4_error)
         }
-        __pyx_t_5 = PySequence_GetSlice(((PyObject*)__pyx_t_1), 0, __pyx_v_it->key().size()); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 151, __pyx_L4_error)
+        __pyx_t_5 = PySequence_GetSlice(((PyObject*)__pyx_t_1), 0, __pyx_v_it->key().size()); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 148, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_results, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 151, __pyx_L4_error)
+        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_results, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 148, __pyx_L4_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "quipubase.pyx":150
+        /* "quipubase.pyx":147
  *                     it.Next()
  *                     continue
  *                 if keys_only:             # <<<<<<<<<<<<<<
@@ -6561,7 +6518,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
         goto __pyx_L11;
       }
 
-      /* "quipubase.pyx":153
+      /* "quipubase.pyx":150
  *                     results.append((<bytes>it.key().data())[:it.key().size()])
  *                 else:
  *                     results.append(orjson.loads((<bytes>it.value().data())[:it.value().size()]))             # <<<<<<<<<<<<<<
@@ -6569,18 +6526,18 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  *         finally:
  */
       /*else*/ {
-        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_orjson); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L4_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_orjson); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_loads); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 153, __pyx_L4_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_loads); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 150, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_PyBytes_FromString(__pyx_v_it->value().data()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L4_error)
+        __pyx_t_1 = __Pyx_PyBytes_FromString(__pyx_v_it->value().data()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_1);
         if (unlikely(__pyx_t_1 == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 153, __pyx_L4_error)
+          __PYX_ERR(0, 150, __pyx_L4_error)
         }
-        __pyx_t_8 = PySequence_GetSlice(((PyObject*)__pyx_t_1), 0, __pyx_v_it->value().size()); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 153, __pyx_L4_error)
+        __pyx_t_8 = PySequence_GetSlice(((PyObject*)__pyx_t_1), 0, __pyx_v_it->value().size()); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 150, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_1 = NULL;
@@ -6602,16 +6559,16 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
           __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_9, 1+__pyx_t_9);
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-          if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 153, __pyx_L4_error)
+          if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 150, __pyx_L4_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
-        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_results, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 153, __pyx_L4_error)
+        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_results, __pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 150, __pyx_L4_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
       __pyx_L11:;
 
-      /* "quipubase.pyx":154
+      /* "quipubase.pyx":151
  *                 else:
  *                     results.append(orjson.loads((<bytes>it.value().data())[:it.value().size()]))
  *                 it.Next()             # <<<<<<<<<<<<<<
@@ -6623,7 +6580,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
     }
   }
 
-  /* "quipubase.pyx":156
+  /* "quipubase.pyx":153
  *                 it.Next()
  *         finally:
  *             del it             # <<<<<<<<<<<<<<
@@ -6634,7 +6591,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
     /*normal exit:*/{
       delete __pyx_v_it;
 
-      /* "quipubase.pyx":157
+      /* "quipubase.pyx":154
  *         finally:
  *             del it
  *             return results             # <<<<<<<<<<<<<<
@@ -6665,7 +6622,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
       __Pyx_XGOTREF(__pyx_t_15);
       {
 
-        /* "quipubase.pyx":156
+        /* "quipubase.pyx":153
  *                 it.Next()
  *         finally:
  *             del it             # <<<<<<<<<<<<<<
@@ -6674,7 +6631,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
  */
         delete __pyx_v_it;
 
-        /* "quipubase.pyx":157
+        /* "quipubase.pyx":154
  *         finally:
  *             del it
  *             return results             # <<<<<<<<<<<<<<
@@ -6701,7 +6658,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
     }
   }
 
-  /* "quipubase.pyx":140
+  /* "quipubase.pyx":137
  * 
  * 
  *     def scan_docs(self, int limit, int offset, bool keys_only=False):             # <<<<<<<<<<<<<<
@@ -6724,7 +6681,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_20scan_docs(struct __pyx_obj_9quipub
   return __pyx_r;
 }
 
-/* "quipubase.pyx":159
+/* "quipubase.pyx":156
  *             return results
  * 
  *     def find_docs(self,  int limit, int offset, object kwargs):             # <<<<<<<<<<<<<<
@@ -6749,7 +6706,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
   int __pyx_v_limit;
-  CYTHON_UNUSED int __pyx_v_offset;
+  int __pyx_v_offset;
   PyObject *__pyx_v_kwargs = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
@@ -6791,7 +6748,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 159, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 156, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -6799,9 +6756,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 159, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 156, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("find_docs", 1, 3, 3, 1); __PYX_ERR(0, 159, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("find_docs", 1, 3, 3, 1); __PYX_ERR(0, 156, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -6809,14 +6766,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 159, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 156, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("find_docs", 1, 3, 3, 2); __PYX_ERR(0, 159, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("find_docs", 1, 3, 3, 2); __PYX_ERR(0, 156, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "find_docs") < 0)) __PYX_ERR(0, 159, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "find_docs") < 0)) __PYX_ERR(0, 156, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
@@ -6825,13 +6782,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
     }
-    __pyx_v_limit = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_limit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 159, __pyx_L3_error)
-    __pyx_v_offset = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_offset == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 159, __pyx_L3_error)
+    __pyx_v_limit = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_limit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 156, __pyx_L3_error)
+    __pyx_v_offset = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_offset == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 156, __pyx_L3_error)
     __pyx_v_kwargs = values[2];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("find_docs", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 159, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("find_docs", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 156, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6858,7 +6815,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, int __pyx_v_limit, CYTHON_UNUSED int __pyx_v_offset, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipubase_Quipu *__pyx_v_self, int __pyx_v_limit, int __pyx_v_offset, PyObject *__pyx_v_kwargs) {
   PyObject *__pyx_v_results = 0;
   rocksdb::Iterator *__pyx_v_it;
   PyObject *__pyx_v_doc = NULL;
@@ -6888,19 +6845,19 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_docs", 1);
 
-  /* "quipubase.pyx":160
+  /* "quipubase.pyx":157
  * 
  *     def find_docs(self,  int limit, int offset, object kwargs):
  *         cdef list results = []             # <<<<<<<<<<<<<<
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  *         it.SeekToFirst()
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_results = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":161
+  /* "quipubase.pyx":158
  *     def find_docs(self,  int limit, int offset, object kwargs):
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())             # <<<<<<<<<<<<<<
@@ -6909,7 +6866,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
  */
   __pyx_v_it = __pyx_v_self->db->NewIterator(rocksdb::ReadOptions());
 
-  /* "quipubase.pyx":162
+  /* "quipubase.pyx":159
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  *         it.SeekToFirst()             # <<<<<<<<<<<<<<
@@ -6918,21 +6875,21 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
  */
   __pyx_v_it->SeekToFirst();
 
-  /* "quipubase.pyx":163
+  /* "quipubase.pyx":160
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  *         it.SeekToFirst()
  *         try:             # <<<<<<<<<<<<<<
  *             while it.Valid() and len(results) < limit:
- *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
+ *                 if offset > 0:
  */
   /*try:*/ {
 
-    /* "quipubase.pyx":164
+    /* "quipubase.pyx":161
  *         it.SeekToFirst()
  *         try:
  *             while it.Valid() and len(results) < limit:             # <<<<<<<<<<<<<<
- *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
- *                 for key, value in kwargs.items():
+ *                 if offset > 0:
+ *                     offset -= 1
  */
     while (1) {
       __pyx_t_3 = (__pyx_v_it->Valid() != 0);
@@ -6941,31 +6898,77 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
         __pyx_t_2 = __pyx_t_3;
         goto __pyx_L8_bool_binop_done;
       }
-      __pyx_t_4 = __Pyx_PyList_GET_SIZE(__pyx_v_results); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 164, __pyx_L4_error)
+      __pyx_t_4 = __Pyx_PyList_GET_SIZE(__pyx_v_results); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 161, __pyx_L4_error)
       __pyx_t_3 = (__pyx_t_4 < __pyx_v_limit);
       __pyx_t_2 = __pyx_t_3;
       __pyx_L8_bool_binop_done:;
       if (!__pyx_t_2) break;
 
-      /* "quipubase.pyx":165
+      /* "quipubase.pyx":162
  *         try:
  *             while it.Valid() and len(results) < limit:
+ *                 if offset > 0:             # <<<<<<<<<<<<<<
+ *                     offset -= 1
+ *                     it.Next()
+ */
+      __pyx_t_2 = (__pyx_v_offset > 0);
+      if (__pyx_t_2) {
+
+        /* "quipubase.pyx":163
+ *             while it.Valid() and len(results) < limit:
+ *                 if offset > 0:
+ *                     offset -= 1             # <<<<<<<<<<<<<<
+ *                     it.Next()
+ *                     continue
+ */
+        __pyx_v_offset = (__pyx_v_offset - 1);
+
+        /* "quipubase.pyx":164
+ *                 if offset > 0:
+ *                     offset -= 1
+ *                     it.Next()             # <<<<<<<<<<<<<<
+ *                     continue
+ *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
+ */
+        __pyx_v_it->Next();
+
+        /* "quipubase.pyx":165
+ *                     offset -= 1
+ *                     it.Next()
+ *                     continue             # <<<<<<<<<<<<<<
+ *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
+ *                 for key, value in kwargs.items():
+ */
+        goto __pyx_L6_continue;
+
+        /* "quipubase.pyx":162
+ *         try:
+ *             while it.Valid() and len(results) < limit:
+ *                 if offset > 0:             # <<<<<<<<<<<<<<
+ *                     offset -= 1
+ *                     it.Next()
+ */
+      }
+
+      /* "quipubase.pyx":166
+ *                     it.Next()
+ *                     continue
  *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])             # <<<<<<<<<<<<<<
  *                 for key, value in kwargs.items():
  *                     if doc.get(key) != value:
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_orjson); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L4_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_orjson); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 166, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_loads); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 165, __pyx_L4_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_loads); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 166, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyBytes_FromString(__pyx_v_it->value().data()); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L4_error)
+      __pyx_t_5 = __Pyx_PyBytes_FromString(__pyx_v_it->value().data()); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 166, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
       if (unlikely(__pyx_t_5 == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 165, __pyx_L4_error)
+        __PYX_ERR(0, 166, __pyx_L4_error)
       }
-      __pyx_t_7 = PySequence_GetSlice(((PyObject*)__pyx_t_5), 0, __pyx_v_it->value().size()); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 165, __pyx_L4_error)
+      __pyx_t_7 = PySequence_GetSlice(((PyObject*)__pyx_t_5), 0, __pyx_v_it->value().size()); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 166, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -6987,15 +6990,15 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
         __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L4_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
       __Pyx_XDECREF_SET(__pyx_v_doc, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "quipubase.pyx":166
- *             while it.Valid() and len(results) < limit:
+      /* "quipubase.pyx":167
+ *                     continue
  *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
  *                 for key, value in kwargs.items():             # <<<<<<<<<<<<<<
  *                     if doc.get(key) != value:
@@ -7004,9 +7007,9 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
       __pyx_t_4 = 0;
       if (unlikely(__pyx_v_kwargs == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-        __PYX_ERR(0, 166, __pyx_L4_error)
+        __PYX_ERR(0, 167, __pyx_L4_error)
       }
-      __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_kwargs, 0, __pyx_n_s_items, (&__pyx_t_9), (&__pyx_t_8)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 166, __pyx_L4_error)
+      __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_kwargs, 0, __pyx_n_s_items, (&__pyx_t_9), (&__pyx_t_8)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 167, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_1);
       __pyx_t_1 = __pyx_t_6;
@@ -7014,7 +7017,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
       while (1) {
         __pyx_t_10 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_9, &__pyx_t_4, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_8);
         if (unlikely(__pyx_t_10 == 0)) break;
-        if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 166, __pyx_L4_error)
+        if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 167, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_6);
@@ -7022,14 +7025,14 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
         __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "quipubase.pyx":167
+        /* "quipubase.pyx":168
  *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
  *                 for key, value in kwargs.items():
  *                     if doc.get(key) != value:             # <<<<<<<<<<<<<<
  *                         break
  *                 else:
  */
-        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_doc, __pyx_n_s_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 167, __pyx_L4_error)
+        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_doc, __pyx_n_s_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 168, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_t_5 = NULL;
         __pyx_t_10 = 0;
@@ -7049,26 +7052,26 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
           PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_v_key};
           __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_10, 1+__pyx_t_10);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 167, __pyx_L4_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 168, __pyx_L4_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
-        __pyx_t_6 = PyObject_RichCompare(__pyx_t_7, __pyx_v_value, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 167, __pyx_L4_error)
+        __pyx_t_6 = PyObject_RichCompare(__pyx_t_7, __pyx_v_value, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 168, __pyx_L4_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 167, __pyx_L4_error)
+        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 168, __pyx_L4_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         if (__pyx_t_2) {
 
-          /* "quipubase.pyx":168
+          /* "quipubase.pyx":169
  *                 for key, value in kwargs.items():
  *                     if doc.get(key) != value:
  *                         break             # <<<<<<<<<<<<<<
  *                 else:
  *                     results.append(doc)
  */
-          goto __pyx_L11_break;
+          goto __pyx_L12_break;
 
-          /* "quipubase.pyx":167
+          /* "quipubase.pyx":168
  *                 doc = orjson.loads((<bytes>it.value().data())[:it.value().size()])
  *                 for key, value in kwargs.items():
  *                     if doc.get(key) != value:             # <<<<<<<<<<<<<<
@@ -7078,7 +7081,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
         }
       }
 
-      /* "quipubase.pyx":170
+      /* "quipubase.pyx":171
  *                         break
  *                 else:
  *                     results.append(doc)             # <<<<<<<<<<<<<<
@@ -7086,12 +7089,12 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
  *         finally:
  */
       /*else*/ {
-        __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_results, __pyx_v_doc); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 170, __pyx_L4_error)
+        __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_results, __pyx_v_doc); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 171, __pyx_L4_error)
       }
-      __pyx_L11_break:;
+      __pyx_L12_break:;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "quipubase.pyx":171
+      /* "quipubase.pyx":172
  *                 else:
  *                     results.append(doc)
  *                 it.Next()             # <<<<<<<<<<<<<<
@@ -7099,10 +7102,11 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
  *             del it
  */
       __pyx_v_it->Next();
+      __pyx_L6_continue:;
     }
   }
 
-  /* "quipubase.pyx":173
+  /* "quipubase.pyx":174
  *                 it.Next()
  *         finally:
  *             del it             # <<<<<<<<<<<<<<
@@ -7113,7 +7117,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
     /*normal exit:*/{
       delete __pyx_v_it;
 
-      /* "quipubase.pyx":174
+      /* "quipubase.pyx":175
  *         finally:
  *             del it
  *             return results             # <<<<<<<<<<<<<<
@@ -7144,7 +7148,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
       __Pyx_XGOTREF(__pyx_t_17);
       {
 
-        /* "quipubase.pyx":173
+        /* "quipubase.pyx":174
  *                 it.Next()
  *         finally:
  *             del it             # <<<<<<<<<<<<<<
@@ -7153,7 +7157,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
  */
         delete __pyx_v_it;
 
-        /* "quipubase.pyx":174
+        /* "quipubase.pyx":175
  *         finally:
  *             del it
  *             return results             # <<<<<<<<<<<<<<
@@ -7163,9 +7167,9 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
         __Pyx_XDECREF(__pyx_r);
         __Pyx_INCREF(__pyx_v_results);
         __pyx_r = __pyx_v_results;
-        goto __pyx_L13_return;
+        goto __pyx_L14_return;
       }
-      __pyx_L13_return:;
+      __pyx_L14_return:;
       if (PY_MAJOR_VERSION >= 3) {
         __Pyx_XGIVEREF(__pyx_t_15);
         __Pyx_XGIVEREF(__pyx_t_16);
@@ -7180,7 +7184,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
     }
   }
 
-  /* "quipubase.pyx":159
+  /* "quipubase.pyx":156
  *             return results
  * 
  *     def find_docs(self,  int limit, int offset, object kwargs):             # <<<<<<<<<<<<<<
@@ -7206,7 +7210,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_22find_docs(struct __pyx_obj_9quipub
   return __pyx_r;
 }
 
-/* "quipubase.pyx":176
+/* "quipubase.pyx":177
  *             return results
  * 
  *     def merge_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
@@ -7270,7 +7274,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 176, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -7278,14 +7282,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 176, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("merge_doc", 1, 2, 2, 1); __PYX_ERR(0, 176, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("merge_doc", 1, 2, 2, 1); __PYX_ERR(0, 177, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "merge_doc") < 0)) __PYX_ERR(0, 176, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "merge_doc") < 0)) __PYX_ERR(0, 177, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -7298,7 +7302,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("merge_doc", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 176, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("merge_doc", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 177, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7312,8 +7316,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 176, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyDict_Type), 1, "value", 1))) __PYX_ERR(0, 176, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyString_Type), 1, "key", 1))) __PYX_ERR(0, 177, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyDict_Type), 1, "value", 1))) __PYX_ERR(0, 177, __pyx_L1_error)
   __pyx_r = __pyx_pf_9quipubase_5Quipu_24merge_doc(((struct __pyx_obj_9quipubase_Quipu *)__pyx_v_self), __pyx_v_key, __pyx_v_value);
 
   /* function exit code */
@@ -7350,14 +7354,14 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("merge_doc", 1);
 
-  /* "quipubase.pyx":178
+  /* "quipubase.pyx":179
  *     def merge_doc(self, str key, dict[str,Any] value):
  *         cdef bytes existing
  *         existing = self.get(key)             # <<<<<<<<<<<<<<
  *         if existing is None:
  *             self.put_doc(key, value)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -7377,15 +7381,15 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_key};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_t_1))) __PYX_ERR(0, 178, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_t_1))) __PYX_ERR(0, 179, __pyx_L1_error)
   __pyx_v_existing = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":179
+  /* "quipubase.pyx":180
  *         cdef bytes existing
  *         existing = self.get(key)
  *         if existing is None:             # <<<<<<<<<<<<<<
@@ -7395,14 +7399,14 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
   __pyx_t_5 = (__pyx_v_existing == ((PyObject*)Py_None));
   if (__pyx_t_5) {
 
-    /* "quipubase.pyx":180
+    /* "quipubase.pyx":181
  *         existing = self.get(key)
  *         if existing is None:
  *             self.put_doc(key, value)             # <<<<<<<<<<<<<<
  *             return
  *         existing_dict = orjson.loads(existing)
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_put_doc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_put_doc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = NULL;
     __pyx_t_4 = 0;
@@ -7422,13 +7426,13 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
       PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_v_key, __pyx_v_value};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "quipubase.pyx":181
+    /* "quipubase.pyx":182
  *         if existing is None:
  *             self.put_doc(key, value)
  *             return             # <<<<<<<<<<<<<<
@@ -7439,7 +7443,7 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "quipubase.pyx":179
+    /* "quipubase.pyx":180
  *         cdef bytes existing
  *         existing = self.get(key)
  *         if existing is None:             # <<<<<<<<<<<<<<
@@ -7448,16 +7452,16 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
  */
   }
 
-  /* "quipubase.pyx":182
+  /* "quipubase.pyx":183
  *             self.put_doc(key, value)
  *             return
  *         existing_dict = orjson.loads(existing)             # <<<<<<<<<<<<<<
  *         existing_dict.update(value)
  *         self.put(key, orjson.dumps(existing_dict, option=orjson.OPT_SERIALIZE_NUMPY))
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_orjson); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_orjson); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_loads); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_loads); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -7478,20 +7482,20 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_existing};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __pyx_v_existing_dict = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":183
+  /* "quipubase.pyx":184
  *             return
  *         existing_dict = orjson.loads(existing)
  *         existing_dict.update(value)             # <<<<<<<<<<<<<<
  *         self.put(key, orjson.dumps(existing_dict, option=orjson.OPT_SERIALIZE_NUMPY))
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_existing_dict, __pyx_n_s_update); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_existing_dict, __pyx_n_s_update); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
@@ -7511,39 +7515,39 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_value};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":184
+  /* "quipubase.pyx":185
  *         existing_dict = orjson.loads(existing)
  *         existing_dict.update(value)
  *         self.put(key, orjson.dumps(existing_dict, option=orjson.OPT_SERIALIZE_NUMPY))             # <<<<<<<<<<<<<<
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_put); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_put); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_orjson); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_orjson); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dumps); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dumps); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_existing_dict);
   __Pyx_GIVEREF(__pyx_v_existing_dict);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_existing_dict)) __PYX_ERR(0, 184, __pyx_L1_error);
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_existing_dict)) __PYX_ERR(0, 185, __pyx_L1_error);
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_orjson); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_orjson); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_OPT_SERIALIZE_NUMPY); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_OPT_SERIALIZE_NUMPY); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_option, __pyx_t_9) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_option, __pyx_t_9) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -7567,13 +7571,13 @@ static PyObject *__pyx_pf_9quipubase_5Quipu_24merge_doc(struct __pyx_obj_9quipub
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "quipubase.pyx":176
+  /* "quipubase.pyx":177
  *             return results
  * 
  *     def merge_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
@@ -8030,13 +8034,10 @@ static PyMethodDef __pyx_methods[] = {
 
 static int __Pyx_CreateStringTabAndInitStrings(void) {
   __Pyx_StringTabEntry __pyx_string_tab[] = {
-    {&__pyx_n_s_Any, __pyx_k_Any, sizeof(__pyx_k_Any), 0, 0, 1, 1},
     {&__pyx_kp_u_Failed_to_open_database, __pyx_k_Failed_to_open_database, sizeof(__pyx_k_Failed_to_open_database), 0, 1, 0, 0},
     {&__pyx_n_s_Lock, __pyx_k_Lock, sizeof(__pyx_k_Lock), 0, 0, 1, 1},
     {&__pyx_n_s_OPT_SERIALIZE_NUMPY, __pyx_k_OPT_SERIALIZE_NUMPY, sizeof(__pyx_k_OPT_SERIALIZE_NUMPY), 0, 0, 1, 1},
     {&__pyx_kp_u_Object_with_id, __pyx_k_Object_with_id, sizeof(__pyx_k_Object_with_id), 0, 1, 0, 0},
-    {&__pyx_n_s_P, __pyx_k_P, sizeof(__pyx_k_P), 0, 0, 1, 1},
-    {&__pyx_n_s_ParamSpec, __pyx_k_ParamSpec, sizeof(__pyx_k_ParamSpec), 0, 0, 1, 1},
     {&__pyx_n_s_Quipu, __pyx_k_Quipu, sizeof(__pyx_k_Quipu), 0, 0, 1, 1},
     {&__pyx_n_s_Quipu___reduce_cython, __pyx_k_Quipu___reduce_cython, sizeof(__pyx_k_Quipu___reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_Quipu___setstate_cython, __pyx_k_Quipu___setstate_cython, sizeof(__pyx_k_Quipu___setstate_cython), 0, 0, 1, 1},
@@ -8052,11 +8053,9 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Quipu_put_doc, __pyx_k_Quipu_put_doc, sizeof(__pyx_k_Quipu_put_doc), 0, 0, 1, 1},
     {&__pyx_n_s_Quipu_scan_docs, __pyx_k_Quipu_scan_docs, sizeof(__pyx_k_Quipu_scan_docs), 0, 0, 1, 1},
     {&__pyx_n_s_RuntimeError, __pyx_k_RuntimeError, sizeof(__pyx_k_RuntimeError), 0, 0, 1, 1},
-    {&__pyx_n_s_T, __pyx_k_T, sizeof(__pyx_k_T), 0, 0, 1, 1},
     {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
-    {&__pyx_n_s_TypeVar, __pyx_k_TypeVar, sizeof(__pyx_k_TypeVar), 0, 0, 1, 1},
     {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
-    {&__pyx_n_s__29, __pyx_k__29, sizeof(__pyx_k__29), 0, 0, 1, 1},
+    {&__pyx_n_s__27, __pyx_k__27, sizeof(__pyx_k__27), 0, 0, 1, 1},
     {&__pyx_kp_u__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 1, 0, 0},
     {&__pyx_n_s__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
@@ -8122,8 +8121,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
     {&__pyx_n_s_threading, __pyx_k_threading, sizeof(__pyx_k_threading), 0, 0, 1, 1},
-    {&__pyx_n_s_typing, __pyx_k_typing, sizeof(__pyx_k_typing), 0, 0, 1, 1},
-    {&__pyx_n_s_typing_extensions, __pyx_k_typing_extensions, sizeof(__pyx_k_typing_extensions), 0, 0, 1, 1},
     {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
     {&__pyx_n_s_value, __pyx_k_value, sizeof(__pyx_k_value), 0, 0, 1, 1},
     {0, 0, 0, 0, 0, 0, 0}
@@ -8132,8 +8129,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 65, __pyx_L1_error)
-  __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(0, 75, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -8145,179 +8142,157 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "quipubase.pyx":65
+  /* "quipubase.pyx":62
  *     def __cinit__(self, str db_path):
  *         if not db_path:
  *             raise ValueError("db_path must be provided")             # <<<<<<<<<<<<<<
  *         self.options = Options()
  *         self.options.create_if_missing = True
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_db_path_must_be_provided); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_db_path_must_be_provided); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "quipubase.pyx":75
+  /* "quipubase.pyx":72
  * 
  *     cdef void open_db(self):
  *         with self.lock:             # <<<<<<<<<<<<<<
  *             self.status = DB.Open(self.options, self.db_path, &self.db)
  *             if not self.status.ok():
  */
-  __pyx_tuple__2 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "quipubase.pyx":11
- * from libcpp.string cimport string
- * 
- * T = TypeVar("T")             # <<<<<<<<<<<<<<
- * P = ParamSpec("P")
- * 
- */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_T); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
-
-  /* "quipubase.pyx":12
- * 
- * T = TypeVar("T")
- * P = ParamSpec("P")             # <<<<<<<<<<<<<<
- * 
- * cdef extern from "rocksdb/db.h" namespace "rocksdb":
- */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_P); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
-
-  /* "quipubase.pyx":90
+  /* "quipubase.pyx":87
  * 
  * 
  *     def put(self, str key, bytes value):             # <<<<<<<<<<<<<<
  *         with self.lock:
  *             self.db.Put(self.write_options, key.encode(), value)
  */
-  __pyx_tuple__7 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 90, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_put, 90, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_put, 87, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 87, __pyx_L1_error)
 
-  /* "quipubase.pyx":94
+  /* "quipubase.pyx":91
  *             self.db.Put(self.write_options, key.encode(), value)
  * 
  *     def get(self, str key):             # <<<<<<<<<<<<<<
  *         cdef string value
  *         with self.lock:
  */
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_get, 94, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_get, 91, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 91, __pyx_L1_error)
 
-  /* "quipubase.pyx":102
+  /* "quipubase.pyx":99
  *             return value
  * 
  *     def delete(self, str key):             # <<<<<<<<<<<<<<
  *         with self.lock:
  *             self.db.Delete(self.write_options, key.encode())
  */
-  __pyx_tuple__10 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_key); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_delete, 102, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_key); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_delete, 99, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 99, __pyx_L1_error)
 
-  /* "quipubase.pyx":107
+  /* "quipubase.pyx":104
  * 
  * 
  *     def exists(self, str key)->bool:             # <<<<<<<<<<<<<<
  *         return self.get(key) is not None
  * 
  */
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_exists, 107, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_exists, 104, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 104, __pyx_L1_error)
 
-  /* "quipubase.pyx":110
+  /* "quipubase.pyx":107
  *         return self.get(key) is not None
  * 
  *     def count(self)->int:             # <<<<<<<<<<<<<<
  *         cdef int count = 0
  *         cdef Iterator* it = self.db.NewIterator(self.read_options)
  */
-  __pyx_tuple__13 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_count, __pyx_n_s_it); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 110, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_count, 110, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_count, __pyx_n_s_it); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_count, 107, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 107, __pyx_L1_error)
 
-  /* "quipubase.pyx":124
+  /* "quipubase.pyx":121
  * 
  * 
  *     def get_doc(self, str key):             # <<<<<<<<<<<<<<
  *         cdef bytes value
  *         value = self.get(key)
  */
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_get_doc, 124, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_get_doc, 121, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 121, __pyx_L1_error)
 
-  /* "quipubase.pyx":131
+  /* "quipubase.pyx":128
  *         return orjson.loads(value)
  * 
  *     def put_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
  *         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))
  * 
  */
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_put_doc, 131, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_put_doc, 128, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 128, __pyx_L1_error)
 
-  /* "quipubase.pyx":134
+  /* "quipubase.pyx":131
  *         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))
  * 
  *     def delete_doc(self, str key):             # <<<<<<<<<<<<<<
  *         if not self.exists(key):
  *             raise ValueError(f"Object with id {key} not found")
  */
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_delete_doc, 134, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_delete_doc, 131, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 131, __pyx_L1_error)
 
-  /* "quipubase.pyx":140
+  /* "quipubase.pyx":137
  * 
  * 
  *     def scan_docs(self, int limit, int offset, bool keys_only=False):             # <<<<<<<<<<<<<<
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  */
-  __pyx_tuple__18 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_limit, __pyx_n_s_offset, __pyx_n_s_keys_only, __pyx_n_s_results, __pyx_n_s_it); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_limit, __pyx_n_s_offset, __pyx_n_s_keys_only, __pyx_n_s_results, __pyx_n_s_it); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_scan_docs, 137, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(1, Py_False); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_scan_docs, 140, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 140, __pyx_L1_error)
-  __pyx_tuple__20 = PyTuple_Pack(1, Py_False); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 140, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
 
-  /* "quipubase.pyx":159
+  /* "quipubase.pyx":156
  *             return results
  * 
  *     def find_docs(self,  int limit, int offset, object kwargs):             # <<<<<<<<<<<<<<
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  */
-  __pyx_tuple__21 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_limit, __pyx_n_s_offset, __pyx_n_s_kwargs, __pyx_n_s_results, __pyx_n_s_it, __pyx_n_s_doc, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 159, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_find_docs, 159, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_limit, __pyx_n_s_offset, __pyx_n_s_kwargs, __pyx_n_s_results, __pyx_n_s_it, __pyx_n_s_doc, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_find_docs, 156, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 156, __pyx_L1_error)
 
-  /* "quipubase.pyx":176
+  /* "quipubase.pyx":177
  *             return results
  * 
  *     def merge_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
  *         cdef bytes existing
  *         existing = self.get(key)
  */
-  __pyx_tuple__23 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_key, __pyx_n_s_value, __pyx_n_s_existing, __pyx_n_s_existing_dict); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 176, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_merge_doc, 176, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_key, __pyx_n_s_value, __pyx_n_s_existing, __pyx_n_s_existing_dict); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_quipubase_pyx, __pyx_n_s_merge_doc, 177, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 177, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(1, 1, __pyx_L1_error)
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
@@ -8325,10 +8300,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_tuple__27 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(1, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__27);
-  __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -8395,15 +8370,15 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_9quipubase_Quipu.open_db = (void (*)(struct __pyx_obj_9quipubase_Quipu *))__pyx_f_9quipubase_5Quipu_open_db;
   __pyx_vtable_9quipubase_Quipu.close_db = (void (*)(struct __pyx_obj_9quipubase_Quipu *))__pyx_f_9quipubase_5Quipu_close_db;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_9quipubase_Quipu = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_9quipubase_Quipu_spec, NULL); if (unlikely(!__pyx_ptype_9quipubase_Quipu)) __PYX_ERR(0, 54, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_9quipubase_Quipu_spec, __pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_ptype_9quipubase_Quipu = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_9quipubase_Quipu_spec, NULL); if (unlikely(!__pyx_ptype_9quipubase_Quipu)) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_9quipubase_Quipu_spec, __pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   #else
   __pyx_ptype_9quipubase_Quipu = &__pyx_type_9quipubase_Quipu;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_9quipubase_Quipu->tp_print = 0;
@@ -8413,13 +8388,13 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_ptype_9quipubase_Quipu->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_9quipubase_Quipu, __pyx_vtabptr_9quipubase_Quipu) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_9quipubase_Quipu, __pyx_vtabptr_9quipubase_Quipu) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Quipu, (PyObject *) __pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Quipu, (PyObject *) __pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_9quipubase_Quipu) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   #endif
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -8734,8 +8709,8 @@ if (!__Pyx_RefNanny) {
   /* "quipubase.pyx":2
  * # type: ignore
  * from threading import Lock as mutex             # <<<<<<<<<<<<<<
- * from typing import Any, TypeVar
  * 
+ * import orjson
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -8751,248 +8726,169 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "quipubase.pyx":3
- * # type: ignore
+  /* "quipubase.pyx":4
  * from threading import Lock as mutex
- * from typing import Any, TypeVar             # <<<<<<<<<<<<<<
- * 
- * import orjson
- */
-  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_INCREF(__pyx_n_s_Any);
-  __Pyx_GIVEREF(__pyx_n_s_Any);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_s_Any)) __PYX_ERR(0, 3, __pyx_L1_error);
-  __Pyx_INCREF(__pyx_n_s_TypeVar);
-  __Pyx_GIVEREF(__pyx_n_s_TypeVar);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 1, __pyx_n_s_TypeVar)) __PYX_ERR(0, 3, __pyx_L1_error);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_typing, __pyx_t_3, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_Any); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Any, __pyx_t_3) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_TypeVar); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TypeVar, __pyx_t_3) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "quipubase.pyx":5
- * from typing import Any, TypeVar
  * 
  * import orjson             # <<<<<<<<<<<<<<
- * from typing_extensions import ParamSpec
- * 
- */
-  __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_orjson, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_orjson, __pyx_t_2) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "quipubase.pyx":6
- * 
- * import orjson
- * from typing_extensions import ParamSpec             # <<<<<<<<<<<<<<
  * 
  * from libcpp cimport bool
  */
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(__pyx_n_s_ParamSpec);
-  __Pyx_GIVEREF(__pyx_n_s_ParamSpec);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_ParamSpec)) __PYX_ERR(0, 6, __pyx_L1_error);
-  __pyx_t_3 = __Pyx_Import(__pyx_n_s_typing_extensions, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_ImportDottedModule(__pyx_n_s_orjson, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_ParamSpec); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ParamSpec, __pyx_t_2) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_orjson, __pyx_t_3) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "quipubase.pyx":11
- * from libcpp.string cimport string
- * 
- * T = TypeVar("T")             # <<<<<<<<<<<<<<
- * P = ParamSpec("P")
- * 
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_TypeVar); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_T, __pyx_t_2) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "quipubase.pyx":12
- * 
- * T = TypeVar("T")
- * P = ParamSpec("P")             # <<<<<<<<<<<<<<
- * 
- * cdef extern from "rocksdb/db.h" namespace "rocksdb":
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ParamSpec); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_P, __pyx_t_3) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "quipubase.pyx":90
+  /* "quipubase.pyx":87
  * 
  * 
  *     def put(self, str key, bytes value):             # <<<<<<<<<<<<<<
  *         with self.lock:
  *             self.db.Put(self.write_options, key.encode(), value)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_5put, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_put, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_5put, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_put, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_put, __pyx_t_3) < 0) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_put, __pyx_t_3) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":94
+  /* "quipubase.pyx":91
  *             self.db.Put(self.write_options, key.encode(), value)
  * 
  *     def get(self, str key):             # <<<<<<<<<<<<<<
  *         cdef string value
  *         with self.lock:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_7get, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_get, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_7get, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_get, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_get, __pyx_t_3) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_get, __pyx_t_3) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":102
+  /* "quipubase.pyx":99
  *             return value
  * 
  *     def delete(self, str key):             # <<<<<<<<<<<<<<
  *         with self.lock:
  *             self.db.Delete(self.write_options, key.encode())
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_9delete, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_delete, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_9delete, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_delete, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_delete, __pyx_t_3) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_delete, __pyx_t_3) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":107
+  /* "quipubase.pyx":104
  * 
  * 
  *     def exists(self, str key)->bool:             # <<<<<<<<<<<<<<
  *         return self.get(key) is not None
  * 
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_bool) < 0) __PYX_ERR(0, 107, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_11exists, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_exists, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_bool) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_11exists, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_exists, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_exists, __pyx_t_2) < 0) __PYX_ERR(0, 107, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_exists, __pyx_t_2) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":110
+  /* "quipubase.pyx":107
  *         return self.get(key) is not None
  * 
  *     def count(self)->int:             # <<<<<<<<<<<<<<
  *         cdef int count = 0
  *         cdef Iterator* it = self.db.NewIterator(self.read_options)
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_s_int) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_13count, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_count, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_s_int) < 0) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_13count, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_count, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_count, __pyx_t_3) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_count, __pyx_t_3) < 0) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":124
+  /* "quipubase.pyx":121
  * 
  * 
  *     def get_doc(self, str key):             # <<<<<<<<<<<<<<
  *         cdef bytes value
  *         value = self.get(key)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_15get_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_get_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_15get_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_get_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_get_doc, __pyx_t_3) < 0) __PYX_ERR(0, 124, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_get_doc, __pyx_t_3) < 0) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":131
+  /* "quipubase.pyx":128
  *         return orjson.loads(value)
  * 
  *     def put_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
  *         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_17put_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_put_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_17put_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_put_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_put_doc, __pyx_t_3) < 0) __PYX_ERR(0, 131, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_put_doc, __pyx_t_3) < 0) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":134
+  /* "quipubase.pyx":131
  *         self.put(key, orjson.dumps(value, option=orjson.OPT_SERIALIZE_NUMPY))
  * 
  *     def delete_doc(self, str key):             # <<<<<<<<<<<<<<
  *         if not self.exists(key):
  *             raise ValueError(f"Object with id {key} not found")
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_19delete_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_delete_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_19delete_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_delete_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_delete_doc, __pyx_t_3) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_delete_doc, __pyx_t_3) < 0) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":140
+  /* "quipubase.pyx":137
  * 
  * 
  *     def scan_docs(self, int limit, int offset, bool keys_only=False):             # <<<<<<<<<<<<<<
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_21scan_docs, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_scan_docs, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_21scan_docs, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_scan_docs, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__20);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_scan_docs, __pyx_t_3) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__18);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_scan_docs, __pyx_t_3) < 0) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":159
+  /* "quipubase.pyx":156
  *             return results
  * 
  *     def find_docs(self,  int limit, int offset, object kwargs):             # <<<<<<<<<<<<<<
  *         cdef list results = []
  *         cdef Iterator* it = self.db.NewIterator(ReadOptions())
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_23find_docs, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_find_docs, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_23find_docs, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_find_docs, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_find_docs, __pyx_t_3) < 0) __PYX_ERR(0, 159, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_find_docs, __pyx_t_3) < 0) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
-  /* "quipubase.pyx":176
+  /* "quipubase.pyx":177
  *             return results
  * 
  *     def merge_doc(self, str key, dict[str,Any] value):             # <<<<<<<<<<<<<<
  *         cdef bytes existing
  *         existing = self.get(key)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_25merge_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_merge_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_25merge_doc, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu_merge_doc, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_merge_doc, __pyx_t_3) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9quipubase_Quipu, __pyx_n_s_merge_doc, __pyx_t_3) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9quipubase_Quipu);
 
@@ -9001,7 +8897,7 @@ if (!__Pyx_RefNanny) {
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_27__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu___reduce_cython, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_27__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu___reduce_cython, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9012,7 +8908,7 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_29__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu___setstate_cython, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9quipubase_5Quipu_29__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quipu___setstate_cython, NULL, __pyx_n_s_quipubase, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9020,7 +8916,7 @@ if (!__Pyx_RefNanny) {
   /* "quipubase.pyx":1
  * # type: ignore             # <<<<<<<<<<<<<<
  * from threading import Lock as mutex
- * from typing import Any, TypeVar
+ * 
  */
   __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -13682,7 +13578,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__29);
+        name = __Pyx_NewRef(__pyx_n_s__27);
     }
     return name;
 }

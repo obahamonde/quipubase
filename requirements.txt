@@ -18,3 +18,4 @@ PyPDF2
 PyMuPDF
 Pillow
 python-multipart
+filelock

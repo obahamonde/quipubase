@@ -11,6 +11,7 @@ from numpy.typing import NDArray
 from pydantic import Field
 from typing_extensions import Self, TypeVar, Union
 from pathlib import Path
+from itertools import filterfalse, islice
 
 from .qdoc import Base, CosimResult, QuipuDocument, Status
 from .qembed import QuipuEmbeddings
@@ -93,14 +94,9 @@ class QuipuVector(QuipuDocument):
         ]
 
     async def upsert(self, *, namespace: str, request: RagRequest = Body(...)):
-        embeddings = await self.embed(namespace=namespace, content=request.content)
-        instances = [
-            QuipuVector(value=embedding, content=request.content, namespace=namespace)
-            for embedding in embeddings
-        ]
-        result = await asyncio.gather(*[instance.put_doc() for instance in instances])
-        return UpsertedCount(upsertedCount=len(result))
-
+        embedding = await self.embed(namespace=namespace, content=request.content)
+        self.value = embedding
+        return await self.put_doc()
 
 app = APIRouter(tags=["Vector Embeddings"])
 
@@ -146,6 +142,7 @@ async def callback(chunk: str, namespace: str):
 
 @app.post("/upload/{namespace}")
 async def upload_file(namespace: str, file: UploadFile = File(...)):
+    assert file.filename, "No file name provided"
     _name = b64_id() + file.filename.split(".")[-1]
     file_path = Path(f"/tmp/{_name}")
     with file_path.open("wb") as f:

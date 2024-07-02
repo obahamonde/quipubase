@@ -9,6 +9,11 @@ handle_error() {
 
 trap 'handle_error ${LINENO} $?' ERR
 
+# Check for required tools
+command -v doctl >/dev/null 2>&1 || { echo "doctl is required but it's not installed. Aborting." >&2; exit 1; }
+command -v docker >/dev/null 2>&1 || { echo "docker is required but it's not installed. Aborting." >&2; exit 1; }
+command -v kubectl >/dev/null 2>&1 || { echo "kubectl is required but it's not installed. Aborting." >&2; exit 1; }
+
 # Variables - replace these with your actual values
 DO_CONTAINER_REGISTRY="registry.digitalocean.com/indiecloud"
 K8S_CLUSTER_NAME="indiecloud"
@@ -58,15 +63,15 @@ volumeBindingMode: Immediate
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: quipubase-pvc
-  namespace: $NAMESPACE
+  name: $NAMESPACE
+  namespace: default
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: $QUIPUBASE_STORAGE_CLASS
   resources:
     requests:
       storage: 10Gi
+  storageClassName: $QUIPUBASE_STORAGE_CLASS
 
 ---
 
@@ -89,17 +94,14 @@ spec:
       - name: quipubase
         image: $DO_CONTAINER_REGISTRY/$QUIPUBASE_IMAGE:$QUIPUBASE_TAG
         ports:
-        - containerPort: 5454
+        - containerPort: 80
         volumeMounts:
         - mountPath: /app/db
           name: quipu-storage
         resources:
           requests:
             memory: "512Mi"
-            cpu: "500m"
-          limits:
-            memory: "1Gi"
-            cpu: "1"
+            cpu: "250m"
       volumes:
       - name: quipu-storage
         persistentVolumeClaim:
@@ -118,7 +120,6 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5454
   type: LoadBalancer
 
 EOF
@@ -130,6 +131,7 @@ kubectl apply -f $TEMP_K8S_MANIFEST
 # Remove the temporary Kubernetes manifest file
 rm $TEMP_K8S_MANIFEST
 
+# Wait for deployment to be ready
 echo "Waiting for deployment to be ready..."
 kubectl wait --for=condition=available --timeout=600s deployment/quipubase -n $NAMESPACE
 

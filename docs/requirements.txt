@@ -1,7 +1,0 @@
-python-docx 
-python-pptx 
-pillow 
-pandas 
-PyPDF2 
-PyMuPDF
-openpyxl
