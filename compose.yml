@@ -1,0 +1,23 @@
+
+
+services:
+  db:
+    container_name: quipubase
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - "5454:5454"
+    env_file:
+      - ./db/.env
+    volumes:
+      - ./db:/app
+    networks:
+      - quipu
+
+
+
+networks:
+  quipu:
+    driver: bridge
+    

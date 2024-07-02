@@ -1,10 +1,12 @@
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
+from starlette.middleware.sessions import SessionMiddleware
 
 from .const import DESCRIPTION, SERVERS
 from .qdoc import app as documents_app
 from .qvector import app as vector_app
+from .auth import create_auth
 
 
 def create_app(routers: list[APIRouter] = [documents_app, vector_app]) -> FastAPI:
@@ -21,6 +23,7 @@ def create_app(routers: list[APIRouter] = [documents_app, vector_app]) -> FastAP
         version="0.0.3",
         servers=SERVERS,
     )
+    api.add_middleware(SessionMiddleware, secret_key="your-secret-key")
     api.add_middleware(
         CORSMiddleware,
         allow_credentials=True,
@@ -30,6 +33,7 @@ def create_app(routers: list[APIRouter] = [documents_app, vector_app]) -> FastAP
     )
     for router in routers:
         api.include_router(router, prefix="/api")
+    api.include_router(create_auth())
 
     @api.get("/", tags=["Root"])
     def _():

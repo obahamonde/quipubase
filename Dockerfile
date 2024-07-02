@@ -1,19 +1,15 @@
-FROM python:3.9
+# Base image for building and installing dependencies
+FROM python:3.9-slim AS builder
 
 WORKDIR /app
 
-COPY . .
-
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV PORT=5454
-ENV ROCKSDB_VERSION=7.8.3
-
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
     build-essential \
+    cmake \
+    libeigen3-dev \
+    gcc \
+    libpq-dev \
     libsnappy-dev \
     zlib1g-dev \
     libbz2-dev \
@@ -21,23 +17,49 @@ RUN apt-get update && apt-get install -y \
     liblz4-dev \
     libzstd-dev \
     wget \
-    git \
-    librocksdb-dev \
-    && rm -rf /var/lib/apt/lists/*
+    git
 
-# Set library path
-ENV LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
-# Verify installation of libraries
-RUN ldconfig && ldconfig -p | grep rocksdb
-RUN ldconfig -p | grep bz2
+# Install pybind11
+RUN python -m pip install pybind11
 
 # Install Python dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+COPY requirements.txt .
+RUN python -m pip install --upgrade pip && \
+    python -m pip install -r requirements.txt
 
-# Build and install quipubase
-RUN cd /app/quipubase && python setup.py build_ext --inplace
+# Clone and build hnswlib from source
+RUN git clone https://github.com/nmslib/hnswlib.git && \
+    cd hnswlib && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j $(nproc) && \
+    make install
 
-EXPOSE 5454
+# Final image for running the application
+FROM python:3.9-slim
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5454", "--reload"]
+WORKDIR /app
+
+# Copy the built hnswlib from the builder stage
+COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
+
+# Copy the application files
+COPY . .
+
+# Install runtime Python dependencies
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libsnappy-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libgflags-dev \
+    liblz4-dev \
+    libzstd-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install application dependencies
+
+EXPOSE 80
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

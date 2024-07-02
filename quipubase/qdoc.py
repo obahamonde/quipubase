@@ -1,7 +1,7 @@
 from __future__ import annotations
 import os
 import types
-from typing import Any, ClassVar, Dict, Optional, Type, TypeVar
+from typing import Any, ClassVar, Dict, Optional, Type, TypeVar, Union
 from uuid import uuid4
 
 from fastapi import APIRouter, Body, Path, Query
@@ -33,7 +33,7 @@ class CosimResult(Base):
 class Status(BaseModel):
     code: int
     message: str
-    key: str = Field(default=None)
+    key: Union[str, list[str]] = Field(default=None)
     definition: JsonSchema = Field(default=None)
 
 
@@ -43,14 +43,14 @@ class BaseDocument(Base):
         description="The data to be stored if the action is `put`, `merge`, or `findDocs`",
         examples=EXAMPLES,
     )
-    definition: JsonSchema = Field(
-        ...,
+    definition: Optional[JsonSchema] = Field(
+        default=None,
         description=JSON_SCHEMA_DESCRIPTION,
         examples=DEF_EXAMPLES,
     )
 
 
-class QuipuDocument(Base):
+class QuipuDocument(BaseDocument):
     _db_instances: ClassVar[dict[str, Quipu]] = {}
     _subclasses: ClassVar[dict[str, Type[QuipuDocument]]] = {}
     key: str = Field(default_factory=lambda: str(uuid4()))
@@ -67,7 +67,7 @@ class QuipuDocument(Base):
         cls._db = cls._db_instances[cls.__name__]
 
     @classmethod
-    def definition(cls) -> JsonSchema:
+    def get_definition(cls) -> JsonSchema:
         return JsonSchema(
             title=cls.__name__,
             description=cls.__doc__ or "[No description]",
@@ -94,7 +94,7 @@ class QuipuDocument(Base):
             code=404,
             message="Document not found",
             key=key,
-            definition=cls.definition(),
+            definition=cls.get_definition(),
         )
 
     @types.coroutine
@@ -112,7 +112,7 @@ class QuipuDocument(Base):
             code=204,
             message="Document deleted",
             key=key,
-            definition=cls.definition(),
+            definition=cls.get_definition(),
         )
 
     @classmethod
@@ -148,7 +148,7 @@ app = APIRouter(tags=["Document Store"], prefix="/document")
 
 
 @app.post("/{namespace}")
-async def document_action(
+async def use_documents(
     namespace: str = Path(description="The namespace of the document"),
     action: Literal["put", "merge", "find", "get", "delete"] = Query(
         ..., description="The action to perform"
@@ -160,7 +160,10 @@ async def document_action(
         None, description="The maximum number of documents to return"
     ),
     offset: Optional[int] = Query(None, description="The number of documents to skip"),
-    definition: BaseDocument = Body(...),
+    definition: Optional[BaseDocument] = Body(
+        None,
+        description="The definition of the document",
+    ),
 ):
     """
     `put`: Description: Creates a new document.
@@ -169,6 +172,8 @@ async def document_action(
     `get`:Description: Retrieves a document.
     `delete`: Description: Deletes a document.
     """
+    assert definition is not None, "Definition must be provided"
+    assert definition.definition is not None, "Definition must be provided"
     klass = create_class(
         namespace=namespace,
         schema=definition.definition,

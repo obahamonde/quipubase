@@ -2,7 +2,6 @@ from typing import Union
 
 import numpy as np
 from httpx import AsyncClient
-
 from .proxy import Proxy
 
 
@@ -27,7 +26,7 @@ class QuipuEmbeddings(Proxy[AsyncClient]):
             timeout=600,
         )
 
-    async def encode(self, text: Union[str, list[str]]):
+    async def encode(self, text: str):
         """
                 Encodes the given text into vectors.
 
@@ -41,11 +40,8 @@ class QuipuEmbeddings(Proxy[AsyncClient]):
                     embedding_api = EmbeddingAPI()
                     vectors = await embedding_api.encode("Hello, world!")
         """
-        if isinstance(text, str):
-            text = [text]
         response = await self.__load__().post(
             "https://embeddings.indiecloud.co/api/embeddings",
             json={"content": text},
         )
-        vector = response.json()["content"]
-        return np.array(vector, np.float32)  # type: ignore
+        return response.json()["content"]

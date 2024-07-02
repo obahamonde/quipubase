@@ -1,18 +1,21 @@
 services:
-
-  app:
-    container_name: app
+  quipubase:
+    container_name: quipubase
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4500:4500"
+      - "5454:5454"
+    env_file:
+      - .env
     volumes:
       - .:/app
     networks:
-      - app-network
-
-
-networks:
-  app-network:
-    driver: bridge
+      - quipu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: "all"
+              capabilities: [gpu]
